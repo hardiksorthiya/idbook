@@ -4533,7 +4533,27 @@ ul {
 .slider-item .slider-element-wrap .slider-thumb {
     height: 320px;
     max-width: 280px;
-    width: 100%
+    width: 100%;
+    position: relative
+}
+
+.slider-item .slider-element-wrap .slider-logo {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(17, 17, 17, .88);
+    border-radius: 12px;
+    padding: 7px 12px;
+    line-height: 0
+}
+
+.slider-item .slider-element-wrap .slider-logo img {
+    width: 108px;
+    height: auto;
+    display: block
 }
 
 .slider-item .slider-element-wrap .slider-thumb img {
@@ -4688,6 +4708,36 @@ ul {
 
 .feature-item.active .arrow i,.feature-item:hover .active i {
     transform: rotate(-45deg)
+}
+
+.feature-list-window {
+    height: auto
+}
+
+@media (min-width: 992px) {
+    .feature-section.is-vscroll .feature-scroll-row {
+        align-items: flex-start
+    }
+
+    .feature-section.is-vscroll .feature-list-window {
+        height: 520px;
+        overflow: hidden
+    }
+
+    .feature-section.is-vscroll .feature-item-list.feature-item-list-1 {
+        max-width: 100%
+    }
+
+    .feature-section.is-vscroll .feature-item {
+        min-height: 164px;
+        opacity: .4;
+        -webkit-transition: opacity .35s ease;
+        transition: opacity .35s ease
+    }
+
+    .feature-section.is-vscroll .feature-item.active {
+        opacity: 1
+    }
 }
 
 .counter-1 {
@@ -5106,8 +5156,114 @@ ul {
     margin-bottom: 10px
 }
 
+.project-item .product-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(25, 25, 25, .08)
+}
+
+.project-item .product-price {
+    color: var(--tl-color-heading-primary);
+    font-family: var(--tl-ff-heading);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: .02em;
+    line-height: 1;
+    white-space: nowrap
+}
+
+.project-item .product-size {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    padding: 5px 12px 5px 5px;
+    border: 1px solid #eadcc6;
+    border-radius: 100px;
+    background-color: var(--tl-color-common-white);
+    color: #8f7344;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap
+}
+
+.project-item .product-size i {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #f3eadc;
+    color: #a8884e;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0
+}
+
+@media only screen and (max-width: 767px) {
+    .project-item .product-meta {
+        align-items: flex-start;
+        flex-direction: column
+    }
+}
+
 .project-item:hover .project-img img {
     transform: scale(1.02)
+}
+
+.project-item .product-actions {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(12px);
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}
+
+.project-item:hover .product-actions {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0)
+}
+
+.project-item .product-actions .product-action {
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background-color: var(--tl-color-common-white);
+    color: var(--tl-color-theme-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}
+
+.project-item .product-actions .product-action:hover,
+.project-item .product-actions .product-action.is-active {
+    background-color: var(--tl-color-theme-primary);
+    color: var(--tl-color-common-white)
 }
 
 .project-house-img {
@@ -5663,7 +5819,17 @@ ul {
     will-change: transform;
     align-items: flex-end
 }
-
+.slider-logo
+ {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(17, 17, 17, .88);
+    border-radius: 12px;
+    padding: 7px 12px;
+    line-height: 0;
+    width: 270px;
+    margin-bottom: 20px;
+}
 @media only screen and (max-width: 767px) {
     .gallary-wrap .gallery-scroll-wrap {
         gap:10px

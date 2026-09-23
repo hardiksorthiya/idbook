@@ -456,50 +456,51 @@
         });
       });
 
-      if (settings.scroll && triggerItems.length) {
+      if (settings.scroll && triggerItems.length && window.ScrollTrigger) {
         const list = triggerItems[0].parentElement;
-        const section = box.closest("section") || list;
-        let busy = false;
-        let wheelSum = 0;
+        const frame = list.parentElement;
+        const row = list.closest(".feature-scroll-row");
+        const section = list.closest(".feature-section");
 
-        const inView = () => {
-          const rect = section.getBoundingClientRect();
-          return rect.top < 160 && rect.bottom > window.innerHeight * 0.65;
-        };
+        gsap.matchMedia().add("(min-width: 992px)", () => {
+          if (section) section.classList.add("is-vscroll");
+          activate(triggerItems[0]);
 
-        ScrollTrigger.create({
-          trigger: list,
-          start: "top 75%",
-          onEnter: () => activate(triggerItems[0]),
-          onEnterBack: () => activate(triggerItems[triggerItems.length - 1]),
+          const distance = () =>
+            Math.max(0, list.scrollHeight - frame.clientHeight);
+
+          const tween = gsap.to(list, {
+            y: () => -distance(),
+            ease: "none",
+            scrollTrigger: {
+              trigger: row,
+              start: "top 120px",
+              end: () => "+=" + Math.max(distance(), window.innerHeight * 0.45),
+              pin: true,
+              scrub: 0.6,
+              invalidateOnRefresh: true,
+              onUpdate: (self) => {
+                if (self.isActive && self.pin) {
+                  const top = self.pin.getBoundingClientRect().top;
+                  if (Math.abs(top - 120) > 2) {
+                    gsap.set(self.pin, {
+                      y: (parseFloat(gsap.getProperty(self.pin, "y")) || 0) - (top - 120),
+                    });
+                  }
+                }
+                const index = Math.round(self.progress * (triggerItems.length - 1));
+                activate(triggerItems[index]);
+              },
+            },
+          });
+
+          return () => {
+            if (section) section.classList.remove("is-vscroll");
+            tween.scrollTrigger && tween.scrollTrigger.kill();
+            tween.kill();
+            gsap.set(list, { clearProps: "transform" });
+          };
         });
-
-        window.addEventListener(
-          "wheel",
-          (event) => {
-            if (!inView()) {
-              wheelSum = 0;
-              return;
-            }
-            const dir = event.deltaY > 0 ? 1 : -1;
-            const current = Math.max(0, triggerItems.indexOf(lastItem));
-            const next = current + dir;
-            if (next < 0 || next >= triggerItems.length) {
-              wheelSum = 0;
-              return;
-            }
-            event.preventDefault();
-            wheelSum += event.deltaY;
-            if (busy || Math.abs(wheelSum) < 40) return;
-            wheelSum = 0;
-            busy = true;
-            activate(triggerItems[next]);
-            setTimeout(() => {
-              busy = false;
-            }, 650);
-          },
-          { passive: false, capture: true },
-        );
       }
     }
 
@@ -507,7 +508,7 @@
       container: ".feature-img",
       image: ".feature-img img",
       text: ".feature-img .img-content p",
-      trigger: ".feature-item",
+      trigger: ".feature-scroll-row .feature-item",
       scroll: true,
     });
 

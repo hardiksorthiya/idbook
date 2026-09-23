@@ -26,11 +26,13 @@
 }
 
 .header .primary-header-inner .header-right-wrap .search-icon,
-.header .primary-header-inner .header-right-wrap .cart-icon {
+.header .primary-header-inner .header-right-wrap .cart-icon,
+.header .primary-header-inner .header-right-wrap .wish-icon {
     display: flex;
 }
 
-.header .primary-header-inner .header-right-wrap .cart-icon {
+.header .primary-header-inner .header-right-wrap .cart-icon,
+.header .primary-header-inner .header-right-wrap .wish-icon {
     background: rgba(216, 218, 223, 0.13);
     color: var(--tl-color-common-white);
     border: 1px solid rgba(255, 255, 255, 0.09);
@@ -45,7 +47,8 @@
     transition: all 0.3s ease-in-out;
 }
 
-.header .primary-header-inner .header-right-wrap .cart-icon:hover {
+.header .primary-header-inner .header-right-wrap .cart-icon:hover,
+.header .primary-header-inner .header-right-wrap .wish-icon:hover {
     background-color: var(--tl-color-theme-primary);
     border-color: var(--tl-color-theme-primary);
     color: var(--tl-color-common-white);
@@ -75,6 +78,39 @@
 .header:not(.sticky-header) .primary-header-inner .header-right-wrap .sidebar-icon .mobile-side-menu-toggle:hover {
     background-color: var(--tl-color-theme-primary);
     border-color: var(--tl-color-theme-primary);
+}
+
+.header .primary-header-inner .header-menu-wrap ul > li > a .menu-label {
+    display: inline-grid;
+    overflow: hidden;
+    line-height: 1.15;
+    vertical-align: middle;
+}
+
+.header .primary-header-inner .header-menu-wrap ul > li > a .menu-label span {
+    grid-area: 1 / 1;
+    display: block;
+    transition: transform .5s cubic-bezier(.76, 0, .24, 1);
+}
+
+.header .primary-header-inner .header-menu-wrap ul > li > a .menu-label span:last-child {
+    color: var(--tl-color-theme-primary);
+    transform: translateY(110%);
+}
+
+.header .primary-header-inner .header-menu-wrap ul > li > a:hover,
+.header .primary-header-inner .header-menu-wrap ul > li.active > a {
+    color: var(--tl-color-common-white);
+}
+
+.header .primary-header-inner .header-menu-wrap ul > li > a:hover .menu-label span:first-child,
+.header .primary-header-inner .header-menu-wrap ul > li.active > a .menu-label span:first-child {
+    transform: translateY(-110%);
+}
+
+.header .primary-header-inner .header-menu-wrap ul > li > a:hover .menu-label span:last-child,
+.header .primary-header-inner .header-menu-wrap ul > li.active > a .menu-label span:last-child {
+    transform: translateY(0);
 }
 
 .header-menu-source {
