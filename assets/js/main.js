@@ -1683,12 +1683,13 @@
 
     const idbSet = (index, progress) => {
       const pos = progress * (idbCards.length - 1);
+      const desktop = window.innerWidth >= 992;
       idbIndex = index;
       idbCards.forEach((card, i) => {
         const here = Math.max(0, 1 - Math.abs(pos - i));
         card.classList.toggle("is-on", i === index);
-        card.style.transform = idbMotions[i](here);
-        card.style.opacity = i <= pos ? "1" : String(0.38 + 0.62 * here);
+        card.style.transform = desktop ? idbMotions[i](here) : "";
+        card.style.opacity = desktop ? (i <= pos ? "1" : String(0.38 + 0.62 * here)) : "1";
       });
       if (idbCount) idbCount.textContent = String(index + 1).padStart(2, "0");
       if (idbBar) idbBar.style.transform = "scaleX(" + Math.max(progress, 0.04) + ")";

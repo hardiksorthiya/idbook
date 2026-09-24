@@ -27,17 +27,43 @@
     }
   }
 
+  function insertHTML(el, html) {
+    var tpl = document.createElement('template');
+    tpl.innerHTML = html.trim();
+    var scripts = tpl.content.querySelectorAll('script');
+    var codes = [];
+
+    Array.prototype.forEach.call(scripts, function (oldScript) {
+      codes.push(oldScript.textContent);
+      oldScript.remove();
+    });
+
+    el.replaceWith(tpl.content);
+
+    codes.forEach(function (code) {
+      if (!code || !code.trim()) return;
+      var script = document.createElement('script');
+      script.textContent = code;
+      document.body.appendChild(script);
+    });
+  }
+
   function includeHTML() {
     var nodes = document.querySelectorAll('[data-include]');
 
     Array.prototype.forEach.call(nodes, function (el) {
       var path = el.getAttribute('data-include');
+      el.removeAttribute('data-include');
       var html = loadFile(path);
 
       if (html) {
-        el.outerHTML = html;
+        insertHTML(el, html);
       }
     });
+
+    if (document.querySelector('[data-include]')) {
+      includeHTML();
+    }
   }
 
   if (document.head) {

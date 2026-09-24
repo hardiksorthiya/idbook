@@ -1,0 +1,784 @@
+<style>
+.idb-journey{
+    --j-main:var(--tl-color-theme-primary);
+    --j-light:#b8dcd9;
+    --j-bg:#101214;
+    --j-muted:#9aa3a8;
+    --j-line:rgba(119,165,163,.25);
+    --j-green:#38e89b;
+    --s:1;
+    position:relative;
+    height:100vh;
+    overflow:hidden;
+    color:#fff;
+    background:
+        radial-gradient(circle at 72% 50%,rgba(119,165,163,.14),transparent 32%),
+        radial-gradient(circle at 18% 82%,rgba(119,165,163,.08),transparent 30%),
+        linear-gradient(120deg,#0b0d0f,var(--j-bg) 55%,#0b0d0f);
+}
+.idb-journey .j-grid{
+    position:absolute;inset:-20%;opacity:.3;pointer-events:none;
+    background-image:
+        linear-gradient(rgba(119,165,163,.07) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(119,165,163,.07) 1px,transparent 1px);
+    background-size:70px 70px;
+    transform:perspective(700px) rotateX(62deg) translateY(16%);
+    transform-origin:center bottom;
+}
+.idb-journey .j-vignette{
+    position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(circle,transparent 40%,rgba(0,0,0,.55) 100%);
+}
+
+.idb-journey .j-hud{
+    position:absolute;z-index:20;top:110px;
+    left:max(24px,calc((100% - 1440px) / 2 + 24px));
+    right:max(24px,calc((100% - 1440px) / 2 + 24px));
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.idb-journey .j-kicker{
+    font-family:var(--tl-ff-heading);
+    font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--j-main);
+}
+.idb-journey .j-counter{
+    display:flex;align-items:center;gap:14px;
+    font-family:var(--tl-ff-heading);color:#dfe7e6;font-size:13px;letter-spacing:2px;
+}
+.idb-journey .j-cube-scene{--c:58px;width:var(--c);height:var(--c);perspective:600px}
+.idb-journey .j-cube{position:relative;width:100%;height:100%;transform-style:preserve-3d}
+.idb-journey .j-face{
+    position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;
+    border:1px solid rgba(119,165,163,.75);
+    background:
+        linear-gradient(rgba(119,165,163,.14) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(119,165,163,.14) 1px,transparent 1px),
+        linear-gradient(145deg,rgba(36,46,48,.96),rgba(14,18,20,.96));
+    background-size:9px 9px,9px 9px,100% 100%;
+    box-shadow:inset 0 0 14px rgba(119,165,163,.25);
+    font-family:var(--tl-ff-heading);font-size:9px;letter-spacing:1px;color:var(--j-light);
+    backface-visibility:hidden;
+}
+.idb-journey .j-front{transform:translateZ(calc(var(--c) / 2))}
+.idb-journey .j-back{transform:rotateY(180deg) translateZ(calc(var(--c) / 2))}
+.idb-journey .j-right{transform:rotateY(90deg) translateZ(calc(var(--c) / 2))}
+.idb-journey .j-left{transform:rotateY(-90deg) translateZ(calc(var(--c) / 2))}
+.idb-journey .j-top{transform:rotateX(90deg) translateZ(calc(var(--c) / 2))}
+.idb-journey .j-bottom{transform:rotateX(-90deg) translateZ(calc(var(--c) / 2))}
+.idb-journey .j-front b{position:relative;z-index:1;font-size:18px;font-weight:700;color:#fff}
+.idb-journey .j-fill{position:absolute;left:0;right:0;bottom:0;height:8.33%;background:rgba(119,165,163,.5);transition:height .6s ease}
+.idb-journey .j-line{width:110px;height:2px;background:rgba(255,255,255,.14);overflow:hidden}
+.idb-journey .j-line i{display:block;height:100%;background:var(--j-main);transform:scaleX(.0833);transform-origin:left center;transition:transform .4s ease}
+.idb-journey .j-label{
+    position:absolute;z-index:20;bottom:28px;
+    right:max(24px,calc((100% - 1440px) / 2 + 24px));
+    color:#7d8a8f;font-size:11px;letter-spacing:2px;text-transform:uppercase;
+}
+.idb-journey .j-dots{
+    position:absolute;z-index:20;right:22px;top:50%;transform:translateY(-50%);
+    display:flex;flex-direction:column;gap:10px;align-items:center;
+}
+.idb-journey .j-dot{width:6px;height:6px;padding:0;border:0;border-radius:50%;background:#4b5559;cursor:pointer;transition:.35s}
+.idb-journey .j-dot.active{height:28px;border-radius:5px;background:var(--j-main);box-shadow:0 0 14px rgba(119,165,163,.6)}
+
+.idb-journey .j-track{position:relative;z-index:5;display:flex;width:1200%;height:100%;will-change:transform}
+.idb-journey .j-panel{position:relative;flex:0 0 calc(100% / 12);height:100%;overflow:hidden}
+
+.idb-journey .j-copy{
+    position:absolute;z-index:10;top:54%;
+    left:max(24px,calc((100% - 1440px) / 2 + 24px));
+    width:min(440px,34%);
+    transform:translateY(-50%);
+}
+.idb-journey .j-step{
+    font-family:var(--tl-ff-heading);
+    color:var(--j-main);font-size:12px;font-weight:600;letter-spacing:3px;
+    text-transform:uppercase;margin-bottom:18px;
+}
+.idb-journey .j-title{
+    font-family:var(--tl-ff-heading);
+    font-size:clamp(34px,3.6vw,60px);font-weight:700;
+    line-height:1.08;color:#fff;margin:0;
+}
+.idb-journey .j-title span{color:var(--j-main)}
+.idb-journey .j-desc{color:var(--j-muted);font-size:16px;line-height:1.75;margin:22px 0 0;max-width:430px}
+.idb-journey .j-pill{
+    display:inline-flex;align-items:center;gap:8px;margin-top:24px;
+    border:1px solid var(--j-line);background:rgba(255,255,255,.04);
+    padding:8px 14px;border-radius:99px;color:#c9d6d5;font-size:12px;
+}
+.idb-journey .j-cta{margin-top:30px}
+
+.idb-journey .j-visual{
+    position:absolute;z-index:4;top:54%;
+    right:max(24px,calc((100% - 1440px) / 2));
+    width:54%;height:min(70vh,620px);
+    transform:translateY(-50%);
+}
+.idb-journey .j-scene{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(var(--s))}
+.idb-journey .j-glow{
+    position:absolute;width:520px;height:520px;right:8%;top:50%;
+    transform:translateY(-50%);border-radius:50%;
+    background:radial-gradient(circle,rgba(119,165,163,.22),transparent 67%);
+    filter:blur(10px);
+}
+
+.idb-journey .j-house{width:590px;height:350px;filter:drop-shadow(0 35px 55px rgba(0,0,0,.6))}
+.idb-journey .j-house .j-body{
+    position:absolute;left:95px;right:55px;bottom:30px;height:210px;
+    border:1px solid rgba(184,220,217,.45);
+    background:linear-gradient(135deg,#223033,#101719);
+    clip-path:polygon(0 18%,70% 0,100% 16%,100% 100%,0 100%);
+    box-shadow:inset 0 0 50px rgba(119,165,163,.12);
+}
+.idb-journey .j-house .j-roof{
+    position:absolute;left:70px;top:50px;width:390px;height:150px;
+    border-top:2px solid var(--j-light);
+    transform:skewX(-25deg) rotate(-10deg);
+    filter:drop-shadow(0 0 10px rgba(119,165,163,.6));
+}
+.idb-journey .j-house .j-window{
+    position:absolute;
+    background:linear-gradient(135deg,rgba(119,165,163,.95),rgba(20,40,40,.75));
+    border:1px solid rgba(200,232,229,.85);
+    box-shadow:0 0 18px rgba(119,165,163,.4),inset 0 0 20px rgba(255,255,255,.08);
+}
+.idb-journey .j-house .w1{left:145px;bottom:78px;width:105px;height:105px}
+.idb-journey .j-house .w2{left:270px;bottom:78px;width:125px;height:105px}
+.idb-journey .j-house .w3{right:80px;bottom:82px;width:65px;height:130px}
+.idb-journey .j-house .j-door{
+    position:absolute;left:235px;bottom:30px;width:52px;height:120px;
+    background:linear-gradient(#1c2729,#070a0b);border:1px solid var(--j-light);
+}
+.idb-journey .j-house .j-ground{
+    position:absolute;left:35px;right:15px;bottom:4px;height:22px;
+    border-radius:50%;border:2px solid rgba(119,165,163,.75);
+    box-shadow:0 0 28px rgba(119,165,163,.5);
+}
+
+.idb-journey .j-glass{
+    position:absolute;
+    background:linear-gradient(145deg,rgba(36,46,48,.86),rgba(14,18,20,.86));
+    border:1px solid rgba(119,165,163,.32);border-radius:16px;
+    box-shadow:0 22px 60px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.07);
+    backdrop-filter:blur(16px);
+}
+.idb-journey .j-mini{font-size:10px;color:#93a3a6;text-transform:uppercase;letter-spacing:1.5px}
+.idb-journey .j-btn{
+    display:inline-block;margin-top:14px;background:var(--j-main);color:#fff;
+    padding:10px 15px;border:0;border-radius:7px;font-size:11px;font-weight:700;
+}
+.idb-journey .j-btn.light{background:#eef5f4;color:#16201f}
+
+.idb-journey .j-choices{display:flex;gap:18px}
+.idb-journey .j-choice{position:relative;width:220px;min-height:270px;padding:24px}
+.idb-journey .j-choice.selected{border-color:rgba(119,165,163,.85);box-shadow:0 0 45px rgba(119,165,163,.18)}
+.idb-journey .j-icon{
+    width:65px;height:65px;border:1px solid rgba(119,165,163,.6);border-radius:16px;
+    display:grid;place-items:center;font-size:30px;color:var(--j-light);
+    box-shadow:inset 0 0 20px rgba(119,165,163,.14);
+}
+.idb-journey .j-choice h3{margin:20px 0 0;font-size:18px;color:#fff}
+.idb-journey .j-choice p{margin:10px 0 0;color:#93a3a6;font-size:12px;line-height:1.6}
+
+.idb-journey .j-gallery{width:640px;height:470px}
+.idb-journey .j-gcard{position:absolute;width:250px;height:165px;overflow:hidden;border-radius:14px;border:1px solid rgba(119,165,163,.45);background:#141a1c}
+.idb-journey .j-gcard img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.idb-journey .j-gcard::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.75))}
+.idb-journey .j-gcard strong{position:absolute;z-index:2;left:14px;bottom:12px;font-size:12px;color:#fff}
+.idb-journey .gc1{left:0;top:20px}.idb-journey .gc2{right:0;top:0}.idb-journey .gc3{left:65px;bottom:0}.idb-journey .gc4{right:40px;bottom:35px}
+
+.idb-journey .j-customizer{width:650px;height:490px}
+.idb-journey .j-ring{
+    position:absolute;left:50%;top:53%;width:410px;height:125px;
+    transform:translate(-50%,-50%) rotateX(67deg);
+    border:2px solid rgba(119,165,163,.8);border-radius:50%;
+    box-shadow:0 0 35px rgba(119,165,163,.4);
+}
+.idb-journey .j-customizer .j-house{position:absolute;left:50%;top:50%;transform:translate(-50%,-56%) scale(.75)}
+.idb-journey .j-tools{right:0;top:35px;width:74px;padding:8px;display:grid;gap:10px}
+.idb-journey .j-tool{width:58px;height:58px;display:grid;place-items:center;font-size:21px;color:#cfe0de}
+
+.idb-journey .j-cart-scene{width:650px;height:500px}
+.idb-journey .j-design-card{left:30px;top:70px;width:260px;padding:12px;overflow:hidden}
+.idb-journey .j-design-card img{width:100%;height:145px;object-fit:cover;border-radius:10px}
+.idb-journey .j-design-card h4{margin:12px 2px 5px;font-size:16px;color:#fff}
+.idb-journey .j-design-card small{color:#93a3a6}
+.idb-journey .j-add{margin-top:13px;width:100%;border:0;color:#fff;background:var(--j-main);border-radius:7px;padding:11px}
+.idb-journey .j-cart{position:absolute;right:50px;bottom:80px;font-size:110px;filter:drop-shadow(0 0 25px rgba(119,165,163,.45))}
+
+.idb-journey .j-checkout{width:390px;padding:28px}
+.idb-journey .j-checkout-head{font-size:23px;font-weight:700}
+.idb-journey .j-checkout-head span{color:#7d8a8f}
+.idb-journey .j-row{display:flex;justify-content:space-between;align-items:center;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.idb-journey .j-total{display:flex;justify-content:space-between;margin-top:20px;font-weight:700}
+.idb-journey .j-buy{width:100%;border:0;padding:14px;margin-top:20px;border-radius:8px;background:var(--j-main);color:#fff}
+
+.idb-journey .j-phone{width:265px;height:510px;border:7px solid #161c1e;border-radius:36px;background:linear-gradient(145deg,#1b2729,#070a0b);box-shadow:0 35px 80px rgba(0,0,0,.65),0 0 45px rgba(119,165,163,.16)}
+.idb-journey .j-phone::before{content:"";position:absolute;left:50%;top:7px;width:100px;height:21px;transform:translateX(-50%);background:#060809;border-radius:0 0 15px 15px}
+.idb-journey .j-payment{position:absolute;left:18px;right:18px;top:90px;text-align:center}
+.idb-journey .j-check{width:95px;height:95px;margin:0 auto;border-radius:50%;display:grid;place-items:center;font-size:50px;color:var(--j-green);border:2px solid rgba(56,232,155,.7);box-shadow:0 0 45px rgba(56,232,155,.22)}
+.idb-journey .j-payment h3{margin:30px 0 0;font-size:22px;color:#fff}
+.idb-journey .j-payment p{color:#93a3a6;font-size:12px;margin:9px 0 0}
+.idb-journey .j-btn.green{margin-top:25px;background:#25d990}
+
+.idb-journey .j-package-scene{width:620px;height:470px}
+.idb-journey .j-package{
+    position:absolute;left:50%;top:45%;width:260px;height:190px;transform:translate(-50%,-50%) rotate(-5deg);
+    background:linear-gradient(135deg,#a96e30,#6e431f);border:1px solid #d9954d;
+    box-shadow:0 30px 60px rgba(0,0,0,.45);
+    display:grid;place-items:center;font-family:var(--tl-ff-heading);font-size:28px;font-weight:800;color:#12202b;
+}
+.idb-journey .j-package::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;background:#e2a560;opacity:.75}
+.idb-journey .j-package::after{content:"";position:absolute;left:0;right:0;top:45%;height:3px;background:#d99b5b;opacity:.7}
+.idb-journey .j-mail{position:absolute;right:35px;top:60px;font-size:72px;color:var(--j-light);filter:drop-shadow(0 0 20px rgba(119,165,163,.55))}
+.idb-journey .j-route{position:absolute;left:120px;right:120px;top:48%;border-top:2px dashed rgba(119,165,163,.6);transform:rotate(-12deg)}
+
+.idb-journey .j-phone.email{height:530px}
+.idb-journey .j-email{position:absolute;left:18px;right:18px;top:80px;padding:18px;background:rgba(255,255,255,.05);border-radius:14px}
+.idb-journey .j-avatar{width:34px;height:34px;border-radius:50%;background:var(--j-main);display:grid;place-items:center;font-size:12px;font-weight:700}
+.idb-journey .j-email-title{margin-top:16px;font-size:15px;font-weight:700}
+.idb-journey .j-email-text{margin-top:10px;color:#93a3a6;font-size:11px;line-height:1.6}
+.idb-journey .j-attach{margin-top:16px;padding:12px;border:1px solid rgba(119,165,163,.35);border-radius:9px;display:flex;align-items:center;gap:10px;font-size:11px}
+.idb-journey .j-attach small{color:#7d8a8f}
+
+.idb-journey .j-laptop{width:590px;height:370px}
+.idb-journey .j-screen{position:absolute;left:45px;right:45px;top:10px;height:290px;border:7px solid #1f2a2c;border-radius:15px 15px 5px 5px;background:linear-gradient(135deg,#0f1618,#1c2d2e);box-shadow:0 0 50px rgba(119,165,163,.14)}
+.idb-journey .j-screen-content{padding:42px 45px}
+.idb-journey .j-screen h3{margin:12px 0 0;font-size:24px;color:#fff}
+.idb-journey .j-screen p{color:#93a3a6;font-size:12px;margin:9px 0 0}
+.idb-journey .j-download{margin-top:28px;background:var(--j-main);border:0;color:#fff;padding:14px 25px;border-radius:8px}
+.idb-journey .j-base{position:absolute;left:0;right:0;bottom:25px;height:45px;background:#1d2729;clip-path:polygon(7% 0,93% 0,100% 100%,0 100%);border-radius:0 0 10px 10px}
+
+.idb-journey .j-files{width:700px;height:510px}
+.idb-journey .j-zip{position:absolute;left:50%;top:50%;width:135px;height:135px;transform:translate(-50%,-50%);border-radius:20px;border:1px solid rgba(119,165,163,.85);background:linear-gradient(145deg,#3f6664,#111a1b);display:grid;place-items:center;font-family:var(--tl-ff-heading);font-size:26px;font-weight:800;box-shadow:0 0 55px rgba(119,165,163,.32)}
+.idb-journey .j-file{width:180px;padding:22px;text-align:center}
+.idb-journey .j-file-icon{font-size:40px;color:var(--j-light)}
+.idb-journey .j-file h4{margin:12px 0 0;font-size:16px;color:#fff}
+.idb-journey .j-file p{margin:5px 0 0;color:#8a9699;font-size:10px;line-height:1.5}
+.idb-journey .f1{left:0;top:45px}.idb-journey .f2{right:0;top:45px}.idb-journey .f3{left:50%;bottom:10px;transform:translateX(-50%)}
+
+.idb-journey .j-final .j-house{transform:translate(-50%,-53%) scale(calc(var(--s) * 1.08))}
+.idb-journey .j-final-list{right:0;top:70px;padding:22px 25px;width:190px}
+.idb-journey .j-final-list div{display:flex;gap:10px;align-items:center;margin:12px 0;font-size:12px;color:#c9d6d5}
+.idb-journey .j-final-list b{color:var(--j-main)}
+
+.idb-journey .j-tech{position:absolute;height:1px;background:linear-gradient(90deg,transparent,var(--j-main),transparent);opacity:.35;left:0;top:27%;width:30%}
+
+.idb-journey.is-desktop .j-copy{opacity:0;transform:translate(-30px,-50%);transition:opacity .6s ease,transform .6s ease}
+.idb-journey.is-desktop .j-visual{opacity:0;transform:translate(50px,-50%);transition:opacity .7s ease .1s,transform .7s ease .1s}
+.idb-journey.is-desktop .j-panel.is-active .j-copy,
+.idb-journey.is-desktop .j-panel.is-active .j-visual{opacity:1;transform:translate(0,-50%)}
+
+@media (max-width:1399px){
+    .idb-journey{--s:.85}
+}
+@media (max-width:1199px){
+    .idb-journey{--s:.72}
+    .idb-journey .j-desc{font-size:15px}
+}
+@media (min-width:992px) and (max-height:760px){
+    .idb-journey{--s:.75}
+}
+
+@media (max-width:991px){
+    .idb-journey{--s:.62}
+    .idb-journey .j-hud{top:90px;left:20px;right:20px}
+    .idb-journey .j-label,
+    .idb-journey .j-dots{display:none}
+    .idb-journey .j-copy{top:162px;left:20px;width:calc(100% - 40px);max-width:560px;transform:none}
+    .idb-journey .j-visual{top:auto;bottom:24px;left:20px;right:20px;width:auto;height:44vh;transform:none}
+    .idb-journey.is-desktop .j-copy{transform:translateX(-30px)}
+    .idb-journey.is-desktop .j-visual{transform:translateX(50px)}
+    .idb-journey.is-desktop .j-panel.is-active .j-copy,
+    .idb-journey.is-desktop .j-panel.is-active .j-visual{transform:none}
+    .idb-journey .j-desc{margin-top:14px}
+}
+@media (max-width:575px){
+    .idb-journey{--s:.46}
+    .idb-journey .j-counter .j-line{width:60px}
+    .idb-journey .j-cube-scene{--c:44px}
+    .idb-journey .j-front b{font-size:14px}
+    .idb-journey .j-visual{height:40vh}
+    .idb-journey .j-title{font-size:28px}
+    .idb-journey .j-desc{font-size:14px}
+}
+@media (max-width:575px){
+    .idb-journey .j-copy{top:146px}
+}
+@media (max-width:400px){
+    .idb-journey{--s:.4}
+    .idb-journey .j-visual{height:260px}
+}
+@media (max-width:575px) and (max-height:700px){
+    .idb-journey .j-visual{height:34vh}
+    .idb-journey .j-desc{font-size:13px;line-height:1.6}
+    .idb-journey .j-cta{margin-top:16px}
+}
+@media (max-width:991px) and (max-height:600px) and (orientation:landscape){
+    .idb-journey{--s:.42}
+    .idb-journey .j-cube-scene{--c:44px}
+    .idb-journey .j-front b{font-size:14px}
+    .idb-journey .j-copy{top:146px;width:44%}
+    .idb-journey .j-step{margin-bottom:8px;font-size:10px}
+    .idb-journey .j-title{font-size:22px}
+    .idb-journey .j-desc{font-size:12px;line-height:1.5;margin-top:8px}
+    .idb-journey .j-pill,
+    .idb-journey .j-cta{margin-top:12px}
+    .idb-journey .j-visual{top:140px;bottom:10px;left:auto;right:20px;width:50%;height:auto}
+}
+</style>
+
+<section class="idb-journey">
+    <div class="j-grid"></div>
+    <div class="j-vignette"></div>
+
+    <div class="j-hud">
+        <span class="j-kicker">How iDBook works</span>
+        <div class="j-counter">
+            <div class="j-cube-scene" aria-hidden="true">
+                <div class="j-cube">
+                    <div class="j-face j-front"><span class="j-fill"></span><b>01</b></div>
+                    <div class="j-face j-back">3D</div>
+                    <div class="j-face j-right">CAD</div>
+                    <div class="j-face j-left">PDF</div>
+                    <div class="j-face j-top">PLAN</div>
+                    <div class="j-face j-bottom">BUILD</div>
+                </div>
+            </div>
+            <span>/ 12</span>
+            <div class="j-line"><i></i></div>
+        </div>
+    </div>
+    <div class="j-dots"></div>
+    <div class="j-label">Welcome to iDBook</div>
+
+    <div class="j-track">
+
+        <!-- 01 -->
+        <div class="j-panel is-active" data-title="Welcome to iDBook">
+            <div class="j-copy">
+                <div class="j-step">01 / 12 — Start Your Journey</div>
+                <h2 class="j-title">Your Home.<br><span>Your Design.</span></h2>
+                <p class="j-desc">Turn your idea into a complete architectural design journey — from concept to a ready-to-build package.</p>
+                <div class="j-pill">✦ Design • Visualize • Build</div>
+            </div>
+            <div class="j-visual">
+                <div class="j-glow"></div>
+                <div class="j-house j-scene">
+                    <div class="j-roof"></div><div class="j-body"></div>
+                    <div class="j-window w1"></div><div class="j-window w2"></div><div class="j-window w3"></div>
+                    <div class="j-door"></div><div class="j-ground"></div>
+                </div>
+                <div class="j-glass" style="right:5%;bottom:8%;padding:18px;width:185px">
+                    <div class="j-mini">Your vision</div>
+                    <strong style="display:block;margin-top:8px">A home made for you.</strong>
+                </div>
+            </div>
+            <div class="j-tech"></div>
+        </div>
+
+        <!-- 02 -->
+        <div class="j-panel" data-title="Choose Your Way">
+            <div class="j-copy">
+                <div class="j-step">02 / 12 — Choose Your Way</div>
+                <h2 class="j-title">Two ways to<br><span>get started.</span></h2>
+                <p class="j-desc">Start from a blank idea and create something unique, or select a ready-made CAD design and customize it.</p>
+            </div>
+            <div class="j-visual">
+                <div class="j-choices j-scene">
+                    <div class="j-glass j-choice selected">
+                        <div class="j-icon">⌂</div>
+                        <h3>Create Your Own Design</h3>
+                        <p>Tell us your space, style and needs. We transform your idea into a design.</p>
+                        <span class="j-btn">Start Designing →</span>
+                    </div>
+                    <div class="j-glass j-choice">
+                        <div class="j-icon">▧</div>
+                        <h3>Ready-Made CAD Designs</h3>
+                        <p>Browse our collection and choose a design that fits your vision.</p>
+                        <span class="j-btn light">Explore Designs →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03 -->
+        <div class="j-panel" data-title="Browse & Select">
+            <div class="j-copy">
+                <div class="j-step">03 / 12 — Browse &amp; Select</div>
+                <h2 class="j-title">Find a design<br><span>that feels right.</span></h2>
+                <p class="j-desc">Explore a curated collection of modern homes. Filter by style, rooms, size and architectural direction.</p>
+            </div>
+            <div class="j-visual">
+                <div class="j-gallery j-scene">
+                    <div class="j-gcard gc1"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80" alt="Modern Villa"><strong>Modern Villa</strong></div>
+                    <div class="j-gcard gc2"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="Glass House"><strong>Glass House</strong></div>
+                    <div class="j-gcard gc3"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=80" alt="Minimal Home"><strong>Minimal Home</strong></div>
+                    <div class="j-gcard gc4"><img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=700&q=80" alt="Luxury Residence"><strong>Luxury Residence</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04 -->
+        <div class="j-panel" data-title="View in 3D & Customize">
+            <div class="j-copy">
+                <div class="j-step">04 / 12 — View in 3D</div>
+                <h2 class="j-title">See it.<br><span>Customize it.</span></h2>
+                <p class="j-desc">Rotate your home, inspect the exterior and explore different visual directions before making your decision.</p>
+            </div>
+            <div class="j-visual">
+                <div class="j-customizer j-scene">
+                    <div class="j-ring"></div>
+                    <div class="j-house">
+                        <div class="j-roof"></div><div class="j-body"></div>
+                        <div class="j-window w1"></div><div class="j-window w2"></div><div class="j-window w3"></div>
+                        <div class="j-door"></div><div class="j-ground"></div>
+                    </div>
+                    <div class="j-glass j-tools">
+                        <div class="j-tool">↻</div><div class="j-tool">⌂</div><div class="j-tool">◫</div><div class="j-tool">⌘</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 05 -->
+        <div class="j-panel" data-title="Add to Cart">
+            <div class="j-copy">
+                <div class="j-step">05 / 12 — Add to Cart</div>
+                <h2 class="j-title">Found it?<br><span>Make it yours.</span></h2>
+                <p class="j-desc">Add your selected design to the cart and move from exploration to the final design package.</p>
+            </div>
+            <div class="j-visual">
+                <div class="j-cart-scene j-scene">
+                    <div class="j-glass j-design-card">
+                        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=700&q=80" alt="Modern Home Design">
+                        <h4>Modern Home Design</h4>
+                        <small>$49.00</small>
+                        <button class="j-add" type="button">Add to Cart &nbsp; 🛒</button>
+                    </div>
+                    <div class="j-cart">🛒</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 06 -->
+        <div class="j-panel" data-title="Checkout">
+            <div class="j-copy">
+                <div class="j-step">06 / 12 — Checkout</div>
+                <h2 class="j-title">Ready to<br><span>move forward?</span></h2>
+                <p class="j-desc">Review your selected design, confirm your package and continue to a secure checkout.</p>
+            </div>
+            <div class="j-visual">
+                <div class="j-glass j-checkout j-scene">
+                    <div class="j-checkout-head">Your Cart <span>(1)</span></div>
+                    <div class="j-row"><span>Modern Home Design</span><strong>$49.00</strong></div>
+                    <div class="j-row"><span>Design Package</span><strong>Included</strong></div>
+                    <div class="j-total"><span>Total</span><span>$49.00</span></div>
+                    <button class="j-buy" type="button">Buy Now →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 07 -->
+        <div class="j-panel" data-title="Secure Payment">
+            <div class="j-copy">
+                <div class="j-step">07 / 12 — Secure Payment</div>
+                <h2 class="j-title">Simple.<br><span>Secure.</span></h2>
+                <p class="j-desc">Complete your purchase through a secure payment flow and receive confirmation instantly.</p>
+            </div>
+            <div class="j-visual">
+                <div class="j-phone j-scene">
+                    <div class="j-payment">
+                        <div class="j-check">✓</div>
+                        <h3>Payment Successful</h3>
+                        <p>Your design package is now being prepared.</p>
+                        <span class="j-btn green">Continue →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 08 -->
+        <div class="j-panel" data-title="Package & Send">
+            <div class="j-copy">
+                <div class="j-step">08 / 12 — Package &amp; Send</div>
+                <h2 class="j-title">Your design<br><span>is on its way.</span></h2>
+                <p class="j-desc">Your design files are prepared as a complete package and sent digitally to your inbox.</p>
+            </div>
+            <div class="j-visual">
+                <div class="j-package-scene j-scene">
+                    <div class="j-route"></div>
+                    <div class="j-package">iDBook</div>
+                    <div class="j-mail">✉</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 09 -->
+        <div class="j-panel" data-title="Client Receives Email">
+            <div class="j-copy">
+                <div class="j-step">09 / 12 — Client Receives Email</div>
+                <h2 class="j-title">Delivered<br><span>to your inbox.</span></h2>
+                <p class="j-desc">Open the email notification and access your design package from any device.</p>
+            </div>
+            <div class="j-visual">
+                <div class="j-phone email j-scene">
+                    <div class="j-email">
+                        <div class="j-avatar">iD</div>
+                        <div class="j-email-title">Your Design Package is Ready!</div>
+                        <div class="j-email-text">Hi, your requested design package is ready for download. Enjoy your design journey!</div>
+                        <div class="j-attach"><span>▣</span><div><strong>Design_Package.zip</strong><br><small>125 MB</small></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="j-panel" data-title="Download Attachment">
+            <div class="j-copy">
+                <div class="j-step">10 / 12 — Download</div>
+                <h2 class="j-title">One click.<br><span>Your files.</span></h2>
+                <p class="j-desc">Download the complete package from the email and keep your design files ready for the next stage.</p>
+            </div>
+            <div class="j-visual">
+                <div class="j-laptop j-scene">
+                    <div class="j-screen">
+                        <div class="j-screen-content">
+                            <div class="j-mini">iDBook</div>
+                            <h3>Your Design Package is Ready!</h3>
+                            <p>Download your complete design package.</p>
+                            <button class="j-download" type="button">Download Attachment ↓</button>
+                        </div>
+                    </div>
+                    <div class="j-base"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="j-panel" data-title="Complete Design Package">
+            <div class="j-copy">
+                <div class="j-step">11 / 12 — Complete Package</div>
+                <h2 class="j-title">Everything you<br><span>need to build.</span></h2>
+                <p class="j-desc">Your final ZIP package brings together the visual, CAD and documentation files in one place.</p>
+            </div>
+            <div class="j-visual">
+                <div class="j-files j-scene">
+                    <div class="j-zip">ZIP</div>
+                    <div class="j-glass j-file f1"><div class="j-file-icon">◇</div><h4>3D View</h4><p>High quality 3D rendering</p></div>
+                    <div class="j-glass j-file f2"><div class="j-file-icon">⌗</div><h4>CAD File</h4><p>DWG / DXF format</p></div>
+                    <div class="j-glass j-file f3"><div class="j-file-icon">▤</div><h4>PDF File</h4><p>Details &amp; specifications</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="j-panel" data-title="Your Design. Delivered.">
+            <div class="j-copy">
+                <div class="j-step">12 / 12 — Your Design. Delivered.</div>
+                <h2 class="j-title">Design Today.<br><span>Build Tomorrow.</span></h2>
+                <p class="j-desc">From the first idea to the final design package, iDBook keeps your journey visual, simple and connected.</p>
+                <a href="contact.html" class="tl-primary-btn j-cta">Start Your Design <span class="icon"><i class="fa-regular fa-arrow-right"></i></span></a>
+            </div>
+            <div class="j-visual j-final">
+                <div class="j-glow"></div>
+                <div class="j-house j-scene">
+                    <div class="j-roof"></div><div class="j-body"></div>
+                    <div class="j-window w1"></div><div class="j-window w2"></div><div class="j-window w3"></div>
+                    <div class="j-door"></div><div class="j-ground"></div>
+                </div>
+                <div class="j-glass j-final-list">
+                    <div><b>✓</b> 3D View</div>
+                    <div><b>✓</b> CAD File</div>
+                    <div><b>✓</b> PDF File</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+window.addEventListener("load", function () {
+    var root = document.querySelector(".idb-journey");
+    if (!root || !window.gsap || !window.ScrollTrigger) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    var track = root.querySelector(".j-track");
+    var panels = gsap.utils.toArray(".j-panel", root);
+    var dotsWrap = root.querySelector(".j-dots");
+    var countEl = root.querySelector(".j-counter b");
+    var lineEl = root.querySelector(".j-line i");
+    var labelEl = root.querySelector(".j-label");
+    var cube = root.querySelector(".j-cube");
+    var fillEl = root.querySelector(".j-fill");
+    var total = panels.length;
+    var current = -1;
+    var trigger = null;
+
+    var cubeMoves = [
+        function (d) { return { rotationY: 360 * d }; },
+        function (d) { return { rotationX: -360 * d }; },
+        function (d) { return { rotationX: 360 * d, rotationY: 360 * d }; },
+        function (d) { return { rotationY: -360 * d, rotationZ: 360 * d }; },
+        function (d) { return { rotationX: 360 * d, rotationZ: -360 * d }; },
+        function (d) { return { rotationY: 720 * d }; }
+    ];
+
+    function fx(tl, targets, from, pos) {
+        var list = gsap.utils.toArray(targets);
+        if (!list.length) return;
+        var to = {
+            opacity: 1, x: 0, y: 0, scale: 1, rotation: 0,
+            duration: from.duration || 0.6,
+            ease: from.ease || "power3.out",
+            stagger: from.stagger || 0,
+            clearProps: "opacity,transform",
+            overwrite: true
+        };
+        delete from.duration; delete from.ease; delete from.stagger;
+        tl.fromTo(list, from, to, pos);
+    }
+
+    var q = function (p, sel) { return p.querySelectorAll(sel); };
+    var stepAnims = [
+        function (tl, p) {
+            fx(tl, q(p, ".j-body, .j-window, .j-door"), { opacity: 0, y: 50, stagger: 0.08, duration: 0.7 }, 0);
+            fx(tl, q(p, ".j-visual > .j-glass"), { opacity: 0, x: 60 }, 0.35);
+        },
+        function (tl, p, d) {
+            fx(tl, q(p, ".j-choice"), { opacity: 0, y: 80, rotation: 4 * d, stagger: 0.14, ease: "back.out(1.4)" }, 0);
+        },
+        function (tl, p, d) {
+            fx(tl, q(p, ".j-gcard"), { opacity: 0, scale: 0.7, rotation: 6 * d, stagger: 0.1 }, 0);
+        },
+        function (tl, p) {
+            fx(tl, q(p, ".j-window"), { opacity: 0, scale: 0.4, stagger: 0.1, ease: "back.out(1.7)" }, 0);
+            fx(tl, q(p, ".j-tool"), { opacity: 0, x: 40, stagger: 0.08 }, 0.2);
+        },
+        function (tl, p) {
+            fx(tl, q(p, ".j-design-card"), { opacity: 0, x: -100, rotation: -10, duration: 0.7 }, 0);
+            fx(tl, q(p, ".j-cart"), { opacity: 0, x: 100, scale: 0.6, ease: "back.out(1.5)", duration: 0.7 }, 0.2);
+        },
+        function (tl, p) {
+            fx(tl, q(p, ".j-checkout-head, .j-row, .j-total, .j-buy"), { opacity: 0, y: 30, stagger: 0.1 }, 0);
+        },
+        function (tl, p) {
+            fx(tl, q(p, ".j-check"), { opacity: 0, scale: 0.3, ease: "back.out(2.2)", duration: 0.7 }, 0);
+            fx(tl, q(p, ".j-payment h3, .j-payment p, .j-payment .j-btn"), { opacity: 0, y: 25, stagger: 0.1 }, 0.3);
+        },
+        function (tl, p) {
+            fx(tl, q(p, ".j-mail"), { opacity: 0, x: 140, y: -90, rotation: 20, duration: 0.8 }, 0);
+        },
+        function (tl, p) {
+            fx(tl, q(p, ".j-email"), { opacity: 0, y: 60, duration: 0.7 }, 0);
+            fx(tl, q(p, ".j-avatar, .j-email-title, .j-email-text, .j-attach"), { opacity: 0, x: -25, stagger: 0.1 }, 0.25);
+        },
+        function (tl, p) {
+            fx(tl, q(p, ".j-screen"), { opacity: 0, y: 60, scale: 0.9, duration: 0.7 }, 0);
+            fx(tl, q(p, ".j-download"), { opacity: 0, y: 20, scale: 0.8, ease: "back.out(1.8)" }, 0.45);
+        },
+        function (tl, p) {
+            fx(tl, q(p, ".j-file-icon, .j-file h4, .j-file p"), { opacity: 0, y: 30, stagger: 0.06 }, 0);
+        },
+        function (tl, p) {
+            fx(tl, q(p, ".j-body, .j-window, .j-door"), { opacity: 0, scale: 0.85, stagger: 0.06, duration: 0.7 }, 0);
+            fx(tl, q(p, ".j-final-list"), { opacity: 0, x: 60 }, 0.3);
+            fx(tl, q(p, ".j-final-list div"), { opacity: 0, x: 20, stagger: 0.1 }, 0.45);
+        }
+    ];
+
+    function enterPanel(index, dir) {
+        var p = panels[index];
+        var tl = gsap.timeline({ delay: 0.15 });
+        fx(tl, q(p, ".j-step, .j-title, .j-desc, .j-pill"), { opacity: 0, x: 40 * dir, stagger: 0.08 }, 0);
+        if (stepAnims[index]) stepAnims[index](tl, p, dir);
+    }
+
+    function spinCube(index, dir) {
+        var num = String(index + 1).padStart(2, "0");
+        gsap.killTweensOf(cube);
+        ["rotationX", "rotationY", "rotationZ"].forEach(function (prop) {
+            gsap.set(cube, { [prop]: Math.round(gsap.getProperty(cube, prop) / 360) * 360 });
+        });
+        var move = cubeMoves[index % cubeMoves.length](dir);
+        var to = { duration: 1, ease: "power3.inOut" };
+        Object.keys(move).forEach(function (prop) {
+            to[prop] = gsap.getProperty(cube, prop) + move[prop];
+        });
+        gsap.timeline()
+            .to(cube, to, 0)
+            .to(cube, { scale: 1.18, duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0)
+            .call(function () { countEl.textContent = num; }, null, 0.45);
+    }
+
+    panels.forEach(function (panel, i) {
+        var dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "j-dot";
+        dot.setAttribute("aria-label", (i + 1) + ". " + panel.dataset.title);
+        dot.addEventListener("click", function () { goTo(i); });
+        dotsWrap.appendChild(dot);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.children);
+
+    function setActive(index) {
+        if (index === current) return;
+        var prev = current;
+        current = index;
+        panels.forEach(function (p, i) { p.classList.toggle("is-active", i === index); });
+        dots.forEach(function (d, i) { d.classList.toggle("active", i === index); });
+        var dir = index >= prev ? 1 : -1;
+        if (prev === -1) countEl.textContent = String(index + 1).padStart(2, "0");
+        else spinCube(index, dir);
+        enterPanel(index, dir);
+        fillEl.style.height = ((index + 1) / total * 100) + "%";
+        lineEl.style.transform = "scaleX(" + (index + 1) / total + ")";
+        labelEl.textContent = panels[index].dataset.title;
+    }
+
+    function goTo(index) {
+        if (!trigger) return;
+        var y = trigger.start + (trigger.end - trigger.start) * (index / (total - 1));
+        var smoother = window.ScrollSmoother && ScrollSmoother.get();
+        if (smoother) smoother.scrollTo(y, true);
+        else window.scrollTo({ top: y, behavior: "smooth" });
+    }
+
+    gsap.matchMedia().add("all", function () {
+        root.classList.add("is-desktop");
+        var distance = function () { return Math.max(0, track.scrollWidth - root.clientWidth); };
+        var tween = gsap.to(track, {
+            x: function () { return -distance(); },
+            ease: "none",
+            scrollTrigger: {
+                trigger: root,
+                start: "top top",
+                end: function () { return "+=" + distance(); },
+                pin: true,
+                scrub: 0.6,
+                invalidateOnRefresh: true,
+                onUpdate: function (self) {
+                    if (self.isActive) {
+                        var top = self.pin.getBoundingClientRect().top;
+                        if (Math.abs(top) > 1) {
+                            gsap.set(self.pin, { y: (gsap.getProperty(self.pin, "y") || 0) - top });
+                        }
+                    }
+                    setActive(Math.round(self.progress * (total - 1)));
+                }
+            }
+        });
+        trigger = tween.scrollTrigger;
+        return function () {
+            root.classList.remove("is-desktop");
+            trigger = null;
+            tween.kill();
+            gsap.set(track, { clearProps: "transform" });
+        };
+    });
+
+    setActive(0);
+    ScrollTrigger.refresh();
+});
+</script>
