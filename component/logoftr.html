@@ -3,12 +3,12 @@
 <canvas id="dotCanvas"></canvas>
 <style>
     .footer-section {
-        padding-bottom: clamp(120px, calc(20vw + 88px), 520px);
+        padding-bottom: clamp(80px, calc(min(20vw, 30vh) + 16px), 436px);
     }
     .footer-text {
         width: 100%;
         max-width: 100%;
-        height: clamp(64px, 20vw, 420px);
+        height: clamp(64px, min(20vw, 30vh), 420px);
         left: 0;
         right: 0;
         bottom: 0;
@@ -21,6 +21,17 @@
         height: 100%;
         display: block;
         cursor: crosshair;
+    }
+    @media (min-width: 993px) {
+        .footer-wrap {
+            padding: clamp(50px, 8vh, 90px) 0 clamp(30px, 5vh, 50px);
+        }
+        .footer-widget .social-list {
+            margin-top: 40px;
+        }
+        .copyright-area {
+            padding: 20px 0 8px;
+        }
     }
 </style>
 <script>
@@ -90,17 +101,15 @@ function createTextParticles() {
     /*
         Responsive font size
     */
-    let fontSize = Math.min(width * 0.2, height * 0.72);
+    let fontSize = 100;
     textCtx.font = `900 ${fontSize}px "Orbitron", sans-serif`;
-
-    const textWidth = textCtx.measureText(text).width;
-    const maxWidth = width * 0.92;
-    if (textWidth > maxWidth) {
-        fontSize *= maxWidth / textWidth;
-        textCtx.font = `900 ${fontSize}px "Orbitron", sans-serif`;
-    }
+    let m = textCtx.measureText(text);
+    const glyphH = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
+    fontSize *= Math.min((width * 0.94) / m.width, (height * 0.94) / glyphH);
+    textCtx.font = `900 ${fontSize}px "Orbitron", sans-serif`;
+    m = textCtx.measureText(text);
     textCtx.textAlign = "center";
-    textCtx.textBaseline = "middle";
+    textCtx.textBaseline = "alphabetic";
 
     /*
         Draw text
@@ -110,7 +119,7 @@ function createTextParticles() {
     textCtx.fillText(
         text,
         width / 2,
-        height / 2
+        (height + m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2
     );
 
     /*

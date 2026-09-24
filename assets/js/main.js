@@ -300,11 +300,12 @@
 
       $("body")
         .on("mouseenter.cursor", viewSelector, function () {
+          viewButton.attr("data-text", $(this).attr("data-cursor-text") || null);
           viewButton.addClass("active");
           cursor.css("opacity", "0");
         })
         .on("mouseleave.cursor", viewSelector, function () {
-          viewButton.removeClass("active");
+          viewButton.removeClass("active").removeAttr("data-text");
           cursor.css("opacity", "1");
         });
 
@@ -576,6 +577,14 @@
       autoplay: false,
       grabcursor: true,
       speed: 800,
+      navigation: {
+        nextEl: ".project-next",
+        prevEl: ".project-prev",
+      },
+      pagination: {
+        el: ".project-pagination",
+        clickable: true,
+      },
       breakpoints: {
         320: {
           slidesPerView: 1,
@@ -1068,7 +1077,7 @@
 
     const mm = gsap.matchMedia();
 
-    mm.add("(min-width: 1024px)", () => {
+    mm.add("all", () => {
       const scrollArea = document.querySelector(".scroll-area");
       const scrollImg = document.querySelector(".scroll-img");
 

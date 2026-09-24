@@ -1,0 +1,91 @@
+<section class="idb-cta">
+    <div class="idb-cta-bg" data-background="assets/img/bg-img/about-bg.png"></div>
+    <div class="container">
+        <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-lg-4 col-md-5">
+                <div class="idb-cta-img fade-top">
+                    <img src="assets/img/bg-img/cta-bg-1.png" alt="Interior design">
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-7">
+                <div class="idb-cta-content fade-top">
+                    <h2 class="idb-cta-title">Transform Your Space <br> With Us</h2>
+                    <p>Let's Discover Your Style, Curate Unique Designs, and Create a Home You'll Love to Live In.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 text-lg-end text-center">
+                <a href="#" class="idb-cta-btn sorath-hover-view" data-cursor-text="Design With Us">Design With Us <i class="fa-regular fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .idb-cta {
+        position: relative;
+        padding: clamp(60px, 7vw, 110px) 0;
+        margin: clamp(40px, 5vw, 80px) 0;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .idb-cta-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        z-index: -1;
+    }
+
+    .idb-cta-bg:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #000;
+        opacity: .75;
+    }
+
+    .idb-cta-img img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        display: block;
+    }
+
+    .idb-cta-title {
+        color: #fff;
+        font-size: clamp(26px, 2.6vw, 40px);
+        line-height: 1.3;
+        margin-bottom: 16px;
+    }
+
+    .idb-cta-content p {
+        color: rgba(255,255,255,.85);
+        margin-bottom: 0;
+    }
+
+    .idb-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: #fff;
+        color: #111;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding: 14px 28px;
+        border-radius: 100px;
+        transition: background .3s ease, color .3s ease;
+    }
+
+    .idb-cta-btn:hover {
+        background: var(--tl-color-theme-primary);
+        color: #fff;
+    }
+
+    @media (max-width: 767px) {
+        .idb-cta-content {
+            text-align: center;
+        }
+    }
+</style>

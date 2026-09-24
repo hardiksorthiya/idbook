@@ -1,0 +1,107 @@
+<a href="https://wa.me/910000000000?text=Hi%20IDbook%2C%20I%20want%20to%20know%20more%20about%20your%20designs." class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <span class="wa-icon"><i class="fa-brands fa-whatsapp"></i></span>
+    <span class="wa-label">Chat with us</span>
+</a>
+
+<style>
+    .wa-float {
+        position: fixed;
+        left: 50px;
+        bottom: 50px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .wa-icon {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        color: #fff;
+        font-size: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 25px rgba(37, 211, 102, .45);
+        transition: transform .3s ease;
+        z-index: 1;
+    }
+
+    .wa-icon:before,
+    .wa-icon:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: #25d366;
+        z-index: -1;
+        animation: waPulse 2.4s ease-out infinite;
+    }
+
+    .wa-icon:after {
+        animation-delay: 1.2s;
+    }
+
+    .wa-icon i {
+        animation: waShake 4s ease-in-out infinite;
+    }
+
+    .wa-label {
+        margin-left: -30px;
+        padding: 10px 18px 10px 40px;
+        background: #fff;
+        color: #128c7e;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        border-radius: 0 30px 30px 0;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+        opacity: 0;
+        transform: translateX(-20px);
+        pointer-events: none;
+        transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .wa-float:hover .wa-icon {
+        transform: scale(1.08) rotate(-8deg);
+    }
+
+    .wa-float:hover .wa-label {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    @keyframes waPulse {
+        0% { transform: scale(1); opacity: .6; }
+        100% { transform: scale(1.9); opacity: 0; }
+    }
+
+    @keyframes waShake {
+        0%, 80%, 100% { transform: rotate(0); }
+        84% { transform: rotate(-15deg); }
+        88% { transform: rotate(15deg); }
+        92% { transform: rotate(-10deg); }
+        96% { transform: rotate(10deg); }
+    }
+
+    @media (max-width: 992px) {
+        .wa-float {
+            left: 30px;
+            bottom: 30px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .wa-float {
+            left: 20px;
+            bottom: 20px;
+        }
+
+        .wa-label {
+            display: none;
+        }
+    }
+</style>

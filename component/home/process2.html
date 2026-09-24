@@ -106,7 +106,7 @@
     border:1px solid var(--j-line);background:rgba(255,255,255,.04);
     padding:8px 14px;border-radius:99px;color:#c9d6d5;font-size:12px;
 }
-.idb-journey .j-cta{margin-top:30px}
+.idb-journey .j-cta{margin-top:30px;color:#fff}
 
 .idb-journey .j-visual{
     position:absolute;z-index:4;top:54%;
@@ -313,6 +313,19 @@
     .idb-journey .j-visual{height:34vh}
     .idb-journey .j-desc{font-size:13px;line-height:1.6}
     .idb-journey .j-cta{margin-top:16px}
+}
+@media (max-width:991px) and (orientation:portrait){
+    .idb-journey .j-panel{display:flex;flex-direction:column;padding:162px 20px 24px}
+    .idb-journey .j-copy,
+    .idb-journey .j-visual{position:relative;top:auto;bottom:auto;left:auto;right:auto}
+    .idb-journey .j-copy{width:100%}
+    .idb-journey .j-visual{flex:0 1 44vh;min-height:0;height:auto;width:100%;margin-top:20px}
+    .idb-journey .j-scene{top:0;transform:translate(-50%,0) scale(var(--s));transform-origin:50% 0}
+    .idb-journey .j-final .j-house{transform:translate(-50%,0) scale(calc(var(--s) * 1.08))}
+}
+@media (max-width:575px) and (orientation:portrait){
+    .idb-journey .j-panel{padding-top:146px}
+    .idb-journey .j-visual{flex-basis:40vh}
 }
 @media (max-width:991px) and (max-height:600px) and (orientation:landscape){
     .idb-journey{--s:.42}

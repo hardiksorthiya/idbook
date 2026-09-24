@@ -1,5 +1,5 @@
 (function () {
-  var INCLUDE_CACHE = '34';
+  var INCLUDE_CACHE = Date.now();
 
   function loadFile(path) {
     var url = path + (path.indexOf('?') >= 0 ? '&' : '?') + 'cb=' + INCLUDE_CACHE;
@@ -23,7 +23,16 @@
   function includeHead() {
     var html = loadFile('component/head.html');
     if (html) {
+      html = html.replace(/(href="assets\/[^"?]+\.css)(\?[^"]*)?"/g, '$1?v=' + INCLUDE_CACHE + '"');
       document.head.insertAdjacentHTML('beforeend', html);
+    }
+  }
+
+  function includeScripts() {
+    var html = loadFile('component/scripts.html');
+    if (html) {
+      html = html.replace(/(src="assets\/js\/(?!vendor\/)[^"?]+\.js)(\?[^"]*)?"/g, '$1?v=' + INCLUDE_CACHE + '"');
+      document.write(html);
     }
   }
 
@@ -71,4 +80,5 @@
   }
 
   window.includeHTML = includeHTML;
+  window.includeScripts = includeScripts;
 })();

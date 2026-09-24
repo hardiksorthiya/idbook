@@ -150,8 +150,68 @@
                 </div>
             </div>
         </div>
+        <div class="project-nav d-lg-none">
+            <button type="button" class="project-prev" aria-label="Previous product"><i class="fa-regular fa-arrow-left"></i></button>
+            <div class="project-pagination"></div>
+            <button type="button" class="project-next" aria-label="Next product"><i class="fa-regular fa-arrow-right"></i></button>
+        </div>
     </div>
     <div class="project-house-img">
         <img src="assets/img/images/project-house.png" alt="img">
     </div>
 </section>
+
+<style>
+    .project-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 30px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .project-nav button {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 1px solid var(--tl-color-theme-primary);
+        background: #fff;
+        color: var(--tl-color-theme-primary);
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s ease;
+    }
+
+    .project-nav button:hover,
+    .project-nav button:active {
+        background: var(--tl-color-theme-primary);
+        color: #fff;
+    }
+
+    .project-nav .project-pagination {
+        position: static;
+        width: auto;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .project-nav .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        margin: 0 !important;
+        background: var(--tl-color-theme-primary);
+        opacity: .35;
+        transition: all .3s ease;
+    }
+
+    .project-nav .swiper-pagination-bullet-active {
+        width: 24px;
+        border-radius: 8px;
+        opacity: 1;
+    }
+</style>
