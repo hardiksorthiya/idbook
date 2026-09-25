@@ -1667,82 +1667,43 @@
     }
   });
 
-  const idbFlow = document.querySelector(".idb-flow");
-  if (idbFlow && window.gsap) {
-    const idbTrack = idbFlow.querySelector(".idb-flow-track");
-    const idbFrame = idbFlow.querySelector(".idb-flow-window");
-    const idbBar = idbFlow.querySelector(".idb-flow-bar i");
-    const idbCount = idbFlow.querySelector(".idb-flow-count b");
-    const idbCards = gsap.utils.toArray(".idb-card", idbFlow);
-    const idbMotions = [
-      (n) => "translateY(" + (-26 * n) + "px)",
-      (n) => "rotate(" + (-3 * n) + "deg)",
-      (n) => "scale(" + (1 + 0.06 * n) + ")",
-      (n) => "translateX(" + (22 * n) + "px)",
-      (n) => "translateY(" + (20 * n) + "px)",
-      (n) => "rotate(" + (2.5 * n) + "deg) scale(" + (1 + 0.04 * n) + ")",
-      (n) => "translateY(" + (-16 * n) + "px) rotate(" + (-1.5 * n) + "deg)",
-      (n) => "scale(" + (1 + 0.08 * n) + ")",
-      (n) => "translateX(" + (-22 * n) + "px)",
-      (n) => "translateY(" + (-24 * n) + "px)",
-      (n) => "rotate(" + (2 * n) + "deg)",
-      (n) => "translateY(" + (-12 * n) + "px) scale(" + (1 + 0.05 * n) + ")"
-    ];
-    let idbIndex = 0;
-
-    const idbSet = (index, progress) => {
-      const pos = progress * (idbCards.length - 1);
-      const desktop = window.innerWidth >= 992;
-      idbIndex = index;
-      idbCards.forEach((card, i) => {
-        const here = Math.max(0, 1 - Math.abs(pos - i));
-        card.classList.toggle("is-on", i === index);
-        card.style.transform = desktop ? idbMotions[i](here) : "";
-        card.style.opacity = desktop ? (i <= pos ? "1" : String(0.38 + 0.62 * here)) : "1";
-      });
-      if (idbCount) idbCount.textContent = String(index + 1).padStart(2, "0");
-      if (idbBar) idbBar.style.transform = "scaleX(" + Math.max(progress, 0.04) + ")";
-    };
-    idbSet(0, 0);
-
-    gsap.matchMedia().add("(min-width: 992px)", () => {
-      idbFlow.classList.add("is-desktop");
-      const distance = () => Math.max(0, idbTrack.scrollWidth - idbFrame.clientWidth);
-      const tween = gsap.to(idbTrack, {
-        x: () => -distance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: idbFlow.querySelector(".idb-flow-pin"),
-          start: "top top",
-          end: () => "+=" + distance(),
-          pin: true,
-          scrub: 0.6,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            if (self.isActive) {
-              const top = self.pin.getBoundingClientRect().top;
-              if (Math.abs(top) > 1) {
-                gsap.set(self.pin, { y: (gsap.getProperty(self.pin, "y") || 0) - top });
-              }
-            }
-            idbSet(Math.round(self.progress * (idbCards.length - 1)), self.progress);
-          },
-        },
-      });
-      return () => {
-        idbFlow.classList.remove("is-desktop");
-        tween.kill();
-        gsap.set(idbTrack, { clearProps: "transform" });
-      };
+  gsap.matchMedia().add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+    const scrubThrough = (el) => ({
+      trigger: el.closest("section") || el.parentElement,
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
     });
 
-    idbFrame.addEventListener("scroll", () => {
-      if (window.innerWidth >= 992) return;
-      const step = idbCards[0].offsetWidth + 22;
-      const index = Math.min(idbCards.length - 1, Math.round(idbFrame.scrollLeft / step));
-      if (index !== idbIndex) idbSet(index, index / (idbCards.length - 1));
-    }, { passive: true });
-  }
+    gsap.utils.toArray("[data-parallax-bg]").forEach((el) => {
+      gsap.fromTo(el, { yPercent: -8 }, { yPercent: 8, ease: "none", scrollTrigger: scrubThrough(el) });
+    });
+
+    gsap.utils.toArray("[data-parallax]").forEach((el) => {
+      const dist = parseFloat(el.dataset.parallax) || 60;
+      gsap.fromTo(el, { y: dist }, { y: -dist, ease: "none", scrollTrigger: scrubThrough(el) });
+    });
+
+    gsap.utils.toArray("[data-parallax-x]").forEach((el) => {
+      const dist = parseFloat(el.dataset.parallaxX) || 100;
+      gsap.fromTo(el, { x: dist }, { x: -dist, ease: "none", scrollTrigger: scrubThrough(el) });
+    });
+  });
+
+  $(document).on("click", 'a[href^="#"]:not([href="#"])', function (e) {
+    const target = document.getElementById(this.getAttribute("href").slice(1));
+    if (!target) return;
+    e.preventDefault();
+    const smoother = window.ScrollSmoother && ScrollSmoother.get();
+    if (smoother) {
+      smoother.scrollTo(target, true, "top 80px");
+    } else {
+      window.scrollTo({
+        top: target.getBoundingClientRect().top + window.pageYOffset - 80,
+        behavior: "smooth",
+      });
+    }
+  });
 
   let resizeTimer;
   $(window).on("resize", function () {

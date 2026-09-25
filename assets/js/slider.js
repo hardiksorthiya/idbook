@@ -60,14 +60,13 @@
             loop: true,
             effect: "fade", // Fixed typo: "verticle" isn't a default Swiper effect, usually "vertical" or "fade"
             grabCursor: true,
+            allowTouchMove: true,
+            simulateTouch: true,
+            threshold: 8,
             autoplay: false,
             pagination: {
                 el: ".sorath-swiper-pagination",
                 clickable: true,
-            },
-            navigation: {
-                nextEl: '.slider-navigation .swiper-next', // Fixed swapped classes
-                prevEl: '.slider-navigation .swiper-prev',
             },
             on: {
                 slideChangeTransitionStart: function () {
