@@ -642,15 +642,6 @@ ul {
     }
 }
 
-.preloader span {
-    font-family: var(--tl-ff-heading);
-    font-size: 80px;
-    font-weight: 800;
-    color: #fff;
-    text-transform: uppercase;
-    overflow-x: hidden
-}
-
 .site-name {
     background-color: #111
 }
@@ -701,9 +692,22 @@ ul {
     left: 0
 }
 
-@media only screen and (max-width: 767px) {
-    .site-name span {
-        font-size:40px
+.site-name .site-logo {
+    display: inline-block;
+    width: min(320px, 60vw);
+    height: auto;
+    animation: preloaderLogo 1.6s ease-in-out infinite
+}
+
+@keyframes preloaderLogo {
+    0%, 100% {
+        opacity: .65;
+        transform: scale(.96)
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1)
     }
 }
 
