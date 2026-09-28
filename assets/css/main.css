@@ -1,7 +1,7 @@
-﻿@import"https://fonts.googleapis.com/css2?family=Cal+Sans&family=Golos+Text:wght@400..900&family=Orbitron:wght@400..900&display=swap";:root {
-    --tl-ff-body: 'Golos Text', sans-serif;
+﻿:root {
+    --tl-ff-body: 'Poppins', sans-serif;
     --tl-ff-heading: "Orbitron", sans-serif;
-    --tl-ff-p: 'Golos Text', sans-serif;
+    --tl-ff-p: 'Poppins', sans-serif;
     --tl-fw-normal: normal;
     --tl-fw-thin: 100;
     --tl-fw-elight: 200;
@@ -4417,28 +4417,28 @@ ul {
 }
 
 .slider-content-wrap .section-heading .section-title {
-    font-size: 72px;
+    font-size: 48px;
     max-width: 56%;
     white-space: normal
 }
 
 @media(max-width: 1399px) {
     .slider-content-wrap .section-heading .section-title {
-        font-size: 60px;
+        font-size: 42px;
         max-width: 52%
     }
 }
 
 @media(max-width: 1199px) {
     .slider-content-wrap .section-heading .section-title {
-        font-size: 48px;
+        font-size: 36px;
         max-width: 50%
     }
 }
 
 @media only screen and (max-width: 992px) {
     .slider-content-wrap .section-heading .section-title {
-        font-size: 42px;
+        font-size: 32px;
         max-width: 100%
     }
 }
@@ -17422,8 +17422,8 @@ blockquote .content .author {
 
 /* Home page: same spacing for every section */
 .home-page {
-    --tl-section-space: clamp(70px, 8vw, 120px);
-    --tl-section-gap: clamp(40px, 5vw, 80px)
+    --tl-section-space: clamp(40px, 4.5vw, 70px);
+    --tl-section-gap: clamp(24px, 3vw, 45px)
 }
 
 .home-page .feature-section,
@@ -17433,12 +17433,13 @@ blockquote .content .author {
 .home-page .video-content,
 .home-page .blog-section,
 .home-page .gallary-section,
+.home-page .testimonial-section,
+.home-page .project-section,
 .home-page .newsletter-section {
     padding-top: var(--tl-section-space) !important;
     padding-bottom: var(--tl-section-space) !important
 }
 
-.home-page .project-section,
 .home-page .counter-1 {
     padding-top: var(--tl-section-space) !important
 }
@@ -17480,10 +17481,6 @@ blockquote .content .author {
         max-width: 420px;
         margin: 40px auto 0
     }
-}
-
-.home-page .gallary-section .gallary-text span {
-    font-size: clamp(48px, 15vw, 300px)
 }
 
 .home-page [data-parallax-x] {

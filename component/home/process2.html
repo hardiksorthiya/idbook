@@ -757,8 +757,11 @@ window.addEventListener("load", function () {
         labelEl.textContent = panels[index].dataset.title;
     }
 
+    var stepIndex = 0, stepTime = 0;
     function goTo(index) {
         if (!trigger) return;
+        stepIndex = index;
+        stepTime = Date.now();
         var y = trigger.start + (trigger.end - trigger.start) * (index / (total - 1));
         var smoother = window.ScrollSmoother && ScrollSmoother.get();
         if (smoother) smoother.scrollTo(y, true);
@@ -777,6 +780,7 @@ window.addEventListener("load", function () {
                 end: function () { return "+=" + distance(); },
                 pin: true,
                 scrub: 0.6,
+                snap: ScrollTrigger.isTouch === 1 ? { snapTo: 1 / (total - 1), duration: { min: 0.3, max: 0.7 }, delay: 0.15, ease: "power2.inOut" } : false,
                 invalidateOnRefresh: true,
                 onUpdate: function (self) {
                     if (self.isActive) {
@@ -790,7 +794,28 @@ window.addEventListener("load", function () {
             }
         });
         trigger = tween.scrollTrigger;
+
+        var busyUntil = 0;
+        function onWheel(e) {
+            if (!trigger || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+            var smoother = window.ScrollSmoother && ScrollSmoother.get();
+            var y = smoother ? smoother.scrollTop() : window.scrollY;
+            if (y < trigger.start - 2 || y > trigger.end + 2) return;
+            var next = (Date.now() - stepTime < 2000 ? stepIndex : current) + (e.deltaY > 0 ? 1 : -1);
+            if (next < 0 || next > total - 1) return;
+            e.preventDefault();
+            var now = Date.now();
+            if (now < busyUntil) {
+                busyUntil = Math.max(busyUntil, now + 200);
+                return;
+            }
+            busyUntil = now + 900;
+            goTo(next);
+        }
+        window.addEventListener("wheel", onWheel, { passive: false });
+
         return function () {
+            window.removeEventListener("wheel", onWheel);
             root.classList.remove("is-desktop");
             trigger = null;
             tween.kill();

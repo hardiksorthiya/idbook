@@ -43,11 +43,11 @@
                     <div class="footer-address">
                         <a class="number" href="tel:+0844560789">+(084) 456-0789</a>
                         <a class="mail" href="tel:">support@example.com</a>
-                        <ul class="social-list">
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Instagram</a></li>
-                            <li><a href="#">YouTube</a></li>
-                            <li><a href="#">Twitter</a></li>
+                        <ul class="social-list social-icons">
+                            <li><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                            <li><a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+                            <li><a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -63,3 +63,36 @@
     </div>
     <div class="footer-text"><span data-include="component/logoftr.html"></span></div>
 </footer>
+
+<style>
+    .footer-widget .social-icons {
+        gap: 10px;
+    }
+
+    .footer-widget .social-icons li:not(:last-of-type) {
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .footer-widget .social-icons li:before {
+        display: none;
+    }
+
+    .footer-widget .social-icons li a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, .3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        transition: background-color .3s ease, border-color .3s ease, transform .3s ease;
+    }
+
+    .footer-widget .social-icons li a:hover {
+        background-color: var(--tl-color-theme-primary);
+        border-color: var(--tl-color-theme-primary);
+        transform: translateY(-3px);
+    }
+</style>

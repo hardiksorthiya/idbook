@@ -124,7 +124,6 @@
   }
 
   $(window).on("load", function () {
-    animateBars();
     setTimeout(function () {
       $(".preloader").remove();
     }, 3000);
@@ -182,6 +181,17 @@
 
     // Mobile Sidemenu
     $(".mobile-side-menu-toggle").on("click", function () {
+      var r = this.getBoundingClientRect();
+      var $menu = $(".mobile-side-menu");
+      if (!$menu.hasClass("is-open")) {
+        $menu.css({
+          transition: "none",
+          "--mac-x": r.left + r.width / 2 - document.documentElement.clientWidth / 2 + "px",
+          "--mac-y": r.top + r.height / 2 - document.documentElement.clientHeight / 2 + "px",
+        });
+        $menu[0].offsetWidth;
+        $menu.css("transition", "");
+      }
       $(".mobile-side-menu, .mobile-side-menu-overlay").toggleClass("is-open");
     });
 
@@ -705,18 +715,23 @@
     });
 
     // Testi Carousel (loop disabled: single-slide markup breaks loop layout and causes horizontal overflow)
+    var testiMulti = $(".testi-carousel .swiper-slide").length > 1;
     var swiperTesti = new Swiper(".testi-carousel", {
       slidesPerView: 1,
       spaceBetween: 24,
       slidesPerGroup: 1,
-      loop: false,
+      loop: testiMulti,
       watchOverflow: true,
-      autoplay: false,
-      grabcursor: true,
+      autoplay: testiMulti ? { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true } : false,
+      grabCursor: true,
       speed: 800,
       navigation: {
         nextEl: ".testi-top-content-wrap .swiper-prev",
         prevEl: ".testi-top-content-wrap .swiper-next",
+      },
+      pagination: {
+        el: ".testi-pagination",
+        clickable: true,
       },
     });
 
@@ -1659,7 +1674,7 @@
       ScrollSmoother.create({
         wrapper: "#sorath-smooth-wrapper",
         content: "#sorath-smooth-content",
-        smooth: 1.8,
+        smooth: 1,
         effects: true,
         smoothTouch: 0.15,
         ignoreMobileResize: true,

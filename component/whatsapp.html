@@ -1,10 +1,10 @@
-<a href="https://wa.me/910000000000?text=Hi%20IDbook%2C%20I%20want%20to%20know%20more%20about%20your%20designs." class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    <span class="wa-icon"><i class="fa-brands fa-whatsapp"></i></span>
-    <span class="wa-label">Chat with us</span>
+<a href="contact.html" class="design-float" aria-label="Design With Us">
+    <span class="design-float-icon"><i class="fa-regular fa-compass-drafting"></i></span>
+    <span class="design-float-label">Design With Us</span>
 </a>
 
 <style>
-    .wa-float {
+    .design-float {
         position: fixed;
         left: 50px;
         bottom: 50px;
@@ -14,46 +14,46 @@
         text-decoration: none;
     }
 
-    .wa-icon {
+    .design-float-icon {
         position: relative;
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #25d366, #128c7e);
+        background: linear-gradient(135deg, var(--tl-color-theme-primary), #5e8c8a);
         color: #fff;
-        font-size: 32px;
+        font-size: 26px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 10px 25px rgba(37, 211, 102, .45);
+        box-shadow: 0 10px 25px rgba(119, 165, 163, .45);
         transition: transform .3s ease;
         z-index: 1;
     }
 
-    .wa-icon:before,
-    .wa-icon:after {
+    .design-float-icon:before,
+    .design-float-icon:after {
         content: "";
         position: absolute;
         inset: 0;
         border-radius: 50%;
-        background: #25d366;
+        background: var(--tl-color-theme-primary);
         z-index: -1;
-        animation: waPulse 2.4s ease-out infinite;
+        animation: designPulse 2.4s ease-out infinite;
     }
 
-    .wa-icon:after {
+    .design-float-icon:after {
         animation-delay: 1.2s;
     }
 
-    .wa-icon i {
-        animation: waShake 4s ease-in-out infinite;
+    .design-float-icon i {
+        animation: designShake 4s ease-in-out infinite;
     }
 
-    .wa-label {
+    .design-float-label {
         margin-left: -30px;
         padding: 10px 18px 10px 40px;
         background: #fff;
-        color: #128c7e;
+        color: #5e8c8a;
         font-size: 14px;
         font-weight: 600;
         white-space: nowrap;
@@ -65,21 +65,21 @@
         transition: opacity .3s ease, transform .3s ease;
     }
 
-    .wa-float:hover .wa-icon {
+    .design-float:hover .design-float-icon {
         transform: scale(1.08) rotate(-8deg);
     }
 
-    .wa-float:hover .wa-label {
+    .design-float:hover .design-float-label {
         opacity: 1;
         transform: translateX(0);
     }
 
-    @keyframes waPulse {
+    @keyframes designPulse {
         0% { transform: scale(1); opacity: .6; }
         100% { transform: scale(1.9); opacity: 0; }
     }
 
-    @keyframes waShake {
+    @keyframes designShake {
         0%, 80%, 100% { transform: rotate(0); }
         84% { transform: rotate(-15deg); }
         88% { transform: rotate(15deg); }
@@ -88,19 +88,19 @@
     }
 
     @media (max-width: 992px) {
-        .wa-float {
+        .design-float {
             left: 30px;
             bottom: 30px;
         }
     }
 
     @media (max-width: 767px) {
-        .wa-float {
+        .design-float {
             left: 20px;
             bottom: 20px;
         }
 
-        .wa-label {
+        .design-float-label {
             display: none;
         }
     }

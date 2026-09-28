@@ -1,5 +1,6 @@
 (function () {
-  var INCLUDE_CACHE = Date.now();
+  var isLocal = location.protocol === 'file:' || /^(localhost|127\.|192\.168\.|10\.)/.test(location.hostname);
+  var INCLUDE_CACHE = isLocal ? Date.now() : '1';
 
   function loadFile(path) {
     var url = path + (path.indexOf('?') >= 0 ? '&' : '?') + 'cb=' + INCLUDE_CACHE;
@@ -7,8 +8,6 @@
     xhr.open('GET', url, false);
     try {
       xhr.overrideMimeType('text/html; charset=utf-8');
-      xhr.setRequestHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-      xhr.setRequestHeader('Pragma', 'no-cache');
     } catch (err) {}
     xhr.send();
 
@@ -24,7 +23,7 @@
     var html = loadFile('component/head.html');
     if (html) {
       html = html.replace(/(href="assets\/[^"?]+\.css)(\?[^"]*)?"/g, '$1?v=' + INCLUDE_CACHE + '"');
-      document.head.insertAdjacentHTML('beforeend', html);
+      document.write(html);
     }
   }
 
