@@ -1,0 +1,129 @@
+<section class="idb-mvv">
+    <div class="container container-2">
+        <div class="row section-heading-wrap">
+            <div class="shape"><img src="assets/img/shapes/section-heading.png" alt="shape"></div>
+            <div class="col-lg-4 col-md-12">
+                <div class="section-heading mb-0">
+                    <h4 class="sub-heading" data-text-animation="fade-in-right" data-split="char" data-duration="0.9" data-stagger="0.03">What drives us</h4>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="section-heading section-heading-2 mb-0">
+                    <h2 class="section-title title-2">Our <span>mission, vision <br> and</span> values</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="mvv-card">
+                    <span class="mvv-icon"><i class="fa-regular fa-bullseye-arrow"></i></span>
+                    <h3 class="mvv-title">Our Mission</h3>
+                    <p>To make great interior design simple and accessible, turning every client's idea into a complete, ready-to-build design they love.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="mvv-card">
+                    <span class="mvv-icon"><i class="fa-regular fa-eye"></i></span>
+                    <h3 class="mvv-title">Our Vision</h3>
+                    <p>To become the most trusted design partner for homes and workspaces, known for creative ideas, quality and a smooth experience.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="mvv-card">
+                    <span class="mvv-icon"><i class="fa-regular fa-gem"></i></span>
+                    <h3 class="mvv-title">Our Values</h3>
+                    <ul class="mvv-list">
+                        <li>Client first, always</li>
+                        <li>Creativity with purpose</li>
+                        <li>Honest and transparent work</li>
+                        <li>Quality in every detail</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .idb-mvv {
+        padding: var(--tl-section-space, 70px) 0;
+    }
+
+    .mvv-card {
+        height: 100%;
+        padding: 40px 32px;
+        background: #fff;
+        border: 1px solid rgba(159, 159, 164, .24);
+        border-radius: 24px;
+        transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+    }
+
+    .mvv-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--tl-color-theme-primary);
+        box-shadow: 0 20px 40px rgba(119, 165, 163, .18);
+    }
+
+    .mvv-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        background: rgba(119, 165, 163, .12);
+        color: var(--tl-color-theme-primary);
+        font-size: 28px;
+        transition: background .4s ease, color .4s ease;
+    }
+
+    .mvv-card:hover .mvv-icon {
+        background: var(--tl-color-theme-primary);
+        color: #fff;
+    }
+
+    .mvv-title {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .mvv-card p {
+        margin-bottom: 0;
+    }
+
+    .mvv-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .mvv-list li {
+        position: relative;
+        padding-left: 28px;
+        margin-bottom: 10px;
+    }
+
+    .mvv-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    .mvv-list li:before {
+        content: "\f00c";
+        font-family: "Font Awesome 6 Pro";
+        font-weight: 400;
+        position: absolute;
+        left: 0;
+        color: var(--tl-color-theme-primary);
+    }
+
+    @media (max-width: 767px) {
+        .mvv-card {
+            padding: 30px 24px;
+        }
+
+        .mvv-title {
+            font-size: 22px;
+        }
+    }
+</style>

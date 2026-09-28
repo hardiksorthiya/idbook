@@ -4970,7 +4970,8 @@ ul {
     margin-bottom: 10px
 }
 
-.project-item .product-meta {
+.project-item .product-meta,
+.shop-item .product-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -4990,7 +4991,8 @@ ul {
     white-space: nowrap
 }
 
-.project-item .product-size {
+.project-item .product-size,
+.shop-item .product-size {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -5006,7 +5008,8 @@ ul {
     white-space: nowrap
 }
 
-.project-item .product-size i {
+.project-item .product-size i,
+.shop-item .product-size i {
     width: 26px;
     height: 26px;
     border-radius: 50%;
@@ -5020,7 +5023,8 @@ ul {
 }
 
 @media only screen and (max-width: 767px) {
-    .project-item .product-meta {
+    .project-item .product-meta,
+    .shop-item .product-meta {
         align-items: flex-start;
         flex-direction: column
     }
@@ -13514,16 +13518,9 @@ ul {
 }
 
 .history-section {
-    padding-bottom: 425px;
     position: relative;
     z-index: 2;
     overflow-x: clip
-}
-
-@media only screen and (max-width: 767px) {
-    .history-section {
-        padding-bottom:100px
-    }
 }
 
 .history-section .history-text {
@@ -14929,13 +14926,13 @@ ul {
 }
 
 .shop-item {
+    position: relative;
     border-radius: 6px;
     overflow: hidden
 }
 
 .shop-item .shop-thumb {
     position: relative;
-    z-index: 1;
     overflow: hidden;
     height: 350px;
     border-radius: 24px
@@ -14964,7 +14961,7 @@ ul {
     transition: all .5s ease-in-out;
     visibility: hidden;
     opacity: 0;
-    z-index: 2
+    z-index: 3
 }
 
 .shop-item .shop-thumb .shop-list li:not(:last-of-type) {
@@ -15366,6 +15363,116 @@ ul {
 .product-info .product-btn .cart-btn-wrap-2 .cart-btn:hover {
     background-color: var(--tl-color-heading-primary);
     color: var(--tl-color-common-white)
+}
+
+.product-info .pd-actions {
+    display: flex;
+    gap: 16px;
+    margin: 30px 0 20px
+}
+
+.product-info .pd-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 56px;
+    padding: 0 24px;
+    border-radius: 100px;
+    border: 2px solid var(--tl-color-heading-primary);
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color .3s ease, border-color .3s ease, color .3s ease, transform .3s ease, box-shadow .3s ease
+}
+
+.product-info .pd-btn-outline {
+    background-color: transparent;
+    color: var(--tl-color-heading-primary)
+}
+
+.product-info .pd-btn-outline:hover {
+    background-color: var(--tl-color-heading-primary);
+    color: var(--tl-color-common-white)
+}
+
+.product-info .pd-btn-fill {
+    background-color: var(--tl-color-theme-primary);
+    border-color: var(--tl-color-theme-primary);
+    color: var(--tl-color-common-white);
+    box-shadow: 0 10px 25px rgba(119, 165, 163, .35)
+}
+
+.product-info .pd-btn-fill:hover {
+    background-color: #5e8c8a;
+    border-color: #5e8c8a;
+    color: var(--tl-color-common-white);
+    transform: translateY(-2px)
+}
+
+.product-info .pd-wishlist {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--tl-color-heading-primary);
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 25px;
+    transition: color .3s ease
+}
+
+.product-info .pd-wishlist i {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(159, 159, 164, .4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .3s ease, border-color .3s ease, color .3s ease
+}
+
+.product-info .pd-wishlist:hover {
+    color: var(--tl-color-theme-primary)
+}
+
+.product-info .pd-wishlist:hover i {
+    background-color: var(--tl-color-theme-primary);
+    border-color: var(--tl-color-theme-primary);
+    color: var(--tl-color-common-white)
+}
+
+.product-info .pd-info {
+    list-style: none;
+    margin: 0;
+    padding: 8px 24px;
+    border: 1px solid rgba(159, 159, 164, .24);
+    border-radius: 16px;
+    background-color: var(--tl-color-common-white)
+}
+
+.product-info .pd-info li {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    font-size: 15px
+}
+
+.product-info .pd-info li:not(:last-child) {
+    border-bottom: 1px dashed rgba(159, 159, 164, .3)
+}
+
+.product-info .pd-info li span {
+    min-width: 100px;
+    color: var(--tl-color-heading-primary);
+    font-weight: 500
+}
+
+@media (max-width: 575px) {
+    .product-info .pd-actions {
+        flex-direction: column
+    }
 }
 
 .product-info .shop-details-btn {
@@ -16046,6 +16153,7 @@ ul {
 }
 
 .post-card {
+    position: relative;
     overflow: hidden
 }
 
@@ -17494,6 +17602,68 @@ blockquote .content .author {
     }
 
     .home-page .video-section {
+        overflow: clip
+    }
+}
+
+/* About page: same spacing for every section */
+.about-page {
+    --tl-section-space: clamp(40px, 4.5vw, 70px);
+    --tl-section-gap: clamp(24px, 3vw, 45px)
+}
+
+.about-page .about-section-2,
+.about-page .video-content,
+.about-page .history-section,
+.about-page .gallary-section-2,
+.about-page .testimonial-section,
+.about-page .newsletter-section {
+    padding-top: var(--tl-section-space) !important;
+    padding-bottom: var(--tl-section-space) !important
+}
+
+.about-page .video-section {
+    margin: var(--tl-section-gap) 0
+}
+
+@media (min-width: 993px) {
+    .about-page .about-wrap-2 .about-content-left .about-counter-wrap {
+        grid-template-columns: auto minmax(0, 350px);
+        grid-gap: clamp(20px, 4vw, 85px)
+    }
+
+    .about-page .about-wrap-2 .about-content-left .about-counter-wrap .counter-content .title {
+        font-size: clamp(120px, 16vw, 260px)
+    }
+}
+
+.about-page .about-img-1 {
+    margin-left: 0
+}
+
+.about-page .about-img-1 .sorath-panoroma-container,
+.about-page .about-img-1 .sorath-panoroma-img,
+.about-page .about-img-1 .panolens-canvas {
+    height: 100%
+}
+
+.about-page .gallary-section-2 .tl-primary-btn {
+    color: #fff;
+    border-color: rgba(255, 255, 255, .5)
+}
+
+.about-page .history-section .history-text,
+.about-page .history-section .history-element {
+    display: none
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .about-page [data-parallax-bg] {
+        top: -12% !important;
+        height: 124% !important
+    }
+
+    .about-page .video-section {
         overflow: clip
     }
 }

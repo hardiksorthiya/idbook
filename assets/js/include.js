@@ -2,7 +2,10 @@
   var isLocal = location.protocol === 'file:' || /^(localhost|127\.|192\.168\.|10\.)/.test(location.hostname);
   var INCLUDE_CACHE = isLocal ? Date.now() : '1';
 
+  var loaded = {};
+
   function loadFile(path) {
+    if (loaded[path] !== undefined) return loaded[path];
     var url = path + (path.indexOf('?') >= 0 ? '&' : '?') + 'cb=' + INCLUDE_CACHE;
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, false);
@@ -12,7 +15,7 @@
     xhr.send();
 
     if ((xhr.status >= 200 && xhr.status < 300) || (xhr.status === 0 && xhr.responseText)) {
-      return xhr.responseText;
+      return (loaded[path] = xhr.responseText);
     }
 
     console.error('Could not load ' + path);
@@ -65,6 +68,9 @@
       var html = loadFile(path);
 
       if (html) {
+        html = html.replace(/\{\{(\w+)\}\}/g, function (match, key) {
+          return el.dataset[key] || '';
+        });
         insertHTML(el, html);
       }
     });

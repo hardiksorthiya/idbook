@@ -182,16 +182,10 @@
     // Mobile Sidemenu
     $(".mobile-side-menu-toggle").on("click", function () {
       var r = this.getBoundingClientRect();
-      var $menu = $(".mobile-side-menu");
-      if (!$menu.hasClass("is-open")) {
-        $menu.css({
-          transition: "none",
-          "--mac-x": r.left + r.width / 2 - document.documentElement.clientWidth / 2 + "px",
-          "--mac-y": r.top + r.height / 2 - document.documentElement.clientHeight / 2 + "px",
-        });
-        $menu[0].offsetWidth;
-        $menu.css("transition", "");
-      }
+      $(".mobile-side-menu").css({
+        "--dd-top": r.bottom + 12 + "px",
+        "--dd-right": Math.max(12, document.documentElement.clientWidth - r.right) + "px",
+      });
       $(".mobile-side-menu, .mobile-side-menu-overlay").toggleClass("is-open");
     });
 
@@ -265,7 +259,6 @@
 
     // Custom Cursor
     function customCursor(viewSelector = ".sorath-hover-view") {
-      $("body").append('<div class="mt-cursor"></div>');
       $("body").append('<div class="mt-cursor-view"></div>');
 
       const cursor = $(".mt-cursor");
@@ -317,15 +310,6 @@
         .on("mouseleave.cursor", viewSelector, function () {
           viewButton.removeClass("active").removeAttr("data-text");
           cursor.css("opacity", "1");
-        });
-
-      // NEW: hero text effect
-      $("body")
-        .on("mouseenter.cursor", ".cursor-effect", function () {
-          cursor.addClass("cursor-lg cursor-blend");
-        })
-        .on("mouseleave.cursor", ".cursor-effect", function () {
-          cursor.removeClass("cursor-lg cursor-blend");
         });
 
       window.destroyCustomCursor = function () {
