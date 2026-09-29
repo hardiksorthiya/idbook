@@ -364,8 +364,7 @@ body:not(.home-page) .header:not(.sticky-header) .primary-header-inner {
     }
 }
 
-@media (min-width: 992px) and (max-width: 1536px),
-       (min-width: 992px) and (max-height: 900px) {
+@media (min-width: 992px) {
     .slider-section .slider-container {
         align-items: flex-start;
         padding-top: 118px;
