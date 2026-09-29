@@ -1,0 +1,253 @@
+<section class="account-section">
+    <div class="container">
+        <div class="account-shell">
+            <nav class="account-nav" aria-label="Account">
+                <button class="account-tab is-active" type="button" data-panel="dashboard">Dashboard</button>
+                <button class="account-tab" type="button" data-panel="orders">Orders</button>
+                <button class="account-tab" type="button" data-panel="profile">Profile</button>
+                <a class="account-logout" href="login.html">Log out</a>
+            </nav>
+
+            <div class="account-panel is-active" id="dashboard" data-panel="dashboard">
+                <p class="account-lead">Your orders, downloads, and account details in one place.</p>
+                <div class="account-stats">
+                    <div class="account-stat">
+                        <span class="account-stat-value">3</span>
+                        <span class="account-stat-label">Orders</span>
+                    </div>
+                    <div class="account-stat">
+                        <span class="account-stat-value">2</span>
+                        <span class="account-stat-label">Ready to download</span>
+                    </div>
+                    <div class="account-stat">
+                        <span class="account-stat-value">1</span>
+                        <span class="account-stat-label">In progress</span>
+                    </div>
+                </div>
+                <h2 class="account-subtitle">Latest order</h2>
+                <article class="account-order">
+                    <div class="account-order-main">
+                        <img class="account-order-img" src="assets/img/shop/shop-2.png" alt="Modern Caramel Fabric Sofa">
+                        <div class="account-order-copy">
+                            <p class="account-order-id">IDB-1042</p>
+                            <h3>Modern Caramel Fabric Sofa</h3>
+                            <p class="account-order-meta">12 Sep 2026 · Ready</p>
+                        </div>
+                    </div>
+                    <button class="tl-primary-btn account-download" type="button" data-order="IDB-1042" data-item="Modern Caramel Fabric Sofa" data-date="12 Sep 2026" data-total="₹48,500">Download <span class="icon"><i class="fa-regular fa-arrow-down"></i></span></button>
+                </article>
+            </div>
+
+            <div class="account-panel" id="orders" data-panel="orders" hidden>
+                <p class="account-lead">Download a ready order, or wait while a new one is prepared.</p>
+                <div class="account-orders">
+                    <article class="account-order">
+                        <div class="account-order-main">
+                            <img class="account-order-img" src="assets/img/shop/shop-2.png" alt="Modern Caramel Fabric Sofa">
+                            <div class="account-order-copy">
+                                <p class="account-order-id">IDB-1042</p>
+                                <h3>Modern Caramel Fabric Sofa</h3>
+                                <p class="account-order-meta">12 Sep 2026 · ₹48,500 · Ready</p>
+                            </div>
+                        </div>
+                        <button class="tl-primary-btn account-download" type="button" data-order="IDB-1042" data-item="Modern Caramel Fabric Sofa" data-date="12 Sep 2026" data-total="₹48,500">Download <span class="icon"><i class="fa-regular fa-arrow-down"></i></span></button>
+                    </article>
+                    <article class="account-order">
+                        <div class="account-order-main">
+                            <img class="account-order-img" src="assets/img/shop/sidebar-img-3.png" alt="Coffee Table Ocean Blue">
+                            <div class="account-order-copy">
+                                <p class="account-order-id">IDB-1038</p>
+                                <h3>Coffee Table Ocean Blue</h3>
+                                <p class="account-order-meta">28 Aug 2026 · ₹18,900 · Ready</p>
+                            </div>
+                        </div>
+                        <button class="tl-primary-btn account-download" type="button" data-order="IDB-1038" data-item="Coffee Table Ocean Blue" data-date="28 Aug 2026" data-total="₹18,900">Download <span class="icon"><i class="fa-regular fa-arrow-down"></i></span></button>
+                    </article>
+                    <article class="account-order">
+                        <div class="account-order-main">
+                            <img class="account-order-img" src="assets/img/shop/sidebar-img-2.png" alt="Arabesque Design vase">
+                            <div class="account-order-copy">
+                                <p class="account-order-id">IDB-1021</p>
+                                <h3>Arabesque Design vase</h3>
+                                <p class="account-order-meta">4 Aug 2026 · ₹6,400 · In progress</p>
+                            </div>
+                        </div>
+                        <button class="tl-primary-btn account-download" type="button" disabled>Preparing</button>
+                    </article>
+                </div>
+            </div>
+
+            <div class="account-panel" id="profile" data-panel="profile" hidden>
+                <p class="account-lead">Update the details we use for orders and downloads.</p>
+                <form id="profile-form" action="profile.html" method="post" novalidate>
+                    <div class="form-item">
+                        <h4 class="form-title">Full name</h4>
+                        <input type="text" name="name" class="form-control" placeholder="Your name" required autocomplete="name">
+                    </div>
+                    <div class="form-item">
+                        <h4 class="form-title">Email address</h4>
+                        <input type="email" name="email" class="form-control" placeholder="you@email.com" required autocomplete="email">
+                    </div>
+                    <div class="form-item">
+                        <h4 class="form-title">Phone</h4>
+                        <input type="tel" name="phone" class="form-control" placeholder="Your phone number" required autocomplete="tel">
+                    </div>
+                    <div class="form-item">
+                        <h4 class="form-title">City</h4>
+                        <input type="text" name="city" class="form-control" placeholder="Your city" required autocomplete="address-level2">
+                    </div>
+                    <button class="tl-primary-btn" type="submit">Save profile <span class="icon"><i class="fa-regular fa-arrow-right"></i></span></button>
+                    <p class="account-note" id="profile-note" role="status"></p>
+                </form>
+                <form id="password-form" class="account-password" action="profile.html" method="post" novalidate>
+                    <h2 class="account-subtitle">Change password</h2>
+                    <p class="account-lead">Use at least 6 characters. The new password and confirmation need to match.</p>
+                    <div class="form-item auth-field">
+                        <h4 class="form-title">Current password</h4>
+                        <input type="password" name="current" class="form-control" placeholder="Current password" required autocomplete="current-password">
+                        <button class="auth-toggle" type="button" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                    <div class="form-item auth-field">
+                        <h4 class="form-title">New password</h4>
+                        <input type="password" name="password" class="form-control" placeholder="New password" required minlength="6" autocomplete="new-password">
+                        <button class="auth-toggle" type="button" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                    <div class="form-item auth-field">
+                        <h4 class="form-title">Confirm new password</h4>
+                        <input type="password" name="confirm" class="form-control" placeholder="Repeat the new password" required minlength="6" autocomplete="new-password">
+                        <button class="auth-toggle" type="button" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                    <button class="tl-primary-btn" type="submit">Update password <span class="icon"><i class="fa-regular fa-arrow-right"></i></span></button>
+                    <p class="account-note" id="password-note" role="status"></p>
+                </form>
+            </div>
+            <p class="account-note" id="download-note" role="status"></p>
+        </div>
+    </div>
+</section>
+<script>
+(function () {
+    var shell = document.querySelector(".account-shell");
+    if (!shell) return;
+
+    var tabs = shell.querySelectorAll(".account-tab");
+    var panels = shell.querySelectorAll(".account-panel");
+
+    function showPanel(name) {
+        Array.prototype.forEach.call(tabs, function (tab) {
+            var on = tab.getAttribute("data-panel") === name;
+            tab.classList.toggle("is-active", on);
+            tab.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        Array.prototype.forEach.call(panels, function (panel) {
+            var on = panel.getAttribute("data-panel") === name;
+            panel.classList.toggle("is-active", on);
+            panel.hidden = !on;
+        });
+        var downloadNote = document.getElementById("download-note");
+        if (downloadNote) downloadNote.hidden = name === "profile";
+    }
+
+    Array.prototype.forEach.call(tabs, function (tab) {
+        tab.setAttribute("role", "tab");
+        tab.addEventListener("click", function () {
+            var name = tab.getAttribute("data-panel");
+            showPanel(name);
+            if (history.replaceState) {
+                history.replaceState(null, "", "#"+ name);
+            }
+        });
+    });
+
+    var start = (location.hash || "#dashboard").replace("#", "");
+    if (!shell.querySelector('[data-panel="' + start + '"]')) start = "dashboard";
+    showPanel(start);
+
+    function downloadOrder(button) {
+        var lines = [
+            "IDbook order",
+            "Order: " + button.getAttribute("data-order"),
+            "Item: " + button.getAttribute("data-item"),
+            "Date: " + button.getAttribute("data-date"),
+            "Total: " + button.getAttribute("data-total"),
+            "Status: Ready"
+        ];
+        var blob = new Blob([lines.join("\n")], { type: "text/plain" });
+        var link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "IDbook-" + button.getAttribute("data-order") + ".txt";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(link.href);
+        var note = document.getElementById("download-note");
+        if (note) {
+            note.textContent = "Downloaded " + button.getAttribute("data-order") + ".";
+            note.classList.add("is-visible");
+        }
+    }
+
+    shell.addEventListener("click", function (event) {
+        var button = event.target.closest(".account-download");
+        if (!button || button.disabled) return;
+        downloadOrder(button);
+    });
+
+    var form = document.getElementById("profile-form");
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            var note = document.getElementById("profile-note");
+            note.textContent = "Profile details saved on this page. Account updates are not connected yet.";
+            note.classList.add("is-visible");
+        });
+    }
+
+    var passwordForm = document.getElementById("password-form");
+    if (passwordForm) {
+        Array.prototype.forEach.call(passwordForm.querySelectorAll(".auth-toggle"), function (toggle) {
+            toggle.addEventListener("click", function () {
+                var input = toggle.parentNode.querySelector("input");
+                var show = input.type === "password";
+                input.type = show ? "text" : "password";
+                toggle.setAttribute("aria-label", show ? "Hide password" : "Show password");
+                toggle.querySelector("i").className = show ? "fa-regular fa-eye-slash" : "fa-regular fa-eye";
+            });
+        });
+        passwordForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            var current = passwordForm.querySelector('input[name="current"]');
+            var password = passwordForm.querySelector('input[name="password"]');
+            var confirm = passwordForm.querySelector('input[name="confirm"]');
+            if (password.value && current.value && password.value === current.value) {
+                password.setCustomValidity("Choose a password that is different from the current one");
+            } else {
+                password.setCustomValidity("");
+            }
+            if (password.value !== confirm.value) {
+                confirm.setCustomValidity("Passwords do not match");
+            } else {
+                confirm.setCustomValidity("");
+            }
+            if (!passwordForm.checkValidity()) {
+                passwordForm.reportValidity();
+                return;
+            }
+            var note = document.getElementById("password-note");
+            note.textContent = "Password looks good. Changing it on the account is not connected yet.";
+            note.classList.add("is-visible");
+            passwordForm.reset();
+            Array.prototype.forEach.call(passwordForm.querySelectorAll(".auth-toggle"), function (toggle) {
+                var input = toggle.parentNode.querySelector("input");
+                input.type = "password";
+                toggle.setAttribute("aria-label", "Show password");
+                toggle.querySelector("i").className = "fa-regular fa-eye";
+            });
+        });
+    }
+})();
+</script>

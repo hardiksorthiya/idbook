@@ -122,6 +122,10 @@
 .gallary-section-2 {
         padding-top:70px
     }
+
+.gallary-section-2 .gallary-carousel-wrap {
+        margin-top: 48px
+    }
 }
 
 .gallary-section-2 .bg-img {

@@ -164,6 +164,32 @@
     overflow: visible
 }
 
+.history-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px
+}
+
+.history-nav button {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--tl-color-theme-primary);
+    border-radius: 50%;
+    background: var(--tl-color-theme-primary);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .3s ease, color .3s ease, border-color .3s ease
+}
+
+.history-nav button:hover {
+    background: transparent;
+    color: var(--tl-color-theme-primary)
+}
+
 .history-item .history-img {
     height: 160px;
     width: 160px

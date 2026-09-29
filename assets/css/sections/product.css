@@ -183,10 +183,17 @@
 }
 
 @media only screen and (max-width: 767px) {
-.project-item .product-meta,
+    .project-item .product-meta,
     .shop-item .product-meta {
-        align-items: flex-start;
-        flex-direction: column
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between
+    }
+
+    .shop-item .product-meta .price {
+        margin-top: 0;
+        justify-content: flex-start
     }
 }
 
@@ -246,15 +253,59 @@
 
 .product-details-img {
     max-width: 660px;
-    width: 100%;
-    height: 660px
+    width: 100%
 }
 
-.product-details-img img {
+.pd-gallery-main {
+    height: clamp(280px, 62vw, 560px);
+    border-radius: 24px;
+    overflow: hidden
+}
+
+.pd-gallery-main img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 24px
+}
+
+.pd-gallery-thumbs {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px
+}
+
+.pd-gallery-thumbs button {
+    flex: 1 1 0;
+    height: 88px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    overflow: hidden;
+    background: none;
+    cursor: pointer
+}
+
+.pd-gallery-thumbs button.is-active {
+    border-color: var(--tl-color-theme-primary)
+}
+
+.pd-gallery-thumbs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block
+}
+
+@media (max-width: 767px) {
+    .pd-gallery-thumbs {
+        gap: 8px
+    }
+
+    .pd-gallery-thumbs button {
+        height: 68px;
+        border-radius: 12px
+    }
 }
 
 .product-table {

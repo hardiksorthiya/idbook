@@ -6,12 +6,47 @@
         </div>
         <div class="side-menu-wrap"></div>
         <ul class="side-menu-social">
-            <li class="facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-            <li class="instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>
-            <li class="twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
-            <li class="g-plus"><a href="#"><i class="fab fa-fab fa-google-plus"></i></a></li>
+            <li class="facebook"><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+            <li class="pinterest"><a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a></li>
+            <li class="linkedin"><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></li>
+            <li class="instagram"><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
         </ul>
     </div>
 </div>
 
 <div class="mobile-side-menu-overlay"></div>
+
+<div class="cart-dropdown" aria-hidden="true">
+    <h3 class="cart-dropdown-title">Cart</h3>
+    <ul class="cart-dropdown-list">
+        <li data-price="157">
+            <a href="shop-details.html">
+                <img src="assets/img/shop/shop-2.png" alt="Modern Caramel Fabric Sofa">
+                <span>
+                    <strong>Modern Caramel Fabric Sofa</strong>
+                    <em>$157.00</em>
+                </span>
+            </a>
+            <button type="button" class="cart-item-remove" aria-label="Remove Modern Caramel Fabric Sofa">
+                <i class="fa-regular fa-xmark"></i>
+            </button>
+        </li>
+        <li data-price="157">
+            <a href="shop-details.html">
+                <img src="assets/img/shop/shop-1.png" alt="Luxury Skyline Sofa">
+                <span>
+                    <strong>Luxury Skyline Sofa</strong>
+                    <em>$157.00</em>
+                </span>
+            </a>
+            <button type="button" class="cart-item-remove" aria-label="Remove Luxury Skyline Sofa">
+                <i class="fa-regular fa-xmark"></i>
+            </button>
+        </li>
+    </ul>
+    <p class="cart-dropdown-empty" hidden>Your cart is empty.</p>
+    <div class="cart-dropdown-total">
+        <span>Total</span>
+        <strong>$314.00</strong>
+    </div>
+</div>

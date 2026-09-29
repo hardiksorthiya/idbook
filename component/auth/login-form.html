@@ -1,0 +1,48 @@
+<section class="auth-section">
+    <div class="container">
+        <div class="auth-card">
+            <p class="auth-lead">Sign in to browse designs, save favourites, and continue checkout.</p>
+            <form id="login-form" action="login.html" method="post" novalidate>
+                <div class="form-item">
+                    <h4 class="form-title">Email address</h4>
+                    <input type="email" name="email" class="form-control" placeholder="you@email.com" required autocomplete="email">
+                </div>
+                <div class="form-item auth-field">
+                    <h4 class="form-title">Password</h4>
+                    <input type="password" name="password" class="form-control" placeholder="Your password" required autocomplete="current-password">
+                    <button class="auth-toggle" type="button" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+                </div>
+                <div class="auth-row">
+                    <label><input type="checkbox" name="remember"> Remember me</label>
+                </div>
+                <button class="tl-primary-btn" type="submit">Login <span class="icon"><i class="fa-regular fa-arrow-right"></i></span></button>
+                <p class="auth-note" role="status"></p>
+                <p class="auth-switch">New here? <a href="register.html">Create an account</a></p>
+                <p class="auth-switch">Already signed in? <a href="profile.html">Open your profile</a></p>
+            </form>
+        </div>
+    </div>
+</section>
+<script>
+(function () {
+    var form = document.getElementById("login-form");
+    if (!form) return;
+    form.querySelector(".auth-toggle").addEventListener("click", function () {
+        var input = form.querySelector('input[name="password"]');
+        var show = input.type === "password";
+        input.type = show ? "text" : "password";
+        this.setAttribute("aria-label", show ? "Hide password" : "Show password");
+        this.querySelector("i").className = show ? "fa-regular fa-eye-slash" : "fa-regular fa-eye";
+    });
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        var note = form.querySelector(".auth-note");
+        note.textContent = "This login form is ready. Account sign-in is not connected yet.";
+        note.classList.add("is-visible");
+    });
+})();
+</script>

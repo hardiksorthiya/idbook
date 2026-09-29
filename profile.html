@@ -6,22 +6,19 @@
         <script src="assets/js/include.js?v=37"></script>
     </head>
 
-    <body class="product-page">
+    <body class="profile-page">
 
         <div data-include="component/loader.html"></div>
         <div data-include="component/header.html"></div>
         <div data-include="component/sticky-header.html"></div>
         <div data-include="component/search.html"></div>
         <div data-include="component/mobile-sidebar.html"></div>
-        <div class="shop-filter-drawer" aria-hidden="true">
-            <h3 class="shop-filter-drawer-title">Filters</h3>
-        </div>
 
     <div id="sorath-smooth-wrapper">
         <div id="sorath-smooth-content">
 
-            <div data-include="component/product/page-header.html"></div>
-            <div data-include="component/product/shop-grid.html"></div>
+            <div data-include="component/auth/profile-header.html"></div>
+            <div data-include="component/auth/profile.html"></div>
             <div data-include="component/footer.html"></div>
 
         </div>
@@ -30,7 +27,6 @@
         <div id="scroll-percentage"><span id="scroll-percentage-value"></span></div>
         <div data-include="component/whatsapp.html"></div>
 
-        <!-- JS here -->
         <script>includeHTML(); includeScripts();</script>
     </body>
 </html>

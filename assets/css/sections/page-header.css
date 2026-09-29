@@ -64,3 +64,19 @@
 .page-header .page-header-content .sub-title .inner-page {
     color: var(--tl-color-theme-primary)
 }
+
+@media (max-width: 767px) {
+    .page-header .page-header-content {
+        padding: 96px 0 32px
+    }
+
+    .page-header .page-header-content .title {
+        font-size: 56px;
+        margin-bottom: 8px
+    }
+
+    .page-header .page-header-content .sub-title {
+        line-height: 1;
+        margin: 0
+    }
+}

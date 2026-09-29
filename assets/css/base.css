@@ -1,6 +1,6 @@
 ﻿:root {
     --tl-ff-body: 'Poppins', sans-serif;
-    --tl-ff-heading: "Orbitron", sans-serif;
+    --tl-ff-heading: "Poppins", sans-serif;
     --tl-ff-p: 'Poppins', sans-serif;
     --tl-fw-normal: normal;
     --tl-fw-thin: 100;
@@ -2401,35 +2401,6 @@ blockquote .content .author {
     display: flex;
     align-items: center;
     column-gap: 20px
-}
-
-.comment-item .reply {
-    font-family: var(--tl-ff-heading);
-    color: var(--tl-color-heading-primary);
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    column-gap: 8px;
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 400;
-    text-transform: uppercase;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-    position: absolute;
-    top: 0;
-    right: 0
-}
-
-.comment-item .reply img {
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out
 }
 
 .comment-item .comment-thumb img {

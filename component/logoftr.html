@@ -68,11 +68,11 @@ function createTextParticles() {
         Responsive font size
     */
     let fontSize = 100;
-    textCtx.font = `900 ${fontSize}px "Orbitron", sans-serif`;
+    textCtx.font = `900 ${fontSize}px "Poppins", sans-serif`;
     let m = textCtx.measureText(text);
     const glyphH = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
     fontSize *= Math.min((width * 0.94) / m.width, (height * 0.94) / glyphH);
-    textCtx.font = `900 ${fontSize}px "Orbitron", sans-serif`;
+    textCtx.font = `900 ${fontSize}px "Poppins", sans-serif`;
     m = textCtx.measureText(text);
     textCtx.textAlign = "center";
     textCtx.textBaseline = "alphabetic";
@@ -298,7 +298,7 @@ if (window.ResizeObserver) {
 resizeCanvas();
 
 if (document.fonts) {
-    document.fonts.load('900 120px "Orbitron"').then(resizeCanvas);
+    document.fonts.load('900 120px "Poppins"').then(resizeCanvas);
 }
 
 animate();

@@ -120,6 +120,48 @@
     border-color: rgba(255, 255, 255, .5)
 }
 
+@media (max-width: 992px) {
+.about-page .about-section-2 {
+        overflow: hidden
+    }
+
+.about-page .about-wrap-2 .about-content-left .about-counter-wrap {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        margin-top: 24px
+    }
+
+.about-page .about-wrap-2 .about-content-left .about-counter-wrap .counter-content {
+        align-items: flex-start;
+        max-width: 100%
+    }
+
+.about-page .about-wrap-2 .about-content-left .about-counter-wrap .counter-content .title {
+        font-size: clamp(120px, 28vw, 170px);
+        margin-top: 0;
+        line-height: .85
+    }
+
+.about-page .about-wrap-2 .about-content-left .about-counter-wrap .counter-content p {
+        margin-top: 8px;
+        font-size: 18px
+    }
+
+.about-page .about-wrap-2 .about-content-left .about-counter-wrap .counter-img {
+        max-width: 100%;
+        height: 300px
+    }
+
+.about-page .about-wrap-2 .about-content-right .about-img-1 {
+        max-width: 100%;
+        height: 280px
+    }
+
+.about-page .section-title br {
+        display: none
+    }
+}
+
 @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
 .about-page [data-parallax-bg] {
         top: -12% !important;
