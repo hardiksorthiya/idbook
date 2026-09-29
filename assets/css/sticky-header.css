@@ -345,17 +345,28 @@ body:not(.home-page) .header:not(.sticky-header) .primary-header-inner {
 }
 
 @media (min-width: 992px) {
-    /* .slider-section .sorath-slider,
+    .slider-section .sorath-slider,
+    .slider-section .sorath-slider .swiper-wrapper,
     .slider-section .sorath-slider .swiper-slide,
     .slider-section .sorath-slider .slider-item {
-        height: 100vh;
-        height: 100dvh;
-    } */
+        height: auto;
+    }
 
     .slider-section .slider-container {
-        height: 100%;
+        position: relative;
+        box-sizing: border-box;
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: auto;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        padding-top: 180px;
+        padding-bottom: 160px;
+    }
+
+    .slider-section .slider-container .slider-element-wrap {
+        right: calc(var(--bs-gutter-x, 1.5rem) / 2);
+        bottom: 80px;
     }
 
     .slider-section .slider-content-wrap {
@@ -364,11 +375,12 @@ body:not(.home-page) .header:not(.sticky-header) .primary-header-inner {
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1536px),
+       (min-width: 992px) and (max-height: 900px) {
     .slider-section .slider-container {
         align-items: flex-start;
         padding-top: 118px;
-        padding-bottom: 118px;
+        padding-bottom: 28px;
     }
 
     .slider-section .slider-content-wrap .section-heading {
@@ -384,25 +396,45 @@ body:not(.home-page) .header:not(.sticky-header) .primary-header-inner {
     .slider-section .slider-content-wrap .bottom-content .sorath-desc {
         margin-bottom: 18px;
     }
+}
 
+@media (min-width: 1400px) {
+    .slider-section .slider-content-wrap .section-heading .sub-heading {
+        font-size: 14px;
+        padding: 8px 22px 8px 32px;
+    }
+
+    .slider-section .slider-content-wrap .section-heading .section-title {
+        font-size: 58px;
+        line-height: 1.12;
+        max-width: 54%;
+    }
+
+    .slider-section .slider-content-wrap .bottom-content .sorath-desc p {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1279px) {
     .slider-section .slider-item .slider-element-wrap {
-        right: 24px;
-        bottom: 24px;
-        max-width: 420px;
+        right: 20px;
+        bottom: 16px;
+        max-width: 540px;
     }
 
     .slider-section .slider-item .slider-element-wrap .slider-thumb {
-        height: 190px;
-        max-width: 190px;
+        height: 280px;
+        max-width: 250px;
     }
 
     .slider-section .slider-item .slider-element-wrap .slider-element {
-        max-width: 210px;
-        padding: 18px 20px;
+        max-width: 250px;
+        padding: 24px 26px;
     }
 
     .slider-section .slider-item .slider-element-wrap .slider-element .element-title {
-        font-size: 36px;
+        font-size: 44px;
     }
 
     .slider-section .slider-item .slider-element-wrap .slider-element span {
@@ -414,7 +446,7 @@ body:not(.home-page) .header:not(.sticky-header) .primary-header-inner {
 @media (min-width: 992px) and (max-height: 640px) {
     .slider-section .slider-container {
         padding-top: 84px;
-        padding-bottom: 84px;
+        padding-bottom: 72px;
     }
 
     .slider-section .slider-logo {
@@ -443,34 +475,28 @@ body:not(.home-page) .header:not(.sticky-header) .primary-header-inner {
     }
 
     .slider-section .slider-item .slider-element-wrap {
-        right: 16px;
+        right: 20px;
         bottom: 16px;
-        max-width: 280px;
+        max-width: 540px;
     }
 
     .slider-section .slider-item .slider-element-wrap .slider-thumb {
-        height: 110px;
-        max-width: 100px;
+        height: 280px;
+        max-width: 250px;
     }
 
     .slider-section .slider-item .slider-element-wrap .slider-element {
-        max-width: 164px;
-        padding: 12px 14px;
+        max-width: 250px;
+        padding: 24px 26px;
     }
 
     .slider-section .slider-item .slider-element-wrap .slider-element .element-title {
-        font-size: 26px;
-        margin-bottom: 2px;
+        font-size: 44px;
     }
 
     .slider-section .slider-item .slider-element-wrap .slider-element span {
-        margin-bottom: 8px;
-        font-size: 12px;
-    }
-
-    .slider-section .slider-item .slider-element-wrap .slider-element p {
-        font-size: 12px;
-        line-height: 1.35;
+        margin-bottom: 14px;
+        font-size: 14px;
     }
 
     .design-float {
