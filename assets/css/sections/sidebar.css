@@ -1,0 +1,105 @@
+.mobile-side-menu-overlay,.mobile-side-menu {
+    display: none
+}
+
+@media only screen and (max-width: 992px) {
+.mobile-side-menu {
+        background-color:var(--tl-color-common-white);
+        position: fixed;
+        overflow-y: scroll;
+        top: 0;
+        right: 0;
+        width: 400px;
+        -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        transform: translateX(100%);
+        height: 100%;
+        display: block;
+        z-index: 100;
+        padding: 40px 40px 40px 40px;
+        -webkit-transition: transform .5s ease;
+        -o-transition: transform .5s ease;
+        transition: transform .5s ease;
+        backface-visibility: hidden
+    }
+}
+
+@media only screen and (max-width: 992px)and (max-width: 767px) {
+.mobile-side-menu {
+        padding:40px 20px;
+        width: 100%;
+        max-width: 320px
+    }
+}
+
+@media only screen and (max-width: 992px) {
+.mobile-side-menu .side-menu-head {
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px
+    }
+.mobile-side-menu .side-menu-head a img {
+        max-width: 120px
+    }
+.mobile-side-menu .side-menu-head .mobile-side-menu-close {
+        position: fixed;
+        top: 35px;
+        right: 40px;
+        color: var(--tl-color-heading-primary);
+        font-size: 17px;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #edece8
+    }
+}
+
+@media only screen and (max-width: 992px)and (max-width: 767px) {
+.mobile-side-menu .side-menu-head .mobile-side-menu-close {
+        right:16px
+    }
+}
+
+@media only screen and (max-width: 992px) {
+.mobile-side-menu .side-menu-head .mobile-side-menu-close:hover {
+        background-color:var(--tl-color-theme-primary);
+        color: var(--tl-color-common-white)
+    }
+}
+
+@media only screen and (max-width: 992px) {
+.mobile-side-menu .side-menu-wrap {
+        overflow:hidden;
+        margin-bottom: 50px
+    }
+}
+
+@media only screen and (max-width: 992px) {
+.mobile-side-menu p {
+        color:var(--tl-color-heading-primary);
+        margin-bottom: 50px
+    }
+}
+
+@media only screen and (max-width: 992px) {
+.mobile-side-menu-overlay {
+        background-color:rgba(0,0,0,.7);
+        height: 100%;
+        width: 0%;
+        position: fixed;
+        top: 0;
+        z-index: 9;
+        right: 0;
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transition: all 600ms ease;
+        -o-transition: all 600ms ease;
+        transition: all 600ms ease;
+        z-index: 10;
+        display: block
+    }
+}

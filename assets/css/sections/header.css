@@ -1,0 +1,101 @@
+.header {
+    background-color: rgba(0,0,0,0);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    transition: all .3s ease-in-out
+}
+
+@media only screen and (max-width: 992px) {
+.header {
+        top:0;
+        height: auto !important
+    }
+}
+
+.header .primary-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap
+}
+
+@media only screen and (max-width: 992px) {
+.header .primary-header-inner {
+        padding:20px 0
+    }
+}
+
+.header .primary-header-inner .header-left-wrap {
+    display: flex;
+    align-items: center;
+    column-gap: 56px
+}
+
+.header .primary-header-inner .header-logo img {
+    max-width: 170px
+}
+
+.header .primary-header-inner .header-right-wrap {
+    display: flex;
+    align-items: center;
+    column-gap: 15px
+}
+
+.header .primary-header-inner .header-right-wrap .header-btn {
+    background-color: var(--tl-color-theme-primary);
+    color: var(--tl-color-common-white);
+    padding: 19px 30px;
+    border: none
+}
+
+@media only screen and (max-width: 767px) {
+.header .primary-header-inner .header-right-wrap .header-btn {
+        display:none
+    }
+}
+
+.header .primary-header-inner .header-right-wrap .header-btn:before {
+    background-color: var(--tl-color-common-white)
+}
+
+.header .primary-header-inner .header-right-wrap .header-btn:hover {
+    color: var(--tl-color-heading-primary)
+}
+
+.header .primary-header-inner .header-right-wrap .search-icon{
+    background: rgba(216,218,223,.13);
+    color: var(--tl-color-common-white);
+    border: 1px solid rgba(255,255,255,.09);
+    backdrop-filter: blur(29px);
+    height: 56px;
+    width: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}
+
+.header .primary-header-inner .header-right-wrap .search-icon:hover{
+    background-color: var(--tl-color-theme-primary);
+    border-color: var(--tl-color-theme-primary)
+}
+
+@media only screen and (max-width: 992px) {
+.header .primary-header-inner .mean-push {
+        display:none
+    }
+}
+
+.primary-header {
+    width: 100%
+}

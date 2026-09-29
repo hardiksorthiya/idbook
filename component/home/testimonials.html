@@ -108,7 +108,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="testi-nav">
+                        <button type="button" class="testi-prev" aria-label="Previous testimonial"><i class="fa-regular fa-arrow-left"></i></button>
                         <div class="testi-pagination"></div>
+                        <button type="button" class="testi-next" aria-label="Next testimonial"><i class="fa-regular fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -116,25 +120,3 @@
     </div>
 </section>
 
-<style>
-    .testi-pagination {
-        display: flex;
-        gap: 8px;
-        margin-top: 30px;
-    }
-
-    .testi-pagination .swiper-pagination-bullet {
-        width: 8px;
-        height: 8px;
-        margin: 0 !important;
-        border-radius: 8px;
-        background: var(--tl-color-theme-primary);
-        opacity: .35;
-        transition: width .3s ease, opacity .3s ease;
-    }
-
-    .testi-pagination .swiper-pagination-bullet-active {
-        width: 24px;
-        opacity: 1;
-    }
-</style>

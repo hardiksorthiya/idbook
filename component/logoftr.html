@@ -1,39 +1,7 @@
 
 
 <canvas id="dotCanvas"></canvas>
-<style>
-    .footer-section {
-        padding-bottom: clamp(80px, calc(min(20vw, 30vh) + 16px), 436px);
-    }
-    .footer-text {
-        width: 100%;
-        max-width: 100%;
-        height: clamp(64px, min(20vw, 30vh), 420px);
-        left: 0;
-        right: 0;
-        bottom: 0;
-        transform: none;
-        z-index: 1;
-        overflow: hidden;
-    }
-    #dotCanvas {
-        width: 100%;
-        height: 100%;
-        display: block;
-        cursor: crosshair;
-    }
-    @media (min-width: 993px) {
-        .footer-wrap {
-            padding: clamp(50px, 8vh, 90px) 0 clamp(30px, 5vh, 50px);
-        }
-        .footer-widget .social-list {
-            margin-top: 40px;
-        }
-        .copyright-area {
-            padding: 20px 0 8px;
-        }
-    }
-</style>
+
 <script>
 
 const canvas = document.getElementById("dotCanvas");
@@ -49,7 +17,6 @@ const mouse = {
 };
 
 let particles = [];
-
 
 // ======================================
 // RESIZE
@@ -76,7 +43,6 @@ function resizeCanvas() {
 
     createTextParticles();
 }
-
 
 // ======================================
 // CREATE TEXT PARTICLES
@@ -142,7 +108,6 @@ function createTextParticles() {
     */
     const gap = width < 480 ? 2 : width < 992 ? 3 : 4;
 
-
     for (let y = 0; y < height; y += gap) {
 
         for (let x = 0; x < width; x += gap) {
@@ -178,7 +143,6 @@ function createTextParticles() {
     }
 }
 
-
 // ======================================
 // MOUSE MOVE
 // ======================================
@@ -191,7 +155,6 @@ canvas.addEventListener("mousemove", function(e) {
 
 });
 
-
 // ======================================
 // MOUSE LEAVE
 // ======================================
@@ -202,7 +165,6 @@ canvas.addEventListener("mouseleave", function() {
     mouse.y = -1000;
 
 });
-
 
 // ======================================
 // TOUCH SUPPORT
@@ -218,14 +180,12 @@ canvas.addEventListener("touchmove", function(e) {
 
 }, { passive: true });
 
-
 canvas.addEventListener("touchend", function() {
 
     mouse.x = -1000;
     mouse.y = -1000;
 
 });
-
 
 // ======================================
 // ANIMATION
@@ -240,7 +200,6 @@ function animate() {
         height
     );
 
-
     particles.forEach(p => {
 
         // --------------------------------
@@ -253,7 +212,6 @@ function animate() {
         const distance = Math.sqrt(
             dx * dx + dy * dy
         );
-
 
         // --------------------------------
         // Mouse repel
@@ -273,7 +231,6 @@ function animate() {
             p.vy += Math.sin(angle) * push;
         }
 
-
         // --------------------------------
         // Return to original position
         // --------------------------------
@@ -284,7 +241,6 @@ function animate() {
         p.vx += homeX * 0.025;
         p.vy += homeY * 0.025;
 
-
         // --------------------------------
         // Friction
         // --------------------------------
@@ -292,14 +248,12 @@ function animate() {
         p.vx *= 0.82;
         p.vy *= 0.82;
 
-
         // --------------------------------
         // Move
         // --------------------------------
 
         p.x += p.vx;
         p.y += p.vy;
-
 
         // --------------------------------
         // Draw dot
@@ -322,10 +276,8 @@ function animate() {
 
     });
 
-
     requestAnimationFrame(animate);
 }
-
 
 // ======================================
 // START

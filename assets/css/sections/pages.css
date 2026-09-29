@@ -1,0 +1,132 @@
+/* Home page: same spacing for every section */
+
+.home-page {
+    --tl-section-space: clamp(40px, 4.5vw, 70px);
+    --tl-section-gap: clamp(24px, 3vw, 45px)
+}
+
+.home-page .feature-section,
+.home-page .idb-cta,
+.home-page .video-content,
+.home-page .blog-section,
+.home-page .gallary-section,
+.home-page .testimonial-section,
+.home-page .project-section,
+.home-page .newsletter-section{
+    padding-top: var(--tl-section-space) !important;
+    padding-bottom: var(--tl-section-space) !important
+}
+
+.home-page .counter-1 {
+    padding-top: var(--tl-section-space) !important
+}
+
+.home-page .idb-cta,
+.home-page .video-section{
+    margin: var(--tl-section-gap) 0
+}
+
+.home-page .counter-1 {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--tl-section-space) !important;
+    overflow-x: clip
+}
+
+.home-page .counter-1 .counter-text {
+    bottom: 0
+}
+
+.home-page .counter-1 .counter-element {
+    position: relative;
+    order: 2;
+    right: auto;
+    bottom: auto;
+    width: calc(100% - 40px);
+    max-width: 820px;
+    margin: 60px 77px 0 auto
+}
+
+.home-page .counter-1 .scroll-img {
+    width: 100%;
+    height: auto
+}
+
+@media (max-width: 991px) {
+.home-page .counter-1 .counter-element {
+        max-width: 420px;
+        margin: 40px auto 0
+    }
+}
+
+.home-page [data-parallax-x] {
+    display: inline-block
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+.home-page [data-parallax-bg] {
+        top: -12% !important;
+        height: 124% !important
+    }
+
+.home-page .video-section {
+        overflow: clip
+    }
+}
+
+/* About page: same spacing for every section */
+
+.about-page {
+    --tl-section-space: clamp(40px, 4.5vw, 70px);
+    --tl-section-gap: clamp(24px, 3vw, 45px)
+}
+
+.about-page .about-section-2,
+.about-page .video-content,
+.about-page .history-section,
+.about-page .gallary-section-2,
+.about-page .testimonial-section,
+.about-page .newsletter-section {
+    padding-top: var(--tl-section-space) !important;
+    padding-bottom: var(--tl-section-space) !important
+}
+
+.about-page .video-section {
+    margin: var(--tl-section-gap) 0
+}
+
+@media (min-width: 993px) {
+.about-page .about-wrap-2 .about-content-left .about-counter-wrap {
+        grid-template-columns: auto minmax(0, 350px);
+        grid-gap: clamp(20px, 4vw, 85px)
+    }
+.about-page .about-wrap-2 .about-content-left .about-counter-wrap .counter-content .title {
+        font-size: clamp(120px, 16vw, 260px)
+    }
+}
+
+.about-page .about-img-1 {
+    margin-left: 0
+}
+
+.about-page .about-img-1 .sorath-panoroma-container,
+.about-page .about-img-1 .sorath-panoroma-img,
+.about-page .about-img-1 .panolens-canvas {
+    height: 100%
+}
+
+.about-page .gallary-section-2 .tl-primary-btn {
+    color: #fff;
+    border-color: rgba(255, 255, 255, .5)
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+.about-page [data-parallax-bg] {
+        top: -12% !important;
+        height: 124% !important
+    }
+
+.about-page .video-section {
+        overflow: clip
+    }
+}

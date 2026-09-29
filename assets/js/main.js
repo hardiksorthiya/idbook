@@ -185,6 +185,8 @@
       $(".mobile-side-menu").css({
         "--dd-top": r.bottom + 12 + "px",
         "--dd-right": Math.max(12, document.documentElement.clientWidth - r.right) + "px",
+        "--balloon-x": "calc(100% - " + r.width / 2 + "px)",
+        "--balloon-y": -(12 + r.height / 2) + "px",
       });
       $(".mobile-side-menu, .mobile-side-menu-overlay").toggleClass("is-open");
     });
@@ -710,8 +712,8 @@
       grabCursor: true,
       speed: 800,
       navigation: {
-        nextEl: ".testi-top-content-wrap .swiper-prev",
-        prevEl: ".testi-top-content-wrap .swiper-next",
+        nextEl: ".testi-next",
+        prevEl: ".testi-prev",
       },
       pagination: {
         el: ".testi-pagination",

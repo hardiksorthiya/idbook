@@ -1,0 +1,16 @@
+#popup-search-box {
+    background-color: var(--tl-color-common-white);
+    position: fixed;
+    width: 100%;
+    height: 20%;
+    top: -100%;
+    left: 0;
+    right: 0;
+    white-space: nowrap;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 500ms ease all;
+    -moz-transition: 500ms ease all;
+    transition: 500ms ease all
+}
