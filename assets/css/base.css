@@ -203,13 +203,10 @@ ul {
     opacity: 1
 }
 
-.container {
-    max-width: 1440px
+:root {
+    --tl-container-gutter: clamp(16px, 4vw, 40px)
 }
 
-.container-2 {
-    max-width: 1425px
-}
 
 .tl-bg-color {
     background-color: #f6f6f6
