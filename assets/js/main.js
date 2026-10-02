@@ -337,10 +337,10 @@
         return;
       }
 
-      closeNavMenu();
       closeShopFilters();
       ignorePanelScrollUntil = Date.now() + 400;
       openPanelFromButton(this, cart, true);
+      closeNavMenu();
       if (overlay) overlay.classList.add("is-open");
     });
 

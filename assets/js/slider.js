@@ -7,18 +7,92 @@
             return; 
         }
 
+        function alignFloatWithSliderButton() {
+            var floatEl = document.querySelector(".design-float");
+            if (!floatEl) return;
+
+            if (window.innerWidth >= 992) {
+                floatEl.style.bottom = "";
+                return;
+            }
+
+            var btn = document.querySelector(".slider-section .swiper-slide-active .tl-primary-btn");
+            if (!btn) return;
+
+            var rect = btn.getBoundingClientRect();
+            if (rect.width < 20 || rect.bottom < 80 || rect.top > window.innerHeight - 40) return;
+
+            var bottom = window.innerHeight - rect.bottom;
+            if (bottom < 16) bottom = 16;
+            floatEl.style.bottom = bottom + "px";
+        }
+
+        var alignTimer;
+        var alignWatch;
+        var lastBottom = null;
+        var stableRuns = 0;
+        var watchTicks = 0;
+
+        function scheduleAlign() {
+            clearTimeout(alignTimer);
+            alignTimer = setTimeout(alignFloatWithSliderButton, 60);
+        }
+
+        function startAlignWatch() {
+            clearInterval(alignWatch);
+            lastBottom = null;
+            stableRuns = 0;
+            watchTicks = 0;
+            alignWatch = setInterval(function () {
+                var btn = document.querySelector(".slider-section .swiper-slide-active .tl-primary-btn");
+                var bottom = btn ? Math.round(btn.getBoundingClientRect().bottom) : null;
+                if (bottom !== null && bottom === lastBottom) stableRuns += 1;
+                else stableRuns = 0;
+                lastBottom = bottom;
+                alignFloatWithSliderButton();
+                watchTicks += 1;
+                if ((stableRuns >= 6 && watchTicks > 8) || watchTicks > 24) clearInterval(alignWatch);
+            }, 200);
+        }
+
+        window.addEventListener("resize", function () {
+            scheduleAlign();
+            startAlignWatch();
+        });
+        window.addEventListener("load", startAlignWatch);
+        startAlignWatch();
+
         function playLetterTitles(scope) {
             var title = (scope || document).querySelector(".slider-letter-title");
             if (!title) return;
 
             if (!title.dataset.ready) {
                 var html = "";
-                title.innerHTML.split(/<br\s*\/?>/i).forEach(function (line, i) {
-                    if (i) html += "<br>";
-                    line.trim().split("").forEach(function (char) {
-                        html += char === " " ? " " : '<span class="slider-letter">' + char + "</span>";
+                function addText(text, accent) {
+                    var wordStart = true;
+                    text.split("").forEach(function (char) {
+                        if (char === " " || char === "\n") {
+                            html += char === "\n" ? "" : " ";
+                            wordStart = true;
+                            return;
+                        }
+                        var shown = wordStart ? char.toLocaleUpperCase() : char;
+                        wordStart = false;
+                        html += '<span class="slider-letter' + (accent ? " is-accent" : "") + '">' + shown + "</span>";
                     });
-                });
+                }
+                function walk(node, accent) {
+                    node.childNodes.forEach(function (child) {
+                        if (child.nodeType === 3) {
+                            addText(child.textContent, accent);
+                        } else if (child.nodeName === "BR") {
+                            html += "<br>";
+                        } else {
+                            walk(child, accent || child.nodeName === "SPAN");
+                        }
+                    });
+                }
+                walk(title, false);
                 title.innerHTML = html;
                 title.dataset.ready = "1";
             }
@@ -74,6 +148,9 @@
                     var animatingElements = $(swiper.slides[swiper.activeIndex]).find("[data-animation]");
                     sliderAnimations(animatingElements);
                     playLetterTitles(swiper.slides[swiper.activeIndex]);
+                },
+                slideChangeTransitionEnd: function () {
+                    alignFloatWithSliderButton();
                 }
             }
         };
@@ -102,6 +179,7 @@
                 
                 sliderAnimations(elements);
                 playLetterTitles(swiper.slides[swiper.activeIndex]);
+                alignFloatWithSliderButton();
             }, 80);
         };
     });

@@ -37,30 +37,11 @@
     margin-top: 120px
 }
 
-@media only screen and (max-width: 992px) {
-.about-wrap-2 .about-content-left .about-counter-wrap {
-        margin-top:40px
-    }
-}
-
-@media only screen and (max-width: 992px) {
-.about-wrap-2 .about-content-left .about-counter-wrap {
-        grid-template-columns:1fr;
-        grid-gap: 30px
-    }
-}
-
 .about-wrap-2 .about-content-left .about-counter-wrap .counter-content {
     display: flex;
     align-items: center;
     align-items: end;
     flex-direction: column
-}
-
-@media only screen and (max-width: 767px) {
-.about-wrap-2 .about-content-left .about-counter-wrap .counter-content {
-        align-items:start
-    }
 }
 
 .about-wrap-2 .about-content-left .about-counter-wrap .counter-content .title {
@@ -92,13 +73,6 @@
     height: 420px
 }
 
-@media only screen and (max-width: 767px) {
-.about-wrap-2 .about-content-left .about-counter-wrap .counter-img {
-        height:350px;
-        max-width: 100%
-    }
-}
-
 .about-wrap-2 .about-content-left .about-counter-wrap .counter-img img {
     width: 100%;
     height: 100%;
@@ -106,22 +80,10 @@
     border-radius: 24px
 }
 
-@media only screen and (max-width: 992px) {
-.about-wrap-2 .about-content-right {
-        margin-top:24px
-    }
-}
-
 .about-wrap-2 .about-content-right .about-img-1 {
     max-width: 480px;
     width: 100%;
     height: 540px
-}
-
-@media only screen and (max-width: 767px) {
-.about-wrap-2 .about-content-right .about-img-1 {
-        height:350px
-    }
 }
 
 .about-wrap-2 .about-content-right .about-img-1 img {
@@ -226,7 +188,6 @@
     font-weight: 500
 }
 
-
 /* from component/about/mission.html */
 .idb-mvv {
         padding: var(--tl-section-space, 70px) 0;
@@ -300,7 +261,35 @@
         color: var(--tl-color-theme-primary);
     }
 
-    @media (max-width: 767px) {
+@media (max-width: 992px) {
+.about-wrap-2 .about-content-left .about-counter-wrap {
+        margin-top:40px
+    }
+
+.about-wrap-2 .about-content-left .about-counter-wrap {
+        grid-template-columns:1fr;
+        grid-gap: 30px
+    }
+
+.about-wrap-2 .about-content-right {
+        margin-top:24px
+    }
+}
+
+@media (max-width: 767px) {
+.about-wrap-2 .about-content-left .about-counter-wrap .counter-content {
+        align-items:start
+    }
+
+.about-wrap-2 .about-content-left .about-counter-wrap .counter-img {
+        height:350px;
+        max-width: 100%
+    }
+
+.about-wrap-2 .about-content-right .about-img-1 {
+        height:350px
+    }
+
         .mvv-card {
             padding: 30px 24px;
         }
@@ -308,4 +297,5 @@
         .mvv-title {
             font-size: 22px;
         }
-    }
+    
+}

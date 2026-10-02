@@ -1,19 +1,9 @@
-@media only screen and (max-width: 992px) {
-.faq-img {
-        margin-bottom:40px
-    }
-}
+
 
 .faq-content-2 {
     padding-left: 20px;
     max-width: 1000px;
     width: 100%
-}
-
-@media only screen and (max-width: 992px) {
-.faq-content-2 {
-        margin-bottom:40px
-    }
 }
 
 .faq-content-2 .faq-accordion {
@@ -43,17 +33,6 @@
     padding-top: 23px;
     border-radius: 0;
     border-top: 1px solid rgba(159,159,164,.24)
-}
-
-@media only screen and (max-width: 767px) {
-.faq-content-2 .faq-accordion .accordion-item .accordion-button {
-        display:flex;
-        align-items: center;
-        flex-direction: column;
-        row-gap: 10px;
-        align-items: baseline;
-        font-size: 22px
-    }
 }
 
 .faq-content-2 .faq-accordion .accordion-item .accordion-button:after {
@@ -87,12 +66,6 @@
     font-weight: 400
 }
 
-@media only screen and (max-width: 767px) {
-.faq-content-2 .faq-accordion .accordion-item .accordion-button span {
-        font-size:22px
-    }
-}
-
 .faq-content-2 .faq-accordion .accordion-item .accordion-body {
     color: var(--lt-color-text-body);
     max-width: 830px;
@@ -105,23 +78,11 @@
     padding-left: 40px
 }
 
-@media only screen and (max-width: 767px) {
-.faq-content-2 .faq-accordion .accordion-item .accordion-body {
-        padding-left:20px
-    }
-}
-
 .faq-img-wrap .faq-img {
     height: 390px;
     max-width: 310px;
     width: 100%;
     margin-bottom: 20px
-}
-
-@media only screen and (max-width: 767px) {
-.faq-img-wrap .faq-img {
-        max-width:100%
-    }
 }
 
 .faq-img-wrap .faq-img img {
@@ -147,12 +108,6 @@
     width: 100%
 }
 
-@media only screen and (max-width: 992px) {
-.faq-content-2 {
-        margin-top:50px
-    }
-}
-
 .faq-content-2 .faq-accordion {
     border-radius: 0
 }
@@ -182,18 +137,6 @@
     border-top: 1px solid rgba(159,159,164,.24)
 }
 
-@media only screen and (max-width: 767px) {
-.faq-content-2 .faq-accordion .accordion-item .accordion-button {
-        display:flex;
-        align-items: center;
-        flex-direction: column;
-        row-gap: 10px;
-        align-items: baseline;
-        font-size: 18px;
-        position: relative
-    }
-}
-
 .faq-content-2 .faq-accordion .accordion-item .accordion-button:after {
     color: var(--lt-color-heading-primary);
     background-image: none;
@@ -206,14 +149,6 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%
-}
-
-@media only screen and (max-width: 767px) {
-.faq-content-2 .faq-accordion .accordion-item .accordion-button:after {
-        position:absolute;
-        right: 0;
-        top: 45%
-    }
 }
 
 .faq-content-2 .faq-accordion .accordion-item .accordion-button:not(.collapsed) {
@@ -233,12 +168,6 @@
     font-weight: 400
 }
 
-@media only screen and (max-width: 767px) {
-.faq-content-2 .faq-accordion .accordion-item .accordion-button span {
-        font-size:18px
-    }
-}
-
 .faq-content-2 .faq-accordion .accordion-item .accordion-body {
     color: var(--lt-color-text-body);
     max-width: 830px;
@@ -251,7 +180,62 @@
     padding-left: 40px
 }
 
-@media only screen and (max-width: 767px) {
+@media (max-width: 992px) {
+.faq-img {
+        margin-bottom:40px
+    }
+
+.faq-content-2 {
+        margin-bottom:40px
+    }
+
+.faq-content-2 {
+        margin-top:50px
+    }
+}
+
+@media (max-width: 767px) {
+.faq-content-2 .faq-accordion .accordion-item .accordion-button {
+        display:flex;
+        align-items: center;
+        flex-direction: column;
+        row-gap: 10px;
+        align-items: baseline;
+        font-size: 22px
+    }
+
+.faq-content-2 .faq-accordion .accordion-item .accordion-button span {
+        font-size:22px
+    }
+
+.faq-content-2 .faq-accordion .accordion-item .accordion-body {
+        padding-left:20px
+    }
+
+.faq-img-wrap .faq-img {
+        max-width:100%
+    }
+
+.faq-content-2 .faq-accordion .accordion-item .accordion-button {
+        display:flex;
+        align-items: center;
+        flex-direction: column;
+        row-gap: 10px;
+        align-items: baseline;
+        font-size: 18px;
+        position: relative
+    }
+
+.faq-content-2 .faq-accordion .accordion-item .accordion-button:after {
+        position:absolute;
+        right: 0;
+        top: 45%
+    }
+
+.faq-content-2 .faq-accordion .accordion-item .accordion-button span {
+        font-size:18px
+    }
+
 .faq-content-2 .faq-accordion .accordion-item .accordion-body {
         padding-left:10px
     }

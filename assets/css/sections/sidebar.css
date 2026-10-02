@@ -2,7 +2,7 @@
     display: none
 }
 
-@media only screen and (max-width: 992px) {
+@media (max-width: 992px) {
 .mobile-side-menu {
         background-color:var(--tl-color-common-white);
         position: fixed;
@@ -22,17 +22,7 @@
         transition: transform .5s ease;
         backface-visibility: hidden
     }
-}
 
-@media only screen and (max-width: 992px)and (max-width: 767px) {
-.mobile-side-menu {
-        padding:40px 20px;
-        width: 100%;
-        max-width: 320px
-    }
-}
-
-@media only screen and (max-width: 992px) {
 .mobile-side-menu .side-menu-head {
         display:flex;
         align-items: center;
@@ -56,36 +46,22 @@
         justify-content: center;
         border: 1px solid #edece8
     }
-}
 
-@media only screen and (max-width: 992px)and (max-width: 767px) {
-.mobile-side-menu .side-menu-head .mobile-side-menu-close {
-        right:16px
-    }
-}
-
-@media only screen and (max-width: 992px) {
 .mobile-side-menu .side-menu-head .mobile-side-menu-close:hover {
         background-color:var(--tl-color-theme-primary);
         color: var(--tl-color-common-white)
     }
-}
 
-@media only screen and (max-width: 992px) {
 .mobile-side-menu .side-menu-wrap {
         overflow:hidden;
         margin-bottom: 50px
     }
-}
 
-@media only screen and (max-width: 992px) {
 .mobile-side-menu p {
         color:var(--tl-color-heading-primary);
         margin-bottom: 50px
     }
-}
 
-@media only screen and (max-width: 992px) {
 .mobile-side-menu-overlay {
         background-color:rgba(0,0,0,.7);
         height: 100%;
@@ -101,5 +77,17 @@
         transition: all 600ms ease;
         z-index: 10;
         display: block
+    }
+}
+
+@media (max-width: 767px) {
+.mobile-side-menu {
+        padding:40px 20px;
+        width: 100%;
+        max-width: 320px
+    }
+
+.mobile-side-menu .side-menu-head .mobile-side-menu-close {
+        right:16px
     }
 }
