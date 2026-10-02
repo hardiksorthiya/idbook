@@ -1,24 +1,54 @@
 <section class="auth-section">
     <div class="container">
-        <div class="auth-card">
-            <p class="auth-lead">Create an account to save designs and pick up your order later.</p>
+        <div class="auth-card auth-card-wide">
+            <h1 class="auth-title">Register</h1>
+            <div class="auth-tabs" role="tablist" aria-label="Account type">
+                <button type="button" class="auth-tab is-active" role="tab" aria-selected="true" data-type="customer"><i class="fa-regular fa-user"></i>Customer</button>
+                <button type="button" class="auth-tab" role="tab" aria-selected="false" data-type="architect"><i class="fa-regular fa-compass-drafting"></i>Architect</button>
+            </div>
+            <p class="auth-lead" data-customer="Create an account to save designs and pick up your order later." data-architect="Join as an architect to showcase your plans and work with clients.">Create an account to save designs and pick up your order later.</p>
             <form id="register-form" action="register.html" method="post" novalidate>
-                <div class="form-item">
-                    <h4 class="form-title">Full name</h4>
-                    <input type="text" name="name" class="form-control" placeholder="Your name" required autocomplete="name">
-                </div>
-                <div class="form-item">
-                    <h4 class="form-title">Email address</h4>
-                    <input type="email" name="email" class="form-control" placeholder="you@email.com" required autocomplete="email">
-                </div>
-                <div class="form-item auth-field">
-                    <h4 class="form-title">Password</h4>
-                    <input type="password" name="password" class="form-control" placeholder="Create a password" required minlength="6" autocomplete="new-password">
-                    <button class="auth-toggle" type="button" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
-                </div>
-                <div class="form-item">
-                    <h4 class="form-title">Confirm password</h4>
-                    <input type="password" name="confirm" class="form-control" placeholder="Repeat your password" required minlength="6" autocomplete="new-password">
+                <input type="hidden" name="account_type" value="customer">
+                <div class="row gx-3">
+                    <div class="col-lg-6">
+                        <div class="form-item">
+                            <h4 class="form-title">Full name</h4>
+                            <input type="text" name="name" class="form-control" placeholder="Your name" required autocomplete="name">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-item">
+                            <h4 class="form-title">Email address</h4>
+                            <input type="email" name="email" class="form-control" placeholder="you@email.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 auth-architect-only" hidden>
+                        <div class="form-item">
+                            <h4 class="form-title">Firm / studio name</h4>
+                            <input type="text" name="firm" class="form-control" placeholder="Your firm or studio" required disabled autocomplete="organization">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 auth-architect-only" hidden>
+                        <div class="form-item">
+                            <h4 class="form-title">COA registration no.</h4>
+                            <input type="text" name="coa_number" class="form-control" placeholder="e.g. CA/2020/12345" required disabled>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-item auth-field">
+                            <h4 class="form-title">Password</h4>
+                            <div class="auth-input-wrap">
+                                <input type="password" name="password" class="form-control" placeholder="Create a password" required minlength="6" autocomplete="new-password">
+                                <button class="auth-toggle" type="button" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-item">
+                            <h4 class="form-title">Confirm password</h4>
+                            <input type="password" name="confirm" class="form-control" placeholder="Repeat your password" required minlength="6" autocomplete="new-password">
+                        </div>
+                    </div>
                 </div>
                 <button class="tl-primary-btn" type="submit">Create account <span class="icon"><i class="fa-regular fa-arrow-right"></i></span></button>
                 <p class="auth-note" role="status"></p>
@@ -31,6 +61,39 @@
 (function () {
     var form = document.getElementById("register-form");
     if (!form) return;
+    var card = form.closest(".auth-card");
+    var lead = card.querySelector(".auth-lead");
+    var typeInput = form.querySelector('input[name="account_type"]');
+    var note = form.querySelector(".auth-note");
+
+    function setType(type) {
+        var isArchitect = type === "architect";
+        typeInput.value = type;
+        lead.textContent = lead.getAttribute("data-" + type);
+        card.querySelectorAll(".auth-tab").forEach(function (tab) {
+            var active = tab.getAttribute("data-type") === type;
+            tab.classList.toggle("is-active", active);
+            tab.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        form.querySelectorAll(".auth-architect-only").forEach(function (col) {
+            col.hidden = !isArchitect;
+            col.querySelectorAll("input").forEach(function (input) {
+                input.disabled = !isArchitect;
+            });
+        });
+        note.classList.remove("is-visible");
+    }
+
+    card.querySelectorAll(".auth-tab").forEach(function (tab) {
+        tab.addEventListener("click", function () {
+            setType(tab.getAttribute("data-type"));
+        });
+    });
+
+    if (new URLSearchParams(window.location.search).get("type") === "architect") {
+        setType("architect");
+    }
+
     form.querySelector(".auth-toggle").addEventListener("click", function () {
         var input = form.querySelector('input[name="password"]');
         var show = input.type === "password";
@@ -38,6 +101,7 @@
         this.setAttribute("aria-label", show ? "Hide password" : "Show password");
         this.querySelector("i").className = show ? "fa-regular fa-eye-slash" : "fa-regular fa-eye";
     });
+
     form.addEventListener("submit", function (event) {
         event.preventDefault();
         var password = form.querySelector('input[name="password"]');
@@ -51,8 +115,9 @@
             form.reportValidity();
             return;
         }
-        var note = form.querySelector(".auth-note");
-        note.textContent = "Your details look good. Account creation is not connected yet.";
+        note.textContent = typeInput.value === "architect"
+            ? "Your architect details look good. Account creation is not connected yet."
+            : "Your details look good. Account creation is not connected yet.";
         note.classList.add("is-visible");
     });
 })();

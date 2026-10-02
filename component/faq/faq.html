@@ -4,7 +4,7 @@
             <div class="shape"><img src="assets/img/shapes/section-heading.png" alt="shape"></div>
             <div class="col-lg-4 col-md-12">
                 <div class="section-heading mb-0">
-                    <h4 class="sub-heading" data-text-animation="fade-in-right" data-split="char" data-duration="0.9" data-stagger="0.03">Popular Queries</h4>
+                    <h4 class="sub-heading" data-text-animation="fade-in-right" data-split="char" data-duration="0.9" data-stagger="0.03">FAQs</h4>
                 </div>
             </div>
             <div class="col-lg-8 col-md-12">
@@ -14,79 +14,248 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-8 col-xl-9">
                 <div class="faq-content-2">
-                    <div class="faq-accordion fade-wrapper">
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item fade-top">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <span>01</span> What is 3D design and how it work?
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        Our interior design services cover everything you need to create a stunning and functional space. From initial concept development and space planning to selecting color schemes, furniture, and custom designs, we bring your vision to life.
+                    <ul class="nav faq-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="faq-general-tab" data-bs-toggle="tab" data-bs-target="#faq-general" type="button" role="tab" aria-controls="faq-general" aria-selected="true">General</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="faq-membership-tab" data-bs-toggle="tab" data-bs-target="#faq-membership" type="button" role="tab" aria-controls="faq-membership" aria-selected="false">Membership / User</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="faq-orders-tab" data-bs-toggle="tab" data-bs-target="#faq-orders" type="button" role="tab" aria-controls="faq-orders" aria-selected="false">Products &amp; Orders</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content faq-accordion">
+                        <!-- General -->
+                        <div class="tab-pane fade show active" id="faq-general" role="tabpanel" aria-labelledby="faq-general-tab">
+                            <div class="accordion" id="faqGeneral">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="g1-head">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#g1" aria-expanded="true" aria-controls="g1"><span>01</span> How to sign up for an IDbook account?</button>
+                                    </h3>
+                                    <div id="g1" class="accordion-collapse collapse show" aria-labelledby="g1-head" data-bs-parent="#faqGeneral">
+                                        <div class="accordion-body">On the website page, in the left corner, you will find the account sign up details. Add your details and explore our design library.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="g2-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#g2" aria-expanded="false" aria-controls="g2"><span>02</span> How to contact IDbook for any issue or doubt?</button>
+                                    </h3>
+                                    <div id="g2" class="accordion-collapse collapse" aria-labelledby="g2-head" data-bs-parent="#faqGeneral">
+                                        <div class="accordion-body">You will find our service mail in the “About Us” category, situated at the bottom of the website page.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="g3-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#g3" aria-expanded="false" aria-controls="g3"><span>03</span> What is the useful content on IDbook?</button>
+                                    </h3>
+                                    <div id="g3" class="accordion-collapse collapse" aria-labelledby="g3-head" data-bs-parent="#faqGeneral">
+                                        <div class="accordion-body">On IDbook you can be a buyer. You will find a number of new designs every week, and by subscribing to our website you will get to know about modifications and new services.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="g4-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#g4" aria-expanded="false" aria-controls="g4"><span>04</span> How to download drawings from IDbook?</button>
+                                    </h3>
+                                    <div id="g4" class="accordion-collapse collapse" aria-labelledby="g4-head" data-bs-parent="#faqGeneral">
+                                        <div class="accordion-body">First log in to the website, then select your category and design and purchase it. You will receive a mail from us including your desired interior design.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="g5-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#g5" aria-expanded="false" aria-controls="g5"><span>05</span> Why should I use IDbook?</button>
+                                    </h3>
+                                    <div id="g5" class="accordion-collapse collapse" aria-labelledby="g5-head" data-bs-parent="#faqGeneral">
+                                        <div class="accordion-body">IDbook is created to help people around the world design their own interiors. IDbook provides a platform for millennial minds to create distinct and unique designs for customers. Our website gives an opportunity to encourage new designs and to evolve for a new era.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="g6-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#g6" aria-expanded="false" aria-controls="g6"><span>06</span> How can I get information and notifications of new designs regularly?</button>
+                                    </h3>
+                                    <div id="g6" class="accordion-collapse collapse" aria-labelledby="g6-head" data-bs-parent="#faqGeneral">
+                                        <div class="accordion-body">You have to register your mail ID on our website. Every week we will send updates and new modifications to your registered email.</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item fade-top">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        <span>02</span> How interior design is cost?
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        Our interior design services cover everything you need to create a stunning and functional space. From initial concept development and space planning to selecting color schemes, furniture, and custom designs, we bring your vision to life.
+                        </div>
+
+                        <!-- Membership / User -->
+                        <div class="tab-pane fade" id="faq-membership" role="tabpanel" aria-labelledby="faq-membership-tab">
+                            <div class="accordion" id="faqMembership">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="m1-head">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#m1" aria-expanded="true" aria-controls="m1"><span>01</span> Can anyone become a member / user?</button>
+                                    </h3>
+                                    <div id="m1" class="accordion-collapse collapse show" aria-labelledby="m1-head" data-bs-parent="#faqMembership">
+                                        <div class="accordion-body">Yes. Everyone can become a member / user.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="m2-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#m2" aria-expanded="false" aria-controls="m2"><span>02</span> Why is membership required?</button>
+                                    </h3>
+                                    <div id="m2" class="accordion-collapse collapse" aria-labelledby="m2-head" data-bs-parent="#faqMembership">
+                                        <div class="accordion-body">On IDbook you can be a buyer. You will find a number of new designs every week, and by subscribing to our website you will get to know about modifications and new services. For that, membership is required.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="m3-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#m3" aria-expanded="false" aria-controls="m3"><span>03</span> Who are professional members?</button>
+                                    </h3>
+                                    <div id="m3" class="accordion-collapse collapse" aria-labelledby="m3-head" data-bs-parent="#faqMembership">
+                                        <div class="accordion-body">Only architects and interior designers will be professional members on the website.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="m4-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#m4" aria-expanded="false" aria-controls="m4"><span>04</span> How do I deactivate my account?</button>
+                                    </h3>
+                                    <div id="m4" class="accordion-collapse collapse" aria-labelledby="m4-head" data-bs-parent="#faqMembership">
+                                        <div class="accordion-body">You will find the “Deactivate account” option in “My Account”.</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item fade-top">
-                                <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        <span>03</span> How much time I will spend on planning?
-                                    </button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        Our interior design services cover everything you need to create a stunning and functional space. From initial concept development and space planning to selecting color schemes, furniture, and custom designs, we bring your vision to life.
+                        </div>
+
+                        <!-- Products & Orders -->
+                        <div class="tab-pane fade" id="faq-orders" role="tabpanel" aria-labelledby="faq-orders-tab">
+                            <div class="accordion" id="faqOrders">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o1-head">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#o1" aria-expanded="true" aria-controls="o1"><span>01</span> What file types are included on IDbook?</button>
+                                    </h3>
+                                    <div id="o1" class="accordion-collapse collapse show" aria-labelledby="o1-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">Three types of files are available when you purchase a design from the website: CAD file, JPG and PDF.</div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="accordion-item fade-top">
-                                <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        <span>04</span> Can I create custom design?
-                                    </button>
-                                </h2>
-                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        Our interior design services cover everything you need to create a stunning and functional space. From initial concept development and space planning to selecting color schemes, furniture, and custom designs, we bring your vision to life.
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o2-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o2" aria-expanded="false" aria-controls="o2"><span>02</span> What drawing types are included on IDbook?</button>
+                                    </h3>
+                                    <div id="o2" class="accordion-collapse collapse" aria-labelledby="o2-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">Drawings related to interior design only.</div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="accordion-item fade-top">
-                                <h2 class="accordion-header" id="headingFive">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        <span>05</span> Will I need planning permission for my project?
-                                    </button>
-                                </h2>
-                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        Our interior design services cover everything you need to create a stunning and functional space. From initial concept development and space planning to selecting color schemes, furniture, and custom designs, we bring your vision to life.
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o3-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o3" aria-expanded="false" aria-controls="o3"><span>03</span> Can we use these files for personal use, such as uploading them under our name or reusing them on social media?</button>
+                                    </h3>
+                                    <div id="o3" class="accordion-collapse collapse" aria-labelledby="o3-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">
+                                            <p>No, you cannot use the files on your website or social media without our permission, because they come under our copyright. If we find misuse of our terms, we can take legal action.</p>
+                                            <p>If you use your purchased design on social media, kindly mention the source under our website name.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="accordion-item fade-top">
-                                <h2 class="accordion-header" id="headingSix">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                        <span>06</span> How long does a typical project take?
-                                    </button>
-                                </h2>
-                                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        Our interior design services cover everything you need to create a stunning and functional space. From initial concept development and space planning to selecting color schemes, furniture, and custom designs, we bring your vision to life.
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o4-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o4" aria-expanded="false" aria-controls="o4"><span>04</span> I am not able to open the CAD, JPG or PDF. What do I do now?</button>
+                                    </h3>
+                                    <div id="o4" class="accordion-collapse collapse" aria-labelledby="o4-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">
+                                            <p>If you have problems opening the CAD or other files:</p>
+                                            <ul>
+                                                <li>We have prepared all files in AutoCAD 2004, so you may have to convert them to the version of your software.</li>
+                                                <li>If a file is corrupt, mail it to our service mail ID. We will check it and then mail you the same file again.</li>
+                                                <li>If you are unable to open the PDF or JPG, first check the drivers on your system.</li>
+                                            </ul>
+                                            <p>If you still face the same problem, submit your query to <a href="mailto:care@idbook.in">care@idbook.in</a> and we will give you a solution.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o5-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o5" aria-expanded="false" aria-controls="o5"><span>05</span> Can I get hard copies of designs?</button>
+                                    </h3>
+                                    <div id="o5" class="accordion-collapse collapse" aria-labelledby="o5-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">We provide hard copies for special requests only. This is paid, with an extra charge for extra copies. We assure you the highest quality of hard copies.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o6-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o6" aria-expanded="false" aria-controls="o6"><span>06</span> How do I know my order has been confirmed?</button>
+                                    </h3>
+                                    <div id="o6" class="accordion-collapse collapse" aria-labelledby="o6-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">You will receive an immediate mail and an SMS on your registered mobile number.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o7-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o7" aria-expanded="false" aria-controls="o7"><span>07</span> There is a difference between the purchased design and the received design. What do I do now?</button>
+                                    </h3>
+                                    <div id="o7" class="accordion-collapse collapse" aria-labelledby="o7-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">First forward the mail to our service mail, <a href="mailto:sales@idbook.in">sales@idbook.in</a>. After that we can proceed to help you.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o8-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o8" aria-expanded="false" aria-controls="o8"><span>08</span> I am not able to pay through my debit card or credit card. What do I do now?</button>
+                                    </h3>
+                                    <div id="o8" class="accordion-collapse collapse" aria-labelledby="o8-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">Check your bank details or any related issue with your bank. We have included all banks in the payment section, so no customer should face an issue while paying.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o9-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o9" aria-expanded="false" aria-controls="o9"><span>09</span> How many designs can I purchase in one order?</button>
+                                    </h3>
+                                    <div id="o9" class="accordion-collapse collapse" aria-labelledby="o9-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">You can purchase any number of designs from our website. There is no limit.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o10-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o10" aria-expanded="false" aria-controls="o10"><span>10</span> When will I receive my refund for a failed transaction?</button>
+                                    </h3>
+                                    <div id="o10" class="accordion-collapse collapse" aria-labelledby="o10-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">Mail our service mail, <a href="mailto:support@idbook.in">support@idbook.in</a>, and we will proceed with your query. You also have to forward the mail you received after the payment cancellation; only then can we proceed with the refund procedure.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o11-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o11" aria-expanded="false" aria-controls="o11"><span>11</span> I am not able to apply a discount (coupon) scheme. What do I do now?</button>
+                                    </h3>
+                                    <div id="o11" class="accordion-collapse collapse" aria-labelledby="o11-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">Currently this feature is not available. But we give you extra reward points on every purchase you make from our website, which will benefit your account in future schemes on our website.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o12-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o12" aria-expanded="false" aria-controls="o12"><span>12</span> My order confirmation mail shows an unsuccessful payment, but the amount is debited from my bank account. What do I do?</button>
+                                    </h3>
+                                    <div id="o12" class="accordion-collapse collapse" aria-labelledby="o12-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">
+                                            <p>Submit your query to our service mail, <a href="mailto:support@idbook.in">support@idbook.in</a>, and we will help you solve it.</p>
+                                            <p>Please include a screenshot of the debited amount for your purchase, and we will help you via mail.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o13-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o13" aria-expanded="false" aria-controls="o13"><span>13</span> Can I add an item or multiple items to my order after I have placed it?</button>
+                                    </h3>
+                                    <div id="o13" class="accordion-collapse collapse" aria-labelledby="o13-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">No, you have to make another purchase to buy new designs.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o14-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o14" aria-expanded="false" aria-controls="o14"><span>14</span> I didn't get any confirmation mail or message on my registered number after payment. What do I do now?</button>
+                                    </h3>
+                                    <div id="o14" class="accordion-collapse collapse" aria-labelledby="o14-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">Submit your query to our service mail, <a href="mailto:care@idbook.in">care@idbook.in</a>, and we will help you solve it.</div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="o15-head">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#o15" aria-expanded="false" aria-controls="o15"><span>15</span> I want to return or undo my purchase. What do I do now?</button>
+                                    </h3>
+                                    <div id="o15" class="accordion-collapse collapse" aria-labelledby="o15-head" data-bs-parent="#faqOrders">
+                                        <div class="accordion-body">You cannot undo your purchase, as there is no refund or return policy. You can keep the design you purchased and buy the design you actually need as a new purchase.</div>
                                     </div>
                                 </div>
                             </div>
@@ -94,16 +263,34 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="faq-img-wrap">
-                    <div class="faq-img">
-                        <img src="assets/img/images/faq-img-2.png" alt="faq">
+            <div class="col-lg-4 col-xl-3">
+                <div class="faq-side">
+                    <div class="faq-side-card">
+                        <div class="faq-img">
+                            <img src="assets/img/images/faq-img-2.png" alt="FAQ">
+                        </div>
+                        <h4 class="title">Didn't find the answer you were looking for?</h4>
+                        <p>Sorry about that! Fill out a quick contact form with the specific question you want answered and we'll respond as quickly as possible.</p>
+                        <a href="contact.html" class="tl-primary-btn">Contact Us <span class="icon"><i class="fa-regular fa-arrow-right"></i></span></a>
                     </div>
-                    <h4 class="title">Still looking for <br> answers or need a <br> fun chat?</h4>
-                    <p>Our team will guide you through our design process, project specifications and cost estimate.</p>
-                    <a href="contact.html" class="tl-primary-btn mt-20">Contact Us <span class="icon"><i class="fa-regular fa-arrow-right"></i></span></a>
+                    <div class="faq-side-card faq-side-card-dark">
+                        <h4 class="title">Ready to get started? Become a member!</h4>
+                        <p>Fill out the info in the form provided in order to buy or sell at IDBOOK.IN. We'd love to have you join our community!</p>
+                        <a href="register.html" class="tl-primary-btn white-btn">Register Now <span class="icon"><i class="fa-regular fa-arrow-right"></i></span></a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script>
+(function () {
+    var section = document.querySelector(".faq-section");
+    if (!section) return;
+    ["shown.bs.tab", "shown.bs.collapse", "hidden.bs.collapse"].forEach(function (evt) {
+        section.addEventListener(evt, function () {
+            if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        });
+    });
+})();
+</script>

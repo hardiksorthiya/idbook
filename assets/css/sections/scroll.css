@@ -1,14 +1,9 @@
 #scroll-percentage {
-    position: absolute
-}
-
-#scroll-percentage {
     height: 60px;
     width: 60px;
     background-color: var(--tl-color-theme-primary);
     border-radius: 50%;
     position: fixed;
-    bottom: 40px;
     right: 50px;
     transform: scale(0);
     display: grid;
@@ -22,16 +17,30 @@
     box-shadow: 0px 11px 41px 3px rgba(23,67,63,.12)
 }
 
+#scroll-percentage,
+#scroll-percentage.active {
+    bottom: clamp(24px, 5vh, 60px)
+}
+
 @media only screen and (max-width: 992px) {
-#scroll-percentage {
-        right:30px
+    #scroll-percentage {
+        right: 30px
+    }
+
+    #scroll-percentage,
+    #scroll-percentage.active {
+        bottom: 30px
     }
 }
 
 @media only screen and (max-width: 767px) {
-#scroll-percentage {
-        bottom:20px;
+    #scroll-percentage {
         right: 20px
+    }
+
+    #scroll-percentage,
+    #scroll-percentage.active {
+        bottom: 20px
     }
 }
 
@@ -49,4 +58,21 @@
 
 #scroll-percentage-value i {
     font-size: 20px
+}
+
+@media (min-width: 992px) and (max-height: 640px) {
+    #scroll-percentage {
+        right: 16px;
+        width: 46px;
+        height: 46px
+    }
+
+    #scroll-percentage,
+    #scroll-percentage.active {
+        bottom: 16px
+    }
+
+    #scroll-percentage-value i {
+        font-size: 16px
+    }
 }

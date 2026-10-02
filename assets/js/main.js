@@ -112,7 +112,8 @@
   if (panoContainer) {
     var sorathData = $(".sorath-panoroma-img").data("img");
     panorama = new PANOLENS.ImagePanorama(sorathData);
-    panoViewer = new PANOLENS.Viewer({ container: panoContainer });
+    panoViewer = new PANOLENS.Viewer({ container: panoContainer, cameraFov: 95 });
+    panoViewer.OrbitControls.noZoom = true;
     panoViewer.add(panorama);
   }
 
@@ -404,22 +405,37 @@
       btn.addClass("is-active").siblings().removeClass("is-active");
     });
 
-    // Popup Search Box
+    // Header Search: bar expands to the left of the icon, icon becomes the submit button
     $(function () {
-      $("#popup-search-box").removeClass("toggled");
+      $(document).on("click", ".header-search .dl-search-icon", function (e) {
+        e.preventDefault();
+        var form = $(this).closest(".header-search");
+        var input = form.find(".header-search-input");
 
-      $(".dl-search-icon").on("click", function (e) {
-        e.stopPropagation();
-        $("#popup-search-box").toggleClass("toggled");
-        $("#popup-search").focus();
+        if (form.hasClass("is-open")) {
+          if ($.trim(input.val())) {
+            form.get(0).submit();
+          } else {
+            form.removeClass("is-open");
+          }
+          return;
+        }
+
+        $(".header-search").not(form).removeClass("is-open");
+        form.addClass("is-open");
+        input.trigger("focus");
       });
 
-      $("#popup-search-box input").on("click", function (e) {
-        e.stopPropagation();
+      $(document).on("click", function (e) {
+        if (!$(e.target).closest(".header-search").length) {
+          $(".header-search").removeClass("is-open");
+        }
       });
 
-      $("#popup-search-box, body").on("click", function () {
-        $("#popup-search-box").removeClass("toggled");
+      $(document).on("keydown", ".header-search-input", function (e) {
+        if (e.key === "Escape") {
+          $(this).trigger("blur").closest(".header-search").removeClass("is-open");
+        }
       });
     });
 
@@ -465,10 +481,12 @@
 
     // Custom Cursor
     function customCursor(viewSelector = ".sorath-hover-view") {
-      $("body").append('<div class="mt-cursor-view"></div>');
+      $("body").append('<div class="mt-cursor-view"><i class="mt-cursor-icon"></i></div>');
 
       const cursor = $(".mt-cursor");
       const viewButton = $(".mt-cursor-view");
+      const viewIcon = viewButton.find(".mt-cursor-icon");
+      const actionSelector = `${viewSelector} .shop-list a, ${viewSelector} .product-action`;
 
       let targetX = 0;
       let targetY = 0;
@@ -514,8 +532,17 @@
           cursor.css("opacity", "0");
         })
         .on("mouseleave.cursor", viewSelector, function () {
-          viewButton.removeClass("active").removeAttr("data-text");
+          viewButton.removeClass("active is-icon").removeAttr("data-text");
           cursor.css("opacity", "1");
+        })
+        .on("mouseenter.cursor", actionSelector, function () {
+          const iconClass = $(this).find("i").first().attr("class");
+          if (!iconClass) return;
+          viewIcon.attr("class", `mt-cursor-icon ${iconClass}`);
+          viewButton.addClass("is-icon");
+        })
+        .on("mouseleave.cursor", actionSelector, function () {
+          viewButton.removeClass("is-icon");
         });
 
       window.destroyCustomCursor = function () {
@@ -908,8 +935,12 @@
     var testiMulti = $(".testi-carousel .swiper-slide").length > 1;
     var swiperTesti = new Swiper(".testi-carousel", {
       slidesPerView: 1,
-      spaceBetween: 24,
+      spaceBetween: 16,
       slidesPerGroup: 1,
+      breakpoints: {
+        768: { slidesPerView: 2, spaceBetween: 20 },
+        992: { slidesPerView: 3, spaceBetween: 24 },
+      },
       loop: testiMulti,
       watchOverflow: true,
       autoplay: testiMulti ? { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true } : false,

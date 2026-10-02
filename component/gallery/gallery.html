@@ -1,50 +1,83 @@
 <section class="gallery-inner pt-100 pb-100">
     <div class="container container-2">
-        <div class="row gallary-inner-top">
-            <div class="col-lg-6 col-md-6">
-                <div class="gallary-inner-item-2">
-                    <a href="assets/img/project/gallary-img-6.png" class="venobox" data-gall="gallary1"><img src="assets/img/project/gallary-img-6.png" alt="img"></a>
-                </div>
+        <ul class="gallery-filter" role="tablist" aria-label="Gallery categories">
+            <li><button type="button" class="is-active" role="tab" aria-selected="true" data-filter="all">All</button></li>
+            <li><button type="button" role="tab" aria-selected="false" data-filter="interior">Interior Design</button></li>
+            <li><button type="button" role="tab" aria-selected="false" data-filter="architecture">Architecture</button></li>
+            <li><button type="button" role="tab" aria-selected="false" data-filter="exterior">Exterior</button></li>
+            <li><button type="button" role="tab" aria-selected="false" data-filter="3d">3D Visualisation</button></li>
+        </ul>
+
+        <div class="gallery-grid">
+            <div class="gallery-grid-item is-wide" data-category="interior">
+                <a href="assets/img/blog/blog-details-img.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/blog-details-img.png" alt="Interior design"><span class="gallery-tag">Interior Design</span></a>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="gallary-inner-items">
-                    <div class="gallary-inner-item-2">
-                        <a href="assets/img/project/gallary-img-7.png" class="venobox" data-gall="gallary1"><img src="assets/img/project/gallary-img-7.png" alt="img"></a>
-                    </div>
-                    <div class="gallary-inner-item-2">
-                        <a href="assets/img/project/gallary-img-8.png" class="venobox" data-gall="gallary1"><img src="assets/img/project/gallary-img-8.png" alt="img"></a>
-                    </div>
-                    <div class="gallary-inner-item-2">
-                        <a href="assets/img/project/gallary-img-9.png" class="venobox" data-gall="gallary1"><img src="assets/img/project/gallary-img-9.png" alt="img"></a>
-                    </div>
-                    <div class="gallary-inner-item-2">
-                        <a href="assets/img/project/gallary-img-10.png" class="venobox" data-gall="gallary1"><img src="assets/img/project/gallary-img-10.png" alt="img"></a>
-                    </div>
-                </div>
+            <div class="gallery-grid-item" data-category="architecture">
+                <a href="assets/img/blog/post-1.jpg" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-1.jpg" alt="Architecture"><span class="gallery-tag">Architecture</span></a>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="gallary-inner-items">
-                    <div class="gallary-inner-item-2">
-                        <a href="assets/img/project/gallary-img-11.png" class="venobox" data-gall="gallary1"><img src="assets/img/project/gallary-img-11.png" alt="img"></a>
-                    </div>
-                    <div class="gallary-inner-item-2">
-                        <a href="assets/img/project/gallary-img-12.png" class="venobox" data-gall="gallary1"><img src="assets/img/project/gallary-img-12.png" alt="img"></a>
-                    </div>
-                    <div class="gallary-inner-item-2">
-                        <a href="assets/img/project/gallary-img-13.png" class="venobox" data-gall="gallary1"><img src="assets/img/project/gallary-img-13.png" alt="img"></a>
-                    </div>
-                    <div class="gallary-inner-item-2">
-                        <a href="assets/img/project/gallary-img-14.png" class="venobox" data-gall="gallary1"><img src="assets/img/project/gallary-img-14.png" alt="img"></a>
-                    </div>
-                </div>
+            <div class="gallery-grid-item" data-category="interior">
+                <a href="assets/img/blog/post-2.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-2.png" alt="Interior design"><span class="gallery-tag">Interior Design</span></a>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="gallary-inner-item-2">
-                    <a href="assets/img/project/gallary-img-15.png" class="venobox" data-gall="gallary1"><img src="assets/img/project/gallary-img-15.png" alt="img"></a>
-                </div>
+            <div class="gallery-grid-item" data-category="exterior">
+                <a href="assets/img/blog/post-3.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-3.png" alt="Exterior"><span class="gallery-tag">Exterior</span></a>
+            </div>
+            <div class="gallery-grid-item is-tall" data-category="3d">
+                <a href="assets/img/blog/post-8.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-8.png" alt="3D visualisation"><span class="gallery-tag">3D Visualisation</span></a>
+            </div>
+            <div class="gallery-grid-item" data-category="architecture">
+                <a href="assets/img/blog/blog-details-img-1.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/blog-details-img-1.png" alt="Architecture"><span class="gallery-tag">Architecture</span></a>
+            </div>
+            <div class="gallery-grid-item" data-category="interior">
+                <a href="assets/img/blog/blog-details-img-2.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/blog-details-img-2.png" alt="Interior design"><span class="gallery-tag">Interior Design</span></a>
+            </div>
+            <div class="gallery-grid-item is-wide" data-category="exterior">
+                <a href="assets/img/blog/post-4.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-4.png" alt="Exterior"><span class="gallery-tag">Exterior</span></a>
+            </div>
+            <div class="gallery-grid-item" data-category="3d">
+                <a href="assets/img/blog/post-5.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-5.png" alt="3D visualisation"><span class="gallery-tag">3D Visualisation</span></a>
+            </div>
+            <div class="gallery-grid-item" data-category="architecture">
+                <a href="assets/img/blog/post-6.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-6.png" alt="Architecture"><span class="gallery-tag">Architecture</span></a>
+            </div>
+            <div class="gallery-grid-item" data-category="exterior">
+                <a href="assets/img/blog/post-7.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-7.png" alt="Exterior"><span class="gallery-tag">Exterior</span></a>
             </div>
         </div>
     </div>
 </section>
+<script>
+(function () {
+    var section = document.querySelector(".gallery-inner");
+    if (!section) return;
+    var buttons = section.querySelectorAll(".gallery-filter button");
+    var items = section.querySelectorAll(".gallery-grid-item");
+
+    function applyFilter(filter) {
+        var shown = 0;
+        buttons.forEach(function (btn) {
+            var active = btn.getAttribute("data-filter") === filter;
+            btn.classList.toggle("is-active", active);
+            btn.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        items.forEach(function (item) {
+            var match = filter === "all" || item.getAttribute("data-category").split(" ").indexOf(filter) > -1;
+            item.querySelector("a").setAttribute("data-gall", match ? "gallery" : "gallery-hidden");
+            item.hidden = !match;
+            item.classList.remove("is-in");
+            if (match) {
+                void item.offsetWidth;
+                item.style.animationDelay = (shown * 60) + "ms";
+                item.classList.add("is-in");
+                shown++;
+            }
+        });
+        if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    }
+
+    buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            applyFilter(btn.getAttribute("data-filter"));
+        });
+    });
+})();
+</script>
