@@ -11,22 +11,41 @@
             var floatEl = document.querySelector(".design-float");
             if (!floatEl) return;
 
-            if (window.innerWidth >= 992) {
+            var width = window.innerWidth;
+            if (width > 1279) {
                 floatEl.style.bottom = "";
+                floatEl.style.left = "";
                 return;
             }
 
-            var btn = document.querySelector(".slider-section .swiper-slide-active .tl-primary-btn");
+            var slider = document.querySelector(".slider-section");
+            var btn = slider ? slider.querySelector(".swiper-slide-active .tl-primary-btn") : null;
             var rect = btn ? btn.getBoundingClientRect() : null;
-            var onHero = rect && rect.width > 20 && rect.bottom > 120 && rect.top < window.innerHeight - 40;
+            var sliderRect = slider ? slider.getBoundingClientRect() : null;
+            var onHero = rect && sliderRect && rect.width > 20 && rect.bottom > 120 && rect.top < window.innerHeight - 40 && rect.bottom <= sliderRect.bottom + 4;
             if (!onHero) {
-                floatEl.style.bottom = "";
+                if (!sliderRect || sliderRect.bottom < 80) {
+                    floatEl.style.bottom = "";
+                    floatEl.style.left = "";
+                }
                 return;
             }
 
-            var bottom = window.innerHeight - rect.bottom;
-            if (bottom < 16) bottom = 16;
-            floatEl.style.bottom = bottom + "px";
+            var icon = floatEl.querySelector(".design-float-icon");
+            var iconH = icon ? icon.offsetHeight : 60;
+            var bottom = window.innerHeight - (rect.top + (rect.height + iconH) / 2);
+            if (bottom < 0) bottom = 0;
+            if (width < 992 && bottom < 16) bottom = 16;
+            floatEl.style.bottom = Math.round(bottom) + "px";
+
+            if (width >= 992) {
+                var iconW = icon ? icon.offsetWidth : 60;
+                var left = rect.left - iconW - 36;
+                if (left < 12) left = 12;
+                floatEl.style.left = Math.round(left) + "px";
+            } else {
+                floatEl.style.left = "";
+            }
         }
 
         var alignTimer;
@@ -185,6 +204,7 @@
                 sliderAnimations(elements);
                 playLetterTitles(swiper.slides[swiper.activeIndex]);
                 alignFloatWithSliderButton();
+                startAlignWatch();
             }, 80);
         };
     });

@@ -83,6 +83,12 @@
         96% { transform: rotate(10deg); }
     }
 
+    @media (min-width: 992px) and (max-width: 1279px) {
+        .design-float {
+            left: 24px;
+        }
+    }
+
     @media (max-width: 992px) {
         .design-float {
             left: 30px;

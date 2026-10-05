@@ -85,7 +85,7 @@ h1,h2,h3,h4,h5,h6 {
     transition: all .3s ease-in-out 0s
 }
 
-h1 {
+/* h1 {
     font-size: var(--tl-fs-h1)
 }
 
@@ -107,7 +107,7 @@ h5 {
 
 h6 {
     font-size: var(--tl-fs-h6)
-}
+} */
 
 ul {
     margin: 0px;

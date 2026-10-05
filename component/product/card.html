@@ -2,6 +2,7 @@
     <div class="shop-thumb">
         <div class="overlay"></div>
         <img src="{{img}}" alt="{{title}}">
+        <img class="is-flip" src="{{img2}}" alt="">
         <ul class="shop-list">
             <li><a href="#"><i class="fa-regular fa-cart-shopping"></i></a></li>
             <li><a href="wishlist.html" aria-label="Wishlist"><i class="fa-light fa-heart"></i></a></li>
@@ -24,3 +25,12 @@
         </div>
     </div>
 </div>
+<script>
+document.querySelectorAll(".shop-thumb img.is-flip:not([src]), .shop-thumb img.is-flip[src='']").forEach(function (img) {
+    var front = img.previousElementSibling;
+    if (!front) return;
+    img.src = (front.getAttribute("src") || "").replace(/shop-(\d+)/, function (_, n) {
+        return "shop-" + ((+n % 9) + 1);
+    });
+});
+</script>
