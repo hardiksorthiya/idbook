@@ -7,60 +7,23 @@
             return; 
         }
 
-        function alignFloatWithSliderButton() {
-            var floatEl = document.querySelector(".design-float");
+        function hideCornerFloatOnHero() {
+            var floatEl = document.querySelector(".design-float:not(.hero-float)");
             if (!floatEl) return;
-
-            if (window.innerWidth >= 992) {
-                floatEl.style.bottom = "";
-                return;
-            }
-
-            var btn = document.querySelector(".slider-section .swiper-slide-active .tl-primary-btn");
-            if (!btn) return;
-
-            var rect = btn.getBoundingClientRect();
-            if (rect.width < 20 || rect.bottom < 80 || rect.top > window.innerHeight - 40) return;
-
-            var bottom = window.innerHeight - rect.bottom;
-            if (bottom < 16) bottom = 16;
-            floatEl.style.bottom = bottom + "px";
+            var slider = document.querySelector(".slider-section");
+            var onHero = slider && slider.getBoundingClientRect().bottom > 120;
+            floatEl.style.visibility = onHero ? "hidden" : "";
+            floatEl.style.pointerEvents = onHero ? "none" : "";
         }
 
-        var alignTimer;
-        var alignWatch;
-        var lastBottom = null;
-        var stableRuns = 0;
-        var watchTicks = 0;
-
-        function scheduleAlign() {
-            clearTimeout(alignTimer);
-            alignTimer = setTimeout(alignFloatWithSliderButton, 60);
+        window.addEventListener("scroll", hideCornerFloatOnHero, { passive: true });
+        window.addEventListener("resize", hideCornerFloatOnHero);
+        var smoothWrap = document.getElementById("sorath-smooth-wrapper");
+        if (smoothWrap) smoothWrap.addEventListener("scroll", hideCornerFloatOnHero, { passive: true });
+        if (window.ScrollTrigger) {
+            ScrollTrigger.addEventListener("scrollEnd", hideCornerFloatOnHero);
         }
-
-        function startAlignWatch() {
-            clearInterval(alignWatch);
-            lastBottom = null;
-            stableRuns = 0;
-            watchTicks = 0;
-            alignWatch = setInterval(function () {
-                var btn = document.querySelector(".slider-section .swiper-slide-active .tl-primary-btn");
-                var bottom = btn ? Math.round(btn.getBoundingClientRect().bottom) : null;
-                if (bottom !== null && bottom === lastBottom) stableRuns += 1;
-                else stableRuns = 0;
-                lastBottom = bottom;
-                alignFloatWithSliderButton();
-                watchTicks += 1;
-                if ((stableRuns >= 6 && watchTicks > 8) || watchTicks > 24) clearInterval(alignWatch);
-            }, 200);
-        }
-
-        window.addEventListener("resize", function () {
-            scheduleAlign();
-            startAlignWatch();
-        });
-        window.addEventListener("load", startAlignWatch);
-        startAlignWatch();
+        hideCornerFloatOnHero();
 
         function playLetterTitles(scope) {
             var title = (scope || document).querySelector(".slider-letter-title");
@@ -148,9 +111,6 @@
                     var animatingElements = $(swiper.slides[swiper.activeIndex]).find("[data-animation]");
                     sliderAnimations(animatingElements);
                     playLetterTitles(swiper.slides[swiper.activeIndex]);
-                },
-                slideChangeTransitionEnd: function () {
-                    alignFloatWithSliderButton();
                 }
             }
         };
@@ -179,7 +139,7 @@
                 
                 sliderAnimations(elements);
                 playLetterTitles(swiper.slides[swiper.activeIndex]);
-                alignFloatWithSliderButton();
+                hideCornerFloatOnHero();
             }, 80);
         };
     });

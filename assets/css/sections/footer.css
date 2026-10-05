@@ -237,9 +237,24 @@
 }
 
 @media (max-width: 991px) {
+    .footer-brand {
+        text-align: center
+    }
+
+    .footer-widget .widget-header .footer-logo {
+        margin-inline: auto
+    }
+
     .footer-nav {
-        justify-content: flex-start;
+        justify-content: center;
         height: auto
+    }
+
+    .footer-nav .footer-menu,
+    .copyright-links,
+    .copyright-social {
+        width: 100%;
+        justify-content: center
     }
 
     .footer-nav .footer-menu {
@@ -267,6 +282,25 @@
 
     .footer-nav .footer-menu li a {
         font-size: 16px
+    }
+
+    .footer-brand {
+        text-align: center
+    }
+
+    .footer-widget .widget-header .footer-logo {
+        margin-inline: auto
+    }
+
+    .footer-nav {
+        justify-content: center
+    }
+
+    .footer-nav .footer-menu,
+    .copyright-links,
+    .copyright-social {
+        width: 100%;
+        justify-content: center
     }
 
     .copyright-links {

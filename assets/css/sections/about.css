@@ -188,6 +188,190 @@
     font-weight: 500
 }
 
+/* About IDBOOK intro */
+.idb-about {
+    padding: var(--tl-section-space, 70px) 0
+}
+
+.idb-about .section-heading .section-title {
+    font-size: clamp(36px, 4vw, 52px)
+}
+
+.idb-about-lead {
+    margin-top: 24px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--tl-color-heading-primary)
+}
+
+.idb-about .about-btn {
+    margin-top: 28px
+}
+
+.idb-about-visual {
+    height: 460px;
+    border-radius: 24px;
+    overflow: hidden
+}
+
+.idb-about-visual .sorath-panoroma-container,
+.idb-about-visual .sorath-panoroma-img,
+.idb-about-visual .panolens-canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px
+}
+
+/* How IDBOOK started */
+.idb-story {
+    padding: var(--tl-section-space, 70px) 0;
+    background: #fff
+}
+
+.idb-story-panel {
+    max-width: 860px;
+    padding: 48px 48px 44px;
+    background: #f6f6f6;
+    border-radius: 24px;
+    border-left: 4px solid var(--tl-color-theme-primary)
+}
+
+.idb-story-kicker {
+    font-family: var(--tl-ff-heading);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--tl-color-theme-primary);
+    margin-bottom: 18px
+}
+
+.idb-story-panel p {
+    font-size: 17px;
+    line-height: 1.75
+}
+
+/* What IDBOOK is */
+.idb-place {
+    padding: var(--tl-section-space, 70px) 0
+}
+
+.idb-place-card {
+    height: 100%;
+    padding: 36px 30px;
+    background: #fff;
+    border: 1px solid rgba(159, 159, 164, .24);
+    border-radius: 24px;
+    transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease
+}
+
+.idb-place-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--tl-color-theme-primary);
+    box-shadow: 0 20px 40px rgba(119, 165, 163, .18)
+}
+
+.idb-place-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    background: rgba(119, 165, 163, .12);
+    color: var(--tl-color-theme-primary);
+    font-size: 24px;
+    transition: background .4s ease, color .4s ease
+}
+
+.idb-place-card:hover .idb-place-icon {
+    background: var(--tl-color-theme-primary);
+    color: #fff
+}
+
+.idb-place-card h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 12px
+}
+
+.idb-place-card p {
+    margin-bottom: 0
+}
+
+.idb-place-highlight {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-top: 28px;
+    padding: 36px 40px;
+    background: #1c1c1d;
+    border-radius: 24px
+}
+
+.idb-place-highlight h3 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px
+}
+
+.idb-place-highlight p {
+    color: rgba(255, 255, 255, .78);
+    margin-bottom: 0;
+    max-width: 640px
+}
+
+.idb-place-tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0
+}
+
+.idb-place-tags li {
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, .24);
+    color: #fff;
+    font-size: 14px;
+    text-align: center
+}
+
+.idb-place-close {
+    max-width: 760px;
+    margin: 28px 0 0;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--tl-color-heading-primary)
+}
+
+@media (max-width: 991px) {
+    .idb-about-visual {
+        height: 320px
+    }
+
+    .idb-story-panel {
+        padding: 32px 24px
+    }
+
+    .idb-place-highlight {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 24px
+    }
+
+    .idb-place-tags {
+        flex-direction: row;
+        flex-wrap: wrap
+    }
+}
+
 /* from component/about/mission.html */
 .idb-mvv {
         padding: var(--tl-section-space, 70px) 0;
@@ -230,6 +414,20 @@
     .mvv-title {
         font-size: 26px;
         margin-bottom: 15px;
+    }
+
+    .mvv-quote {
+        font-family: var(--tl-ff-heading);
+        font-size: 18px;
+        line-height: 1.45;
+        color: var(--tl-color-theme-primary);
+        margin-bottom: 12px;
+    }
+
+    .mvv-list-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px 32px;
     }
 
     .mvv-card p {
@@ -296,6 +494,10 @@
 
         .mvv-title {
             font-size: 22px;
+        }
+
+        .mvv-list-2 {
+            grid-template-columns: 1fr;
         }
     
 }

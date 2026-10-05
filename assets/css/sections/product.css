@@ -31,7 +31,8 @@
     height: 540px;
     position: relative;
     border-radius: 24px;
-    overflow: hidden
+    overflow: hidden;
+    perspective: 1000px
 }
 
 .project-item .project-img:before {
@@ -55,11 +56,14 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out
+    backface-visibility: hidden;
+    transition: transform .6s ease
+}
+
+.project-item .project-img img.is-flip {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(180deg)
 }
 
 .project-item .project-img ul {
@@ -94,7 +98,6 @@
 }
 
 .project-item .project-content .title {
-    font-size: 24px;
     font-weight: 400;
     line-height: 1;
     margin-bottom: 10px
@@ -153,7 +156,11 @@
 }
 
 .project-item:hover .project-img img {
-    transform: scale(1.02)
+    transform: rotateY(-180deg)
+}
+
+.project-item:hover .project-img img.is-flip {
+    transform: rotateY(0deg)
 }
 
 .project-item .product-actions {
