@@ -311,7 +311,6 @@
         max-width: 100%
     }
 .feature-section.is-vscroll .feature-item {
-        min-height: 164px;
         opacity: .4;
         -webkit-transition: opacity .35s ease;
         transition: opacity .35s ease

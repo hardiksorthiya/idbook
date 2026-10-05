@@ -7,84 +7,23 @@
             return; 
         }
 
-        function alignFloatWithSliderButton() {
-            var floatEl = document.querySelector(".design-float");
+        function hideCornerFloatOnHero() {
+            var floatEl = document.querySelector(".design-float:not(.hero-float)");
             if (!floatEl) return;
-
-            var width = window.innerWidth;
-            if (width > 1279) {
-                floatEl.style.bottom = "";
-                floatEl.style.left = "";
-                return;
-            }
-
             var slider = document.querySelector(".slider-section");
-            var btn = slider ? slider.querySelector(".swiper-slide-active .tl-primary-btn") : null;
-            var rect = btn ? btn.getBoundingClientRect() : null;
-            var sliderRect = slider ? slider.getBoundingClientRect() : null;
-            var onHero = rect && sliderRect && rect.width > 20 && rect.bottom > 120 && rect.top < window.innerHeight - 40 && rect.bottom <= sliderRect.bottom + 4;
-            if (!onHero) {
-                if (!sliderRect || sliderRect.bottom < 80) {
-                    floatEl.style.bottom = "";
-                    floatEl.style.left = "";
-                }
-                return;
-            }
-
-            var icon = floatEl.querySelector(".design-float-icon");
-            var iconH = icon ? icon.offsetHeight : 60;
-            var bottom = window.innerHeight - (rect.top + (rect.height + iconH) / 2);
-            if (bottom < 0) bottom = 0;
-            if (width < 992 && bottom < 16) bottom = 16;
-            floatEl.style.bottom = Math.round(bottom) + "px";
-
-            if (width >= 992) {
-                var iconW = icon ? icon.offsetWidth : 60;
-                var left = rect.left - iconW - 36;
-                if (left < 12) left = 12;
-                floatEl.style.left = Math.round(left) + "px";
-            } else {
-                floatEl.style.left = "";
-            }
+            var onHero = slider && slider.getBoundingClientRect().bottom > 120;
+            floatEl.style.visibility = onHero ? "hidden" : "";
+            floatEl.style.pointerEvents = onHero ? "none" : "";
         }
 
-        var alignTimer;
-        var alignWatch;
-        var lastBottom = null;
-        var stableRuns = 0;
-        var watchTicks = 0;
-
-        function scheduleAlign() {
-            clearTimeout(alignTimer);
-            alignTimer = setTimeout(alignFloatWithSliderButton, 60);
-        }
-
-        function startAlignWatch() {
-            clearInterval(alignWatch);
-            lastBottom = null;
-            stableRuns = 0;
-            watchTicks = 0;
-            alignWatch = setInterval(function () {
-                var btn = document.querySelector(".slider-section .swiper-slide-active .tl-primary-btn");
-                var bottom = btn ? Math.round(btn.getBoundingClientRect().bottom) : null;
-                if (bottom !== null && bottom === lastBottom) stableRuns += 1;
-                else stableRuns = 0;
-                lastBottom = bottom;
-                alignFloatWithSliderButton();
-                watchTicks += 1;
-                if ((stableRuns >= 6 && watchTicks > 8) || watchTicks > 24) clearInterval(alignWatch);
-            }, 200);
-        }
-
-        window.addEventListener("resize", function () {
-            scheduleAlign();
-            startAlignWatch();
-        });
-        window.addEventListener("scroll", scheduleAlign, { passive: true });
+        window.addEventListener("scroll", hideCornerFloatOnHero, { passive: true });
+        window.addEventListener("resize", hideCornerFloatOnHero);
         var smoothWrap = document.getElementById("sorath-smooth-wrapper");
-        if (smoothWrap) smoothWrap.addEventListener("scroll", scheduleAlign, { passive: true });
-        window.addEventListener("load", startAlignWatch);
-        startAlignWatch();
+        if (smoothWrap) smoothWrap.addEventListener("scroll", hideCornerFloatOnHero, { passive: true });
+        if (window.ScrollTrigger) {
+            ScrollTrigger.addEventListener("scrollEnd", hideCornerFloatOnHero);
+        }
+        hideCornerFloatOnHero();
 
         function playLetterTitles(scope) {
             var title = (scope || document).querySelector(".slider-letter-title");
@@ -172,9 +111,6 @@
                     var animatingElements = $(swiper.slides[swiper.activeIndex]).find("[data-animation]");
                     sliderAnimations(animatingElements);
                     playLetterTitles(swiper.slides[swiper.activeIndex]);
-                },
-                slideChangeTransitionEnd: function () {
-                    alignFloatWithSliderButton();
                 }
             }
         };
@@ -203,8 +139,7 @@
                 
                 sliderAnimations(elements);
                 playLetterTitles(swiper.slides[swiper.activeIndex]);
-                alignFloatWithSliderButton();
-                startAlignWatch();
+                hideCornerFloatOnHero();
             }, 80);
         };
     });

@@ -42,6 +42,31 @@
     color: var(--tl-color-common-white)
 }
 
+.slider-section .sorath-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap
+}
+
+.hero-float {
+    position: absolute;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.sorath-btn .hero-float .design-float-icon {
+    display: flex;
+}
+
+.hero-float .design-float-icon:before,
+.hero-float .design-float-icon:after,
+.hero-float .design-float-icon i {
+    animation: none;
+}
+
 .slider-item {
     position: relative
 }
@@ -214,38 +239,47 @@
         position: relative;
         height: 100%;
         display: flex;
-        align-items: flex-end;
-        padding-top: clamp(90px, 13vh, 130px);
-        padding-bottom: clamp(24px, 5vh, 60px)
+        align-items: stretch;
+        padding-top: clamp(80px, 10vh, 110px);
+        padding-bottom: clamp(20px, 3vh, 40px)
+    }
+
+    .slider-section .slider-container > .row {
+        width: 100%;
+        flex: 1
+    }
+
+    .slider-section .slider-content-wrap {
+        align-self: center
     }
 
     .slider-section .slider-logo {
-        width: clamp(190px, 26vh, 320px);
-        margin-bottom: clamp(8px, 2vh, 20px)
+        width: clamp(180px, min(22vw, 24vh), 280px);
+        margin-bottom: clamp(8px, 1.4vh, 16px)
     }
 
     .slider-section .slider-content-wrap .section-heading {
-        margin-bottom: clamp(12px, 3vh, 40px)
+        margin-bottom: clamp(8px, 1.6vh, 20px)
     }
 
     .slider-section .slider-content-wrap .section-heading .section-title {
-        font-size: clamp(24px, min(3.2vw, 5.4vh), 56px);
-        line-height: 1.12;
+        font-size: clamp(34px, min(3.4vw, 5.2vh), 56px);
+        line-height: 1.08;
         max-width: 100%
     }
 
     .slider-section .slider-content-wrap .bottom-content .sorath-desc {
-        margin-bottom: clamp(12px, 3vh, 40px)
+        margin-bottom: clamp(10px, 1.6vh, 22px)
     }
 
     .slider-section .slider-content-wrap .bottom-content .sorath-desc p {
-        font-size: clamp(14px, min(1.3vw, 2.2vh), 20px);
-        line-height: 1.5
+        font-size: clamp(15px, min(1.15vw, 1.9vh), 18px);
+        line-height: 1.45
     }
 
     .slider-section .slider-item .slider-element-wrap {
         width: 100%;
-        max-width: 100%;
+        max-width: 540px;
         margin-left: auto;
         right: auto;
         justify-content: flex-end;
@@ -261,7 +295,7 @@
     .slider-section .slider-item .slider-element-wrap .slider-thumb {
         flex: 1 1 0;
         max-width: none;
-        height: clamp(240px, 42vh, 400px)
+        height: clamp(280px, 48vh, 460px)
     }
 
     .slider-section .slider-item .slider-element-wrap .slider-element .element-title {
@@ -326,6 +360,10 @@
 }
 
 @media (max-width: 767px) {
+.slider-section .sorath-btn {
+        justify-content: center
+    }
+
 .slider-content-wrap {
         padding-top:140px;
         text-align: center;
@@ -345,7 +383,7 @@
         display: flex;
         align-items: stretch;
         column-gap: 12px;
-        max-width: 420px;
+        max-width: 380px;
         margin: 0 auto;
         text-align: left
     }
