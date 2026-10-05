@@ -1,0 +1,66 @@
+<section class="cart-section">
+    <div class="container container-2">
+        <ul class="cart-list">
+            <li data-price="157">
+                <a class="cart-product" href="shop-details.html">
+                    <img src="assets/img/shop/shop-2.png" alt="Modern Caramel Fabric Sofa">
+                    <span>
+                        <strong>Modern Caramel Fabric Sofa</strong>
+                        <em>$157.00</em>
+                    </span>
+                </a>
+                <button type="button" class="cart-remove" aria-label="Remove Modern Caramel Fabric Sofa"><i class="fa-regular fa-xmark"></i></button>
+            </li>
+            <li data-price="157">
+                <a class="cart-product" href="shop-details.html">
+                    <img src="assets/img/shop/shop-1.png" alt="Luxury Skyline Sofa">
+                    <span>
+                        <strong>Luxury Skyline Sofa</strong>
+                        <em>$157.00</em>
+                    </span>
+                </a>
+                <button type="button" class="cart-remove" aria-label="Remove Luxury Skyline Sofa"><i class="fa-regular fa-xmark"></i></button>
+            </li>
+        </ul>
+        <div class="cart-foot">
+            <p class="cart-total"><span>Total</span><strong>$314.00</strong></p>
+            <div class="cart-actions">
+                <a class="tl-primary-btn cart-shop" href="shop.html">Continue shopping</a>
+                <a class="tl-primary-btn" href="checkout.html">Checkout <span class="icon"><i class="fa-regular fa-arrow-right"></i></span></a>
+            </div>
+        </div>
+        <div class="cart-empty" hidden>
+            <h2>Your cart is empty</h2>
+            <p>Add a design and it will show up here.</p>
+            <a class="tl-primary-btn" href="shop.html">Browse products <span class="icon"><i class="fa-regular fa-arrow-right"></i></span></a>
+        </div>
+    </div>
+    <script>
+        (function () {
+            var list = document.querySelector(".cart-list");
+            var foot = document.querySelector(".cart-foot");
+            var empty = document.querySelector(".cart-empty");
+            var totalEl = document.querySelector(".cart-total strong");
+            if (!list) return;
+
+            function refresh() {
+                var items = list.querySelectorAll("li");
+                var total = 0;
+                items.forEach(function (item) {
+                    total += parseFloat(item.getAttribute("data-price")) || 0;
+                });
+                var hasItems = items.length > 0;
+                if (foot) foot.hidden = !hasItems;
+                if (empty) empty.hidden = hasItems;
+                if (totalEl) totalEl.textContent = "$" + total.toFixed(2);
+            }
+
+            list.addEventListener("click", function (e) {
+                var btn = e.target.closest(".cart-remove");
+                if (!btn) return;
+                btn.closest("li").remove();
+                refresh();
+            });
+        })();
+    </script>
+</section>
