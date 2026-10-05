@@ -321,6 +321,9 @@
     .idb-journey .j-visual{height:46vh}
     .idb-journey .j-title{font-size:28px}
     .idb-journey .j-desc{font-size:14px}
+    .row.h-100.align-items-center.align-content-start.align-content-lg-center {
+        margin-top: 40px;
+    }
 }
 @media (max-width:575px) and (max-height:700px){
     .idb-journey .j-visual{height:38vh}
