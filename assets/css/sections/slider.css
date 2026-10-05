@@ -30,6 +30,10 @@
     display: inline
 }
 
+.slider-section .section-heading .section-title br {
+    display: block
+}
+
 .slider-content-wrap .bottom-content .sorath-desc {
     margin-bottom: 40px
 }
@@ -161,7 +165,7 @@
 }
 
 .slider-section .section-heading .section-title .slider-letter {
-    color: var(--tl-color-common-white)
+    color: var(--tl-color-common-black)
 }
 
 .slider-section .section-heading .section-title .slider-letter.is-accent {
@@ -255,7 +259,7 @@
     }
 
     .slider-section .slider-item .slider-element-wrap .slider-thumb {
-        flex: 1.15 1 0;
+        flex: 1 1 0;
         max-width: none;
         height: clamp(240px, 42vh, 400px)
     }

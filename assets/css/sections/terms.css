@@ -1,0 +1,104 @@
+.terms-section,
+.privacy-section {
+    padding: var(--tl-section-space, 70px) 0
+}
+
+.terms-wrap,
+.privacy-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid rgba(159, 159, 164, .24);
+    border-radius: 24px;
+    padding: 48px 52px 40px
+}
+
+.terms-updated {
+    display: inline-block;
+    margin-bottom: 28px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: rgba(119, 165, 163, .12);
+    color: var(--tl-color-theme-primary);
+    font-family: var(--tl-ff-heading);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .4px
+}
+
+.terms-wrap h2,
+.privacy-wrap h2 {
+    font-size: 28px;
+    margin: 36px 0 16px
+}
+
+.privacy-wrap h2:first-child {
+    margin-top: 0
+}
+
+.terms-wrap h3,
+.privacy-wrap h3 {
+    font-size: 22px;
+    margin: 28px 0 12px
+}
+
+.terms-wrap p,
+.terms-wrap li,
+.privacy-wrap p,
+.privacy-wrap li {
+    font-size: 16px;
+    line-height: 1.75
+}
+
+.terms-wrap ol,
+.terms-wrap ul,
+.privacy-wrap ol,
+.privacy-wrap ul {
+    margin: 0 0 8px;
+    padding-left: 22px
+}
+
+.terms-wrap ol {
+    list-style: upper-roman
+}
+
+.privacy-wrap > ol {
+    list-style: decimal
+}
+
+.privacy-wrap ol ol {
+    list-style: lower-roman;
+    margin-top: 12px
+}
+
+.terms-wrap ul,
+.privacy-wrap ul {
+    list-style: disc
+}
+
+.terms-wrap li,
+.privacy-wrap li {
+    margin-bottom: 12px
+}
+
+.terms-wrap a,
+.privacy-wrap a {
+    color: var(--tl-color-theme-primary)
+}
+
+@media (max-width: 767px) {
+    .terms-wrap,
+    .privacy-wrap {
+        padding: 28px 20px 24px
+    }
+
+    .terms-wrap h2,
+    .privacy-wrap h2 {
+        font-size: 24px
+    }
+
+    .terms-wrap h3,
+    .privacy-wrap h3 {
+        font-size: 20px
+    }
+}
