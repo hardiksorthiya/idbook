@@ -170,11 +170,16 @@ window.addEventListener("load", function () {
     if (!root) return;
 
     function fitScenes() {
+        var narrow = window.innerWidth <= 767;
         root.querySelectorAll(".j-visual").forEach(function (visual) {
             var scene = visual.querySelector(".j-scene");
             if (!scene || !scene.offsetWidth) return;
-            var fit = Math.min(visual.clientWidth / scene.offsetWidth, visual.clientHeight / scene.offsetHeight);
-            scene.style.setProperty("--s", Math.min(fit * 0.94, 1.4).toFixed(3));
+            var note = narrow ? visual.querySelector(".j-note") : null;
+            var inset = note ? note.offsetHeight + 80 : 0;
+            var availH = Math.max(60, visual.clientHeight - inset);
+            var fit = Math.min(visual.clientWidth / scene.offsetWidth, availH / scene.offsetHeight);
+            scene.style.setProperty("--s", Math.min(fit * (narrow ? 0.9 : 0.94), 1.4).toFixed(3));
+            scene.style.top = inset ? (availH / 2) + "px" : "";
         });
     }
     fitScenes();
@@ -299,7 +304,7 @@ window.addEventListener("load", function () {
         else window.scrollTo({ top: y, behavior: "smooth" });
     }
 
-    gsap.matchMedia().add("all", function () {
+    function bindJourneyPin(pinReparent) {
         root.classList.add("is-desktop");
         var distance = function () { return Math.max(0, track.scrollWidth - root.clientWidth); };
         var tween = gsap.to(track, {
@@ -310,16 +315,11 @@ window.addEventListener("load", function () {
                 start: "top top",
                 end: function () { return "+=" + distance(); },
                 pin: true,
+                pinReparent: pinReparent,
                 scrub: 0.2,
                 snap: ScrollTrigger.isTouch === 1 ? { snapTo: 1 / (total - 1), duration: { min: 0.3, max: 0.7 }, delay: 0.15, ease: "power2.inOut" } : false,
                 invalidateOnRefresh: true,
                 onUpdate: function (self) {
-                    if (self.isActive) {
-                        var top = self.pin.getBoundingClientRect().top;
-                        if (Math.abs(top) > 4) {
-                            gsap.set(self.pin, { y: (gsap.getProperty(self.pin, "y") || 0) - top });
-                        }
-                    }
                     setActive(Math.round(self.progress * (total - 1)));
                 }
             }
@@ -345,14 +345,35 @@ window.addEventListener("load", function () {
         }
         window.addEventListener("wheel", onWheel, { passive: false });
 
+        setTimeout(function () {
+            if (!trigger) return;
+            ScrollTrigger.refresh();
+            var smoother = window.ScrollSmoother && ScrollSmoother.get();
+            var y = smoother ? smoother.scrollTop() : window.scrollY;
+            var span = trigger.end - trigger.start;
+            if (span < 1 || y < trigger.start || y > trigger.end) return;
+            var index = Math.round(((y - trigger.start) / span) * (total - 1));
+            index = Math.max(0, Math.min(total - 1, index));
+            var target = trigger.start + span * (index / (total - 1));
+            if (Math.abs(target - y) < 8) return;
+            if (smoother) smoother.scrollTo(target, false);
+            else window.scrollTo(0, target);
+            setActive(index);
+        }, 350);
+
         return function () {
             window.removeEventListener("wheel", onWheel);
             root.classList.remove("is-desktop");
             trigger = null;
+            if (tween.scrollTrigger) tween.scrollTrigger.kill(true);
             tween.kill();
-            gsap.set(track, { clearProps: "transform" });
+            gsap.set([root, track], { clearProps: "transform,x,y" });
         };
-    });
+    }
+
+    var journeyMM = gsap.matchMedia();
+    journeyMM.add("(max-width: 767px)", function () { return bindJourneyPin(true); });
+    journeyMM.add("(min-width: 768px)", function () { return bindJourneyPin(false); });
 
     setActive(0);
     ScrollTrigger.refresh();

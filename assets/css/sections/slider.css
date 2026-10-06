@@ -411,3 +411,20 @@
         align-items:center
     }
 }
+
+@media (max-width: 375.98px) {
+    .slider-logo {
+        width: 100%;
+        max-width: 260px
+    }
+
+    .slider-content-wrap .section-heading .section-title {
+        font-size: 32px
+    }
+
+    .hero-float {
+        position: static;
+        left: auto;
+        order: -1
+    }
+}

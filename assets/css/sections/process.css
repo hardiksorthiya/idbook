@@ -343,3 +343,56 @@
     .idb-journey .j-pill,
     .idb-journey .j-cta{margin-top:12px}
 }
+@media (max-width: 767px) {
+    .idb-journey .j-hud .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px
+    }
+    .idb-journey .j-kicker {
+        white-space: nowrap;
+        flex-shrink: 0;
+        width: max-content;
+        max-width: 100%
+    }
+    .idb-journey .j-panel > .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 200px;
+        padding-bottom: 16px
+    }
+    .idb-journey .j-panel > .container > .row {
+        flex: 1 1 auto;
+        min-height: 0;
+        flex-direction: column;
+        flex-wrap: nowrap
+    }
+    .row.h-100.align-items-center.align-content-start.align-content-lg-center {
+        margin-top: 0
+    }
+    .idb-journey .j-visual {
+        flex: 1 1 auto;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        margin-top: 8px
+    }
+    .idb-journey .j-step {
+        margin-bottom: 8px
+    }
+    .idb-journey .j-desc {
+        margin-top: 8px
+    }
+    .idb-journey .j-pill {
+        margin-top: 10px
+    }
+    .idb-journey .j-note {
+        left: 50%;
+        right: auto;
+        bottom: 72px;
+        width: 190px;
+        padding: 10px 12px;
+        transform: translateX(-50%)
+    }
+}

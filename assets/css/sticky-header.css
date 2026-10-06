@@ -81,8 +81,8 @@ body:not(.home-page) .header:not(.sticky-header) .primary-header-inner {
 }
 
 .header .primary-header-inner .header-right-wrap .sidebar-icon .mobile-side-menu-toggle svg {
-    width: 16px;
-    height: 16px;
+    width: 1em;
+    height: 1em;
 }
 
 .header .primary-header-inner .header-right-wrap .sidebar-icon .mobile-side-menu-toggle:hover {
@@ -709,11 +709,13 @@ body .cart-dropdown.is-open {
         font-size: 14px;
     }
 
+    .header:not(.sticky-header) .primary-header-inner .header-right-wrap .search-icon,
     .header .primary-header-inner .header-right-wrap .cart-icon,
     .header .primary-header-inner .header-right-wrap .wish-icon,
     .header:not(.sticky-header) .primary-header-inner .header-right-wrap .sidebar-icon .mobile-side-menu-toggle {
         height: 44px;
         width: 44px;
+        font-size: 15px;
     }
 
     .section-heading .section-title {
