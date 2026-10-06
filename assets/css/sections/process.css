@@ -313,6 +313,9 @@
     .idb-journey .j-visual{height:50vh;margin-top:20px}
     .idb-journey .j-desc{margin-top:14px}
 }
+@media (min-width:768px) and (max-width:991px){
+    .idb-journey .j-visual{height:32vh;max-height:320px}
+}
 @media (max-width:575px){
     .idb-journey .j-counter .j-line{width:60px}
     .idb-journey .j-cube-scene{--c:44px}
@@ -346,7 +349,8 @@
 @media (max-width: 767px) {
     .idb-journey .j-hud .container {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
         gap: 12px
     }
     .idb-journey .j-kicker {

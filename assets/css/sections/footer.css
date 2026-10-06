@@ -43,16 +43,17 @@
 }
 
 .footer-wrap {
-    padding: clamp(50px, 8vh, 80px) 0 clamp(30px, 5vh, 50px);
-    row-gap: 36px
+    padding: 28px 0 22px;
+    row-gap: 20px;
+    align-items: center
 }
 
 .footer-widget .widget-header {
-    margin-bottom: 20px
+    margin-bottom: 8px
 }
 
 .footer-widget .widget-header .footer-logo {
-    max-width: 170px
+    max-width: 140px
 }
 
 .footer-brand .footer-about {
@@ -65,10 +66,10 @@
 .footer-brand .footer-mail {
     font-family: var(--tl-ff-heading);
     color: var(--tl-color-common-white);
-    font-size: 20px;
+    font-size: 15px;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     transition: color .3s ease
 }
 
@@ -91,7 +92,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 12px 44px;
+    gap: 8px 28px;
     list-style: none;
     margin: 0;
     padding: 0
@@ -100,7 +101,7 @@
 .footer-nav .footer-menu li a {
     font-family: var(--tl-ff-heading);
     color: var(--tl-color-common-white);
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.2;
     position: relative;
     display: inline-block
@@ -232,7 +233,7 @@
 
 @media (min-width: 992px) {
     .footer-nav {
-        padding-top: 14px
+        padding-top: 0
     }
 }
 
@@ -268,7 +269,7 @@
 
 @media (max-width: 767px) {
     .footer-wrap {
-        padding: 50px 0 30px;
+        padding: 36px 0 24px;
         row-gap: 28px
     }
 
