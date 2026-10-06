@@ -345,6 +345,9 @@
     .idb-journey .j-cta{margin-top:12px}
 }
 @media (max-width: 767px) {
+    html, body {
+        overflow-x: clip
+    }
     .idb-journey .j-hud .container {
         flex-direction: column;
         align-items: flex-start !important;
