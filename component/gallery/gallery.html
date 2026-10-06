@@ -1,43 +1,47 @@
 <section class="gallery-inner pt-100 pb-100">
     <div class="container container-2">
-        <ul class="gallery-filter" role="tablist" aria-label="Gallery categories">
-            <li><button type="button" class="is-active" role="tab" aria-selected="true" data-filter="all">All</button></li>
-            <li><button type="button" role="tab" aria-selected="false" data-filter="interior">Interior Design</button></li>
-            <li><button type="button" role="tab" aria-selected="false" data-filter="architecture">Architecture</button></li>
-            <li><button type="button" role="tab" aria-selected="false" data-filter="exterior">Exterior</button></li>
-            <li><button type="button" role="tab" aria-selected="false" data-filter="3d">3D Visualisation</button></li>
-        </ul>
+        <div class="gallery-dropdown">
+            <button type="button" class="gallery-dropdown-toggle" aria-haspopup="listbox" aria-expanded="false" aria-controls="gallery-category-list">
+                <span class="gallery-dropdown-label">All</span>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+            <ul class="gallery-dropdown-menu" id="gallery-category-list" role="listbox" aria-label="Gallery categories" hidden>
+                <li><button type="button" role="option" class="is-active" aria-selected="true" data-filter="all">All</button></li>
+                <li><button type="button" role="option" aria-selected="false" data-filter="creative-art">Creative Art</button></li>
+                <li><button type="button" role="option" aria-selected="false" data-filter="exterior">Exterior</button></li>
+            </ul>
+        </div>
 
         <div class="gallery-grid">
-            <div class="gallery-grid-item is-wide" data-category="interior">
-                <a href="assets/img/blog/blog-details-img.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/blog-details-img.png" alt="Interior design"><span class="gallery-tag">Interior Design</span></a>
+            <div class="gallery-grid-item is-wide" data-category="creative-art">
+                <a href="assets/img/blog/blog-details-img.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/blog-details-img.png" alt="Interior design"><span class="gallery-tag">Creative Art</span></a>
             </div>
-            <div class="gallery-grid-item" data-category="architecture">
-                <a href="assets/img/blog/post-1.jpg" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-1.jpg" alt="Architecture"><span class="gallery-tag">Architecture</span></a>
+            <div class="gallery-grid-item" data-category="creative-art">
+                <a href="assets/img/blog/post-1.jpg" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-1.jpg" alt="Architecture"><span class="gallery-tag">Creative Art</span></a>
             </div>
-            <div class="gallery-grid-item" data-category="interior">
-                <a href="assets/img/blog/post-2.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-2.png" alt="Interior design"><span class="gallery-tag">Interior Design</span></a>
+            <div class="gallery-grid-item" data-category="creative-art">
+                <a href="assets/img/blog/post-2.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-2.png" alt="Interior design"><span class="gallery-tag">Creative Art</span></a>
             </div>
             <div class="gallery-grid-item" data-category="exterior">
                 <a href="assets/img/blog/post-3.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-3.png" alt="Exterior"><span class="gallery-tag">Exterior</span></a>
             </div>
-            <div class="gallery-grid-item is-tall" data-category="3d">
-                <a href="assets/img/blog/post-8.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-8.png" alt="3D visualisation"><span class="gallery-tag">3D Visualisation</span></a>
+            <div class="gallery-grid-item is-tall" data-category="creative-art">
+                <a href="assets/img/blog/post-8.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-8.png" alt="3D visualisation"><span class="gallery-tag">Creative Art</span></a>
             </div>
-            <div class="gallery-grid-item" data-category="architecture">
-                <a href="assets/img/blog/blog-details-img-1.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/blog-details-img-1.png" alt="Architecture"><span class="gallery-tag">Architecture</span></a>
+            <div class="gallery-grid-item" data-category="creative-art">
+                <a href="assets/img/blog/blog-details-img-1.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/blog-details-img-1.png" alt="Architecture"><span class="gallery-tag">Creative Art</span></a>
             </div>
-            <div class="gallery-grid-item" data-category="interior">
-                <a href="assets/img/blog/blog-details-img-2.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/blog-details-img-2.png" alt="Interior design"><span class="gallery-tag">Interior Design</span></a>
+            <div class="gallery-grid-item" data-category="creative-art">
+                <a href="assets/img/blog/blog-details-img-2.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/blog-details-img-2.png" alt="Interior design"><span class="gallery-tag">Creative Art</span></a>
             </div>
             <div class="gallery-grid-item is-wide" data-category="exterior">
                 <a href="assets/img/blog/post-4.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-4.png" alt="Exterior"><span class="gallery-tag">Exterior</span></a>
             </div>
-            <div class="gallery-grid-item" data-category="3d">
-                <a href="assets/img/blog/post-5.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-5.png" alt="3D visualisation"><span class="gallery-tag">3D Visualisation</span></a>
+            <div class="gallery-grid-item" data-category="creative-art">
+                <a href="assets/img/blog/post-5.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-5.png" alt="3D visualisation"><span class="gallery-tag">Creative Art</span></a>
             </div>
-            <div class="gallery-grid-item" data-category="architecture">
-                <a href="assets/img/blog/post-6.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-6.png" alt="Architecture"><span class="gallery-tag">Architecture</span></a>
+            <div class="gallery-grid-item" data-category="creative-art">
+                <a href="assets/img/blog/post-6.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-6.png" alt="Architecture"><span class="gallery-tag">Creative Art</span></a>
             </div>
             <div class="gallery-grid-item" data-category="exterior">
                 <a href="assets/img/blog/post-7.png" class="venobox" data-gall="gallery"><img src="assets/img/blog/post-7.png" alt="Exterior"><span class="gallery-tag">Exterior</span></a>
@@ -49,18 +53,29 @@
 (function () {
     var section = document.querySelector(".gallery-inner");
     if (!section) return;
-    var buttons = section.querySelectorAll(".gallery-filter button");
+    var dropdown = section.querySelector(".gallery-dropdown");
+    var toggle = dropdown.querySelector(".gallery-dropdown-toggle");
+    var menu = dropdown.querySelector(".gallery-dropdown-menu");
+    var label = dropdown.querySelector(".gallery-dropdown-label");
+    var options = menu.querySelectorAll("button");
     var items = section.querySelectorAll(".gallery-grid-item");
 
-    function applyFilter(filter) {
+    function setOpen(open) {
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        menu.hidden = !open;
+        dropdown.classList.toggle("is-open", open);
+    }
+
+    function applyFilter(filter, text) {
         var shown = 0;
-        buttons.forEach(function (btn) {
+        label.textContent = text;
+        options.forEach(function (btn) {
             var active = btn.getAttribute("data-filter") === filter;
             btn.classList.toggle("is-active", active);
             btn.setAttribute("aria-selected", active ? "true" : "false");
         });
         items.forEach(function (item) {
-            var match = filter === "all" || item.getAttribute("data-category").split(" ").indexOf(filter) > -1;
+            var match = filter === "all" || item.getAttribute("data-category") === filter;
             item.querySelector("a").setAttribute("data-gall", match ? "gallery" : "gallery-hidden");
             item.hidden = !match;
             item.classList.remove("is-in");
@@ -74,10 +89,23 @@
         if (window.ScrollTrigger) window.ScrollTrigger.refresh();
     }
 
-    buttons.forEach(function (btn) {
+    toggle.addEventListener("click", function () {
+        setOpen(menu.hidden);
+    });
+
+    options.forEach(function (btn) {
         btn.addEventListener("click", function () {
-            applyFilter(btn.getAttribute("data-filter"));
+            applyFilter(btn.getAttribute("data-filter"), btn.textContent);
+            setOpen(false);
         });
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!dropdown.contains(event.target)) setOpen(false);
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") setOpen(false);
     });
 })();
 </script>

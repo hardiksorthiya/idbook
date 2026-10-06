@@ -4,7 +4,7 @@
             <h1 class="auth-title">Register</h1>
             <div class="auth-tabs" role="tablist" aria-label="Account type">
                 <button type="button" class="auth-tab is-active" role="tab" aria-selected="true" data-type="customer"><i class="fa-regular fa-user"></i>Customer</button>
-                <button type="button" class="auth-tab" role="tab" aria-selected="false" data-type="architect"><i class="fa-regular fa-compass-drafting"></i>Architect</button>
+                <button type="button" class="auth-tab" role="tab" aria-selected="false" data-type="architect"><i class="fa-regular fa-compass-drafting"></i>Architect / Interior</button>
             </div>
             <p class="auth-lead" data-customer="Create an account to save designs and pick up your order later." data-architect="Join as an architect to showcase your plans and work with clients.">Create an account to save designs and pick up your order later.</p>
             <form id="register-form" action="register.html" method="post" novalidate>
@@ -30,8 +30,8 @@
                     </div>
                     <div class="col-lg-6 auth-architect-only" hidden>
                         <div class="form-item">
-                            <h4 class="form-title">COA registration no.</h4>
-                            <input type="text" name="coa_number" class="form-control" placeholder="e.g. CA/2020/12345" required disabled>
+                            <h4 class="form-title">Mobile number</h4>
+                            <input type="tel" name="mobile_number" class="form-control" placeholder="Your mobile number" required>
                         </div>
                     </div>
                     <div class="col-lg-6">

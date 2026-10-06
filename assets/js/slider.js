@@ -91,14 +91,15 @@
         }
 
         /* ============================ Swiper Setup ============================ */
+        var sliderCount = document.querySelectorAll(".sorath-slider .swiper-slide").length;
         var sliderOptions = {
             init: false,
             speed: 1500,
-            loop: true,
+            loop: sliderCount > 1,
             effect: "fade", // Fixed typo: "verticle" isn't a default Swiper effect, usually "vertical" or "fade"
-            grabCursor: true,
-            allowTouchMove: true,
-            simulateTouch: true,
+            grabCursor: sliderCount > 1,
+            allowTouchMove: sliderCount > 1,
+            simulateTouch: sliderCount > 1,
             threshold: 8,
             autoplay: false,
             pagination: {

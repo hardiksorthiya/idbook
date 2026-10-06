@@ -47,7 +47,8 @@
     color: var(--tl-color-heading-primary)
 }
 
-.header .primary-header-inner .header-right-wrap .search-icon{
+.header .primary-header-inner .header-right-wrap .search-icon,
+.header .primary-header-inner .header-right-wrap .login-icon{
     background: rgba(216,218,223,.13);
     color: var(--tl-color-common-white);
     border: 1px solid rgba(255,255,255,.09);
@@ -66,7 +67,8 @@
     transition: all .3s ease-in-out
 }
 
-.header .primary-header-inner .header-right-wrap .search-icon:hover{
+.header .primary-header-inner .header-right-wrap .search-icon:hover,
+.header .primary-header-inner .header-right-wrap .login-icon:hover{
     background-color: var(--tl-color-theme-primary);
     border-color: var(--tl-color-theme-primary)
 }

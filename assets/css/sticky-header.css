@@ -35,9 +35,16 @@ body:not(.home-page) .header:not(.sticky-header) .primary-header-inner {
 }
 
 .header .primary-header-inner .header-right-wrap .search-icon,
+.header .primary-header-inner .header-right-wrap .login-icon,
 .header .primary-header-inner .header-right-wrap .cart-icon,
 .header .primary-header-inner .header-right-wrap .wish-icon {
     display: flex;
+}
+
+.header .primary-header-inner .header-right-wrap .login-icon {
+    font-size: 16px;
+    line-height: 1;
+    text-decoration: none;
 }
 
 .header .primary-header-inner .header-right-wrap .cart-icon,
@@ -127,7 +134,7 @@ body:not(.home-page) .header:not(.sticky-header) .primary-header-inner {
 }
 
 .header .header-search.is-open .header-search-input {
-    width: min(320px, calc(100vw - 100px));
+    width: min(380px, calc(100vw - 100px));
     padding: 0 70px 0 24px;
     opacity: 1;
     pointer-events: auto;
@@ -701,6 +708,7 @@ body .cart-dropdown.is-open {
     }
 
     body:not(.home-page) .header:not(.sticky-header) .primary-header-inner .header-right-wrap .search-icon,
+    body:not(.home-page) .header:not(.sticky-header) .primary-header-inner .header-right-wrap .login-icon,
     body:not(.home-page) .header:not(.sticky-header) .primary-header-inner .header-right-wrap .cart-icon,
     body:not(.home-page) .header:not(.sticky-header) .primary-header-inner .header-right-wrap .wish-icon,
     body:not(.home-page) .header:not(.sticky-header) .primary-header-inner .header-right-wrap .sidebar-icon .mobile-side-menu-toggle {
@@ -710,6 +718,7 @@ body .cart-dropdown.is-open {
     }
 
     .header:not(.sticky-header) .primary-header-inner .header-right-wrap .search-icon,
+    .header:not(.sticky-header) .primary-header-inner .header-right-wrap .login-icon,
     .header .primary-header-inner .header-right-wrap .cart-icon,
     .header .primary-header-inner .header-right-wrap .wish-icon,
     .header:not(.sticky-header) .primary-header-inner .header-right-wrap .sidebar-icon .mobile-side-menu-toggle {
@@ -740,6 +749,7 @@ body .cart-dropdown.is-open {
     }
 
     .header.sticky-header .primary-header-inner .header-right-wrap .search-icon,
+    .header.sticky-header .primary-header-inner .header-right-wrap .login-icon,
     .header.sticky-header .primary-header-inner .header-right-wrap .cart-icon,
     .header.sticky-header .primary-header-inner .header-right-wrap .wish-icon,
     .header.sticky-header .primary-header-inner .header-right-wrap .sidebar-icon .mobile-side-menu-toggle {
@@ -759,6 +769,7 @@ body .cart-dropdown.is-open {
     }
 
     body:not(.home-page) .header:not(.sticky-header) .primary-header-inner .header-right-wrap .search-icon,
+    body:not(.home-page) .header:not(.sticky-header) .primary-header-inner .header-right-wrap .login-icon,
     body:not(.home-page) .header:not(.sticky-header) .primary-header-inner .header-right-wrap .cart-icon,
     body:not(.home-page) .header:not(.sticky-header) .primary-header-inner .header-right-wrap .wish-icon,
     body:not(.home-page) .header:not(.sticky-header) .primary-header-inner .header-right-wrap .sidebar-icon .mobile-side-menu-toggle {
@@ -775,6 +786,7 @@ body .cart-dropdown.is-open {
     }
 
     .header.sticky-header .primary-header-inner .header-right-wrap .search-icon,
+    .header.sticky-header .primary-header-inner .header-right-wrap .login-icon,
     .header.sticky-header .primary-header-inner .header-right-wrap .cart-icon,
     .header.sticky-header .primary-header-inner .header-right-wrap .wish-icon,
     .header.sticky-header .primary-header-inner .header-right-wrap .sidebar-icon .mobile-side-menu-toggle {

@@ -36,7 +36,9 @@
 
 
 .slider-content-wrap .bottom-content .sorath-desc p {
-    color: var(--tl-color-common-white)
+    color: var(--tl-color-common-white);
+    font-size: 18px;
+    line-height: 1.5
 }
 
 .slider-section .sorath-btn {
@@ -255,7 +257,7 @@
     }
 
     .slider-section .slider-content-wrap .section-heading .section-title {
-        font-size: clamp(48px, min(5vw, 7.8vh), 82px);
+        font-size: clamp(44px, min(4.5vw, 7vh), 72px);
         line-height: 1.08;
         max-width: 100%
     }
@@ -265,8 +267,8 @@
     }
 
     .slider-section .slider-content-wrap .bottom-content .sorath-desc p {
-        font-size: clamp(15px, min(1.15vw, 1.9vh), 18px);
-        line-height: 1.45
+        font-size: clamp(18px, min(1.4vw, 2.3vh), 22px);
+        line-height: 1.5
     }
 
    
@@ -316,7 +318,7 @@
 
 @media (max-width: 992px) {
 .slider-content-wrap .section-heading .section-title {
-        font-size: 52px;
+        font-size: 46px;
         max-width: 100%
     }
 
@@ -352,7 +354,7 @@
     }
 
     .slider-content-wrap .section-heading .section-title {
-        font-size: clamp(36px, 10.5vw, 46px)
+        font-size: clamp(32px, 9.4vw, 42px)
     }
     
 
@@ -419,7 +421,7 @@
     }
 
     .slider-content-wrap .section-heading .section-title {
-        font-size: 32px
+        font-size: 30px
     }
 
     .hero-float {

@@ -167,30 +167,7 @@
 <script>
 window.addEventListener("load", function () {
     var root = document.querySelector(".idb-journey");
-    if (!root) return;
-
-    function fitScenes() {
-        var narrow = window.innerWidth <= 767;
-        root.querySelectorAll(".j-visual").forEach(function (visual) {
-            var scene = visual.querySelector(".j-scene");
-            if (!scene || !scene.offsetWidth) return;
-            if (scene.classList.contains("j-flip-wrap")) {
-                scene.style.removeProperty("--s");
-                scene.style.top = "";
-                return;
-            }
-            var note = narrow ? visual.querySelector(".j-note") : null;
-            var inset = note ? note.offsetHeight + 80 : 0;
-            var availH = Math.max(60, visual.clientHeight - inset);
-            var fit = Math.min(visual.clientWidth / scene.offsetWidth, availH / scene.offsetHeight);
-            scene.style.setProperty("--s", Math.min(fit * (narrow ? 0.9 : 0.94), 1.4).toFixed(3));
-            scene.style.top = inset ? (availH / 2) + "px" : "";
-        });
-    }
-    fitScenes();
-    window.addEventListener("resize", fitScenes);
-
-    if (!window.gsap || !window.ScrollTrigger) return;
+    if (!root || !window.gsap || !window.ScrollTrigger) return;
     gsap.registerPlugin(ScrollTrigger);
 
     var track = root.querySelector(".j-track");
@@ -199,188 +176,57 @@ window.addEventListener("load", function () {
     var countEl = root.querySelector(".j-counter b");
     var lineEl = root.querySelector(".j-line i");
     var labelEl = root.querySelector(".j-label");
-    var cube = root.querySelector(".j-cube");
     var fillEl = root.querySelector(".j-fill");
     var total = panels.length;
     var current = -1;
-    var trigger = null;
 
-    var cubeMoves = [
-        function (d) { return { rotationY: 360 * d }; },
-        function (d) { return { rotationX: -360 * d }; },
-        function (d) { return { rotationX: 360 * d, rotationY: 360 * d }; },
-        function (d) { return { rotationY: -360 * d, rotationZ: 360 * d }; },
-        function (d) { return { rotationX: 360 * d, rotationZ: -360 * d }; },
-        function (d) { return { rotationY: 720 * d }; }
-    ];
-
-    function fx(tl, targets, from, pos) {
-        var list = gsap.utils.toArray(targets);
-        if (!list.length) return;
-        var to = {
-            opacity: 1, x: 0, y: 0, scale: 1, rotation: 0,
-            duration: from.duration || 0.6,
-            ease: from.ease || "power3.out",
-            stagger: from.stagger || 0,
-            clearProps: "opacity,transform",
-            overwrite: true
-        };
-        delete from.duration; delete from.ease; delete from.stagger;
-        tl.fromTo(list, from, to, pos);
+    function distance() {
+        return Math.max(0, track.scrollWidth - root.clientWidth);
     }
-
-    var q = function (p, sel) { return p.querySelectorAll(sel); };
-    var stepAnims = [
-        function (tl, p) {
-            fx(tl, q(p, ".j-body, .j-window, .j-door"), { opacity: 0, y: 50, stagger: 0.08, duration: 0.7 }, 0);
-            fx(tl, q(p, ".j-visual > .j-glass"), { opacity: 0, x: 60 }, 0.35);
-        },
-        function (tl, p, d) {
-            fx(tl, q(p, ".j-gcard"), { opacity: 0, scale: 0.7, rotation: 6 * d, stagger: 0.1 }, 0);
-        },
-        function (tl, p) {
-            fx(tl, q(p, ".j-play"), { opacity: 0, x: 40, duration: 0.6 }, 0);
-        },
-        function (tl, p) {
-            fx(tl, q(p, ".j-mail"), { opacity: 0, x: 140, y: -90, rotation: 20, duration: 0.8 }, 0);
-        },
-        function (tl, p) {
-            fx(tl, q(p, ".j-file-icon, .j-file h4, .j-file p"), { opacity: 0, y: 30, stagger: 0.06 }, 0);
-        }
-    ];
-
-    function enterPanel(index, dir) {
-        var p = panels[index];
-        var tl = gsap.timeline();
-        fx(tl, q(p, ".j-step, .j-title, .j-desc, .j-pill"), { opacity: 0, x: 40 * dir, stagger: 0.08 }, 0);
-        if (stepAnims[index]) stepAnims[index](tl, p, dir);
-    }
-
-    function spinCube(index, dir) {
-        var num = String(index + 1).padStart(2, "0");
-        gsap.killTweensOf(cube);
-        ["rotationX", "rotationY", "rotationZ"].forEach(function (prop) {
-            gsap.set(cube, { [prop]: Math.round(gsap.getProperty(cube, prop) / 360) * 360 });
-        });
-        var move = cubeMoves[index % cubeMoves.length](dir);
-        var to = { duration: 1, ease: "power3.inOut" };
-        Object.keys(move).forEach(function (prop) {
-            to[prop] = gsap.getProperty(cube, prop) + move[prop];
-        });
-        gsap.timeline()
-            .to(cube, to, 0)
-            .to(cube, { scale: 1.18, duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0)
-            .call(function () { countEl.textContent = num; }, null, 0.45);
-    }
-
-    panels.forEach(function (panel, i) {
-        var dot = document.createElement("button");
-        dot.type = "button";
-        dot.className = "j-dot";
-        dot.setAttribute("aria-label", (i + 1) + ". " + panel.dataset.title);
-        dot.addEventListener("click", function () { goTo(i); });
-        dotsWrap.appendChild(dot);
-    });
-    var dots = Array.prototype.slice.call(dotsWrap.children);
 
     function setActive(index) {
         if (index === current) return;
-        var prev = current;
         current = index;
-        panels.forEach(function (p, i) { p.classList.toggle("is-active", i === index); });
-        dots.forEach(function (d, i) { d.classList.toggle("active", i === index); });
-        var dir = index >= prev ? 1 : -1;
-        if (prev === -1) countEl.textContent = String(index + 1).padStart(2, "0");
-        else spinCube(index, dir);
-        enterPanel(index, dir);
+        panels.forEach(function (panel, i) { panel.classList.toggle("is-active", i === index); });
+        dots.forEach(function (dot, i) { dot.classList.toggle("active", i === index); });
+        countEl.textContent = String(index + 1).padStart(2, "0");
         fillEl.style.height = ((index + 1) / total * 100) + "%";
         lineEl.style.transform = "scaleX(" + (index + 1) / total + ")";
         labelEl.textContent = panels[index].dataset.title;
     }
 
-    var stepIndex = 0, stepTime = 0;
-    function goTo(index) {
-        if (!trigger) return;
-        stepIndex = index;
-        stepTime = Date.now();
-        var y = trigger.start + (trigger.end - trigger.start) * (index / (total - 1));
-        var smoother = window.ScrollSmoother && ScrollSmoother.get();
-        if (smoother) smoother.scrollTo(y, true);
-        else window.scrollTo({ top: y, behavior: "smooth" });
-    }
-
-    function bindJourneyPin(pinReparent) {
-        root.classList.add("is-desktop");
-        var distance = function () { return Math.max(0, track.scrollWidth - root.clientWidth); };
-        var tween = gsap.to(track, {
-            x: function () { return -distance(); },
-            ease: "none",
-            scrollTrigger: {
-                trigger: root,
-                start: "top top",
-                end: function () { return "+=" + distance(); },
-                pin: true,
-                pinReparent: pinReparent,
-                scrub: 0.2,
-                snap: ScrollTrigger.isTouch === 1 ? { snapTo: 1 / (total - 1), duration: { min: 0.3, max: 0.7 }, delay: 0.15, ease: "power2.inOut" } : false,
-                invalidateOnRefresh: true,
-                onUpdate: function (self) {
-                    setActive(Math.round(self.progress * (total - 1)));
-                }
-            }
-        });
-        trigger = tween.scrollTrigger;
-
-        var busyUntil = 0;
-        function onWheel(e) {
-            if (!trigger || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
-            var smoother = window.ScrollSmoother && ScrollSmoother.get();
-            var y = smoother ? smoother.scrollTop() : window.scrollY;
-            if (y < trigger.start - 2 || y > trigger.end + 2) return;
-            var next = (Date.now() - stepTime < 2000 ? stepIndex : current) + (e.deltaY > 0 ? 1 : -1);
-            if (next < 0 || next > total - 1) return;
-            e.preventDefault();
-            var now = Date.now();
-            if (now < busyUntil) {
-                busyUntil = Math.max(busyUntil, now + 200);
-                return;
-            }
-            busyUntil = now + 450;
-            goTo(next);
-        }
-        window.addEventListener("wheel", onWheel, { passive: false });
-
-        setTimeout(function () {
+    panels.forEach(function (panel, i) {
+        var dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "j-dot" + (i === 0 ? " active" : "");
+        dot.setAttribute("aria-label", (i + 1) + ". " + panel.dataset.title);
+        dot.addEventListener("click", function () {
             if (!trigger) return;
-            ScrollTrigger.refresh();
+            var y = trigger.start + (trigger.end - trigger.start) * (i / (total - 1));
             var smoother = window.ScrollSmoother && ScrollSmoother.get();
-            var y = smoother ? smoother.scrollTop() : window.scrollY;
-            var span = trigger.end - trigger.start;
-            if (span < 1 || y < trigger.start || y > trigger.end) return;
-            var index = Math.round(((y - trigger.start) / span) * (total - 1));
-            index = Math.max(0, Math.min(total - 1, index));
-            var target = trigger.start + span * (index / (total - 1));
-            if (Math.abs(target - y) < 8) return;
-            if (smoother) smoother.scrollTo(target, false);
-            else window.scrollTo(0, target);
-            setActive(index);
-        }, 350);
+            if (smoother) smoother.scrollTo(y, true);
+            else window.scrollTo({ top: y, behavior: "smooth" });
+        });
+        dotsWrap.appendChild(dot);
+    });
+    var dots = dotsWrap.querySelectorAll(".j-dot");
 
-        return function () {
-            window.removeEventListener("wheel", onWheel);
-            root.classList.remove("is-desktop");
-            trigger = null;
-            if (tween.scrollTrigger) tween.scrollTrigger.kill(true);
-            tween.kill();
-            gsap.set([root, track], { clearProps: "transform,x,y" });
-        };
-    }
-
-    var journeyMM = gsap.matchMedia();
-    journeyMM.add("(max-width: 767px)", function () { return bindJourneyPin(true); });
-    journeyMM.add("(min-width: 768px)", function () { return bindJourneyPin(false); });
-
+    var tween = gsap.to(track, {
+        x: function () { return -distance(); },
+        ease: "none",
+        scrollTrigger: {
+            trigger: root,
+            start: "top top",
+            end: function () { return "+=" + distance(); },
+            pin: true,
+            scrub: true,
+            invalidateOnRefresh: true,
+            onUpdate: function (self) {
+                setActive(Math.round(self.progress * (total - 1)));
+            }
+        }
+    });
+    var trigger = tween.scrollTrigger;
     setActive(0);
-    ScrollTrigger.refresh();
 });
 </script>

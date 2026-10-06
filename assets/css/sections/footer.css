@@ -136,11 +136,10 @@
 
 .footer-text {
     position: absolute;
-    width: 100%;
-    max-width: 100%;
+    width: auto;
     height: clamp(64px, min(20vw, 30vh), 420px);
-    left: 0;
-    right: 0;
+    left: var(--side, 20px);
+    right: var(--side, 20px);
     bottom: 0;
     z-index: 1;
     overflow: hidden

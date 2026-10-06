@@ -2048,3 +2048,19 @@ blockquote .content p {
         padding-left:0
     }
 }
+
+.container {
+    --side: 20px;
+    width: 100%;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--side);
+    padding-right: var(--side)
+}
+
+@media (min-width: 768px) {
+    .container {
+        --side: 120px
+    }
+}
