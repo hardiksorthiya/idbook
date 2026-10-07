@@ -21,7 +21,6 @@
 }
 
 .slider-content-wrap .section-heading .section-title {
-    font-size: 48px;
     max-width: 56%;
     white-space: normal
 }
@@ -243,7 +242,7 @@
     .slider-section .slider-item {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: center;
         padding-top: clamp(80px, 10vh, 110px);
         padding-bottom: clamp(20px, 3vh, 40px)
     }
@@ -257,7 +256,7 @@
     }
 
     .slider-section .slider-content-wrap .section-heading .section-title {
-        font-size: clamp(44px, min(4.5vw, 7vh), 72px);
+        font-size: clamp(28px, min(2.6vw, 4.5vh), 48px);
         line-height: 1.08;
         max-width: 100%
     }
@@ -318,7 +317,6 @@
 
 @media (max-width: 992px) {
 .slider-content-wrap .section-heading .section-title {
-        font-size: 46px;
         max-width: 100%
     }
 
@@ -353,9 +351,6 @@
         padding-bottom: 0
     }
 
-    .slider-content-wrap .section-heading .section-title {
-        font-size: clamp(32px, 9.4vw, 42px)
-    }
     
 
 .slider-item {
@@ -420,9 +415,7 @@
         max-width: 260px
     }
 
-    .slider-content-wrap .section-heading .section-title {
-        font-size: 30px
-    }
+   
 
     .hero-float {
         position: static;
