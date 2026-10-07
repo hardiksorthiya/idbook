@@ -243,7 +243,7 @@ ul {
     font-weight: 400;
     padding: 7px 19px 7px 28px;
     display: inline-block;
-    margin-bottom: 20px;
+    margin: 20px 0;
     text-transform: uppercase;
     position: relative;
     overflow: hidden;

@@ -4,7 +4,7 @@
     background-color: var(--tl-color-theme-primary);
     border-radius: 50%;
     position: fixed;
-    right: 50px;
+    right: 30px;
     transform: scale(0);
     display: grid;
     place-items: center;

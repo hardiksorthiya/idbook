@@ -1,7 +1,8 @@
 
 
 .slider-content-wrap .section-heading {
-    margin-bottom: 40px
+    margin-bottom: 40px;
+    container-type: inline-size
 }
 
 .slider-content-wrap .section-heading .sub-heading {
@@ -20,10 +21,10 @@
     background-color: var(--tl-color-common-white)
 }
 
-.slider-content-wrap .section-heading .section-title {
-    max-width: 56%;
-    white-space: normal
+.slider-section .slider-content-wrap .section-heading .section-title {
+    max-width: 100%
 }
+
 
 .slider-content-wrap .section-heading .section-title span {
     display: inline
@@ -247,6 +248,24 @@
         padding-bottom: clamp(20px, 3vh, 40px)
     }
 
+    .slider-section .slider-item .row {
+        flex-wrap: nowrap
+    }
+
+    .slider-section .slider-item .slider-content-wrap {
+        flex: 1 1 auto;
+        width: auto;
+        max-width: none;
+        min-width: 0;
+        padding-right: 28px
+    }
+
+    .slider-section .slider-item .col-lg-4 {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none
+    }
+
     .slider-section .slider-logo {
         margin-bottom: clamp(8px, 1.4vh, 16px)
     }
@@ -255,14 +274,8 @@
         margin-bottom: clamp(8px, 1.6vh, 20px)
     }
 
-    .slider-section .slider-content-wrap .section-heading .section-title {
-        font-size: clamp(28px, min(2.6vw, 4.5vh), 48px);
-        line-height: 1.08;
-        max-width: 100%
-    }
-
     .slider-section .slider-content-wrap .bottom-content .sorath-desc {
-        margin-bottom: clamp(28px, 4.5vh, 50px)
+        margin: clamp(28px, 4.5vh, 50px) 0;
     }
 
     .slider-section .slider-content-wrap .bottom-content .sorath-desc p {
@@ -286,6 +299,14 @@
 
     .slider-section .slider-item .slider-element-wrap .slider-element span {
         margin-bottom: clamp(10px, 3vh, 45px)
+    }
+}
+
+@media (min-width: 1025px) {
+    .slider-section .slider-content-wrap .section-heading .section-title {
+        font-size: clamp(16px, 6.15cqi, 68px);
+        line-height: 1.08;
+        max-width: 100%
     }
 }
 
@@ -340,6 +361,13 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .slider-section .slider-content-wrap .section-heading .section-title {
+        font-size: 36px;
+        max-width: 100%
+    }
+}
+
 @media (max-width: 767px) {
 .slider-section .sorath-btn {
         justify-content: center
@@ -349,6 +377,10 @@
         padding-top:140px;
         text-align: center;
         padding-bottom: 0
+    }
+
+    .slider-section .slider-content-wrap .bottom-content .sorath-desc p {
+        font-size: 16px
     }
 
     

@@ -1,7 +1,7 @@
 /* from component/whatsapp.html */
 .design-float {
         position: fixed;
-        left: 50px;
+        left: 30px;
         bottom: clamp(24px, 5vh, 60px);
         z-index: 9999;
         display: flex;
